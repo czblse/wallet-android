@@ -1,0 +1,36 @@
+
+def build_versions = [:]
+build_versions.compileSdkVersion = 26
+build_versions.buildToolsVersion = "26.0.2"
+build_versions.minSdkVersion = 14
+build_versions.targetSdkVersion = 26
+build_versions.versionCode = 1
+build_versions.versionName = "1.0"
+build_versions.applicationId = "io.spaco.wallet"
+
+ext.build_versions = build_versions
+
+def versions = [:]
+versions.v7 = "26.0.2"
+versions.v4 = "26.0.2"
+versions.constraint = "1.0.2"
+versions.junit = "4.12"
+versions.testrunner = "1.0.1"
+versions.testespresso = "3.0.1"
+
+def support = [:]
+support.v7 = "com.android.support:appcompat-v7:$versions.v7"
+support.v4 = "com.android.support:support-v4:$versions.v4"
+support.constraint = "com.android.support.constraint:constraint-layout:$versions.constraint"
+
+def other = [:]
+other.junit = "junit:junit:$versions.junit"
+other.testrunner = "com.android.support.test:runner:$versions.testrunner"
+other.testespresso = "com.android.support.test.espresso:espresso-core:$versions.testespresso"
+
+def deps = [:]
+deps.support = support
+deps.other = other
+ext.deps = deps
+
+
