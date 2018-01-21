@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 
 /**
  * Created by zjy on 2018/1/20.
@@ -34,6 +35,18 @@ public class SplashActivity extends BaseActivity {
      * 如果没有创建钱包，则跳转到pin输入页面
      */
     private void launchToNextAcitivity(){
+        if (SpacoWalletUtils.isPinSet()){
+            launchToPinInputActvity();
+        } else {
+            launchToPinSetActivity();
+        }
+    }
+
+    private void launchToPinSetActivity(){
+
+    }
+
+    private void launchToPinInputActvity(){
 
     }
 }

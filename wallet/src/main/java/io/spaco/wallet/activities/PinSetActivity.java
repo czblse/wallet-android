@@ -7,4 +7,8 @@ import io.spaco.wallet.base.BaseActivity;
  */
 
 public class PinSetActivity extends BaseActivity {
+    @Override
+    protected int getContentViewId() {
+        return 0;
+    }
 }
