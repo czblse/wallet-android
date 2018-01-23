@@ -1,14 +1,9 @@
 package io.spaco.wallet.base;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import io.spaco.wallet.R;
 import io.spaco.wallet.utils.AppManager;
 
 /**
@@ -16,9 +11,9 @@ import io.spaco.wallet.utils.AppManager;
  * 基类Activity
  */
 
-public abstract class BaseActivity extends Activity implements View.OnClickListener{
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
 
-
+    protected Bundle savedInstanceState;
 
     /**
      * 绑定布局文件
@@ -43,6 +38,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
         try {
             setContentView(attachLayoutRes());
             AppManager.getAppManager().addActivity(this);

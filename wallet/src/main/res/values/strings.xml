@@ -8,7 +8,8 @@
         所以你需要创建一个新的钱包。\n
         或者从种子中装入已有的。
     </string>
-    <string name="pin_create_wallet_name">你的钱包名称</string>
+    <string name="pin_create_wallet_name">钱包名称</string>
     <string name="pin_create_wallet_seed">种子</string>
     <string name="pin_create_wallet_generate_seed">自动生成</string>
+    <string name="common_next">下一步</string>
 </resources>

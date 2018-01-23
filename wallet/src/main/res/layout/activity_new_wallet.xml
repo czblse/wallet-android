@@ -1,16 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/pin_create_wallet_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        tools:textColor="@android:color/holo_red_dark"
-        android:textSize="@dimen/activity_title_text_size"
-        android:gravity="center"
-        android:text="@string/wallet_creat_title"/>
 
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:text="@string/pin_title"/>
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/pin_tips"/>
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:text="@string/pin_create_wallet_name"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:background="@drawable/common_edit_radio_bg"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:text="@string/pin_create_wallet_seed"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:background="@drawable/common_edit_radio_bg"
+        android:enabled="false"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_gravity="right"
+        android:text="@string/pin_create_wallet_generate_seed"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:background="@drawable/common_next_bg"
+            android:layout_width="wrap_content"
+            android:text="@string/common_next"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </LinearLayout>

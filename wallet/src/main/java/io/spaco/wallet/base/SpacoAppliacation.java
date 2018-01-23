@@ -9,9 +9,13 @@ import android.support.multidex.MultiDex;
  */
 
 public class SpacoAppliacation extends Application {
+
+    public static SpacoAppliacation mInstance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
     }
 
     @Override
