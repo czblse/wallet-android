@@ -16,6 +16,13 @@ android {
         }
         multiDexEnabled true
     }
+    repositories {
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -26,12 +33,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile(name:'mobile', ext:'aar')
     implementation deps.support.v7
     implementation deps.support.v4
     implementation deps.support.constraint
     testImplementation deps.other.junit
-    implementation 'org.bitcoinj:bitcoinj-core:0.14.5'
     implementation 'com.google.zxing:core:3.1.0'
     implementation 'com.google.protobuf:protobuf-java:2.5.0'
     implementation 'com.android.support:multidex:1.0.1'
