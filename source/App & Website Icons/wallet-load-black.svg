@@ -1,0 +1,31 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>wallet-load-black</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-51 88)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 51 -88L 83 -88L 83 -56L 51 -56L 51 -88Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="wallet-load-black" clip-path="url(#clip-0)">
+<g id="Rectangle 2 (Stroke)">
+<use xlink:href="#path0_fill" transform="translate(69 -76)" fill="#1E2227"/>
+</g>
+<g id="load">
+<g id="Subtract">
+<use xlink:href="#path1_fill" transform="translate(53 -83)" fill="#1E2227"/>
+</g>
+<g id="Vector (Stroke)">
+<use xlink:href="#path2_fill" transform="translate(56 -69)" fill="#FFC125"/>
+</g>
+<g id="Ellipse (Stroke)">
+<use xlink:href="#path3_fill" transform="translate(52 -73)" fill="#FFC125"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10 2L 3 2C 2.44772 2 2 2.44772 2 3L 2 5C 2 5.55228 2.44772 6 3 6L 10 6L 10 2ZM 3 0C 1.34315 0 0 1.34315 0 3L 0 5C 0 6.65685 1.34315 8 3 8L 10 8C 11.1046 8 12 7.10457 12 6L 12 2C 12 0.895431 11.1046 0 10 0L 3 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 4 2L 24 2C 25.1046 2 26 2.89543 26 4L 26 18C 26 19.1046 25.1046 20 24 20L 15.777 20C 15.6179 20.7013 15.3768 21.3715 15.0645 22L 24 22C 26.2091 22 28 20.2091 28 18L 28 4C 28 1.79086 26.2091 0 24 0L 4 0C 1.79086 0 0 1.79086 0 4L 0 12.3427C 0.570232 11.638 1.24472 11.0211 2 10.5155L 2 4C 2 2.89543 2.89543 2 4 2Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 3.29289 0.292893C 3.68342 -0.0976311 4.31658 -0.0976311 4.70711 0.292893L 7.70711 3.29289C 8.09763 3.68342 8.09763 4.31658 7.70711 4.70711C 7.31658 5.09763 6.68342 5.09763 6.29289 4.70711L 5 3.41421L 5 7C 5 7.55228 4.55228 8 4 8C 3.44772 8 3 7.55228 3 7L 3 3.41421L 1.70711 4.70711C 1.31658 5.09763 0.683417 5.09763 0.292893 4.70711C -0.0976311 4.31658 -0.0976311 3.68342 0.292893 3.29289L 3.29289 0.292893Z"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 8 14C 11.3137 14 14 11.3137 14 8C 14 4.68629 11.3137 2 8 2C 4.68629 2 2 4.68629 2 8C 2 11.3137 4.68629 14 8 14ZM 8 16C 12.4183 16 16 12.4183 16 8C 16 3.58172 12.4183 0 8 0C 3.58172 0 0 3.58172 0 8C 0 12.4183 3.58172 16 8 16Z"/>
+</defs>
+</svg>

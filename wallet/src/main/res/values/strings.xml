@@ -2,4 +2,13 @@
     <string name="app_name">wallet</string>
     <string name="login">登录</string>
     <string name="wallet_creat_title">创建钱包</string>
+    <string name="pin_title">设置PIN</string>
+    <string name="pin_tips">
+        这是你第一次使用我们的手机钱包，\n
+        所以你需要创建一个新的钱包。\n
+        或者从种子中装入已有的。
+    </string>
+    <string name="pin_create_wallet_name">你的钱包名称</string>
+    <string name="pin_create_wallet_seed">种子</string>
+    <string name="pin_create_wallet_generate_seed">自动生成</string>
 </resources>

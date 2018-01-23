@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.utils.AppUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 
 /**
@@ -16,6 +18,13 @@ import io.spaco.wallet.utils.SpacoWalletUtils;
 
 public class SplashActivity extends BaseActivity {
 
+    Handler handler = new Handler();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 
     @Override
     protected int attachLayoutRes() {
@@ -24,7 +33,9 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        new Handler().postDelayed(new Runnable() {
+        TextView mVersionName = findViewById(R.id.version_name);
+        mVersionName.setText(AppUtils.getVersionName(getApplicationContext()));
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(SplashActivity.this, PinSetActivity.class));

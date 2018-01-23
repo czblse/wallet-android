@@ -1,0 +1,37 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>wallet-subtract-black</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-9 88)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 9 -88L 41 -88L 41 -56L 9 -56L 9 -88Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="wallet-subtract-black" clip-path="url(#clip-0)">
+<g id="Rectangle 2 (Stroke)">
+<use xlink:href="#path0_fill" transform="translate(27 -76)" fill="#1E2227"/>
+</g>
+<g id="minus">
+<g id="Subtract">
+<use xlink:href="#path1_fill" transform="translate(11 -83)" fill="#1E2227"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_stroke" transform="translate(15 -65)" fill="#FFC125"/>
+</g>
+<g id="Ellipse">
+<mask id="mask0_outline_ins">
+<use xlink:href="#path3_fill" fill="white" transform="translate(10 -73)"/>
+</mask>
+<g mask="url(#mask0_outline_ins)">
+<use xlink:href="#path4_stroke_2x" transform="translate(10 -73)" fill="#FFC125"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10 2L 3 2C 2.44772 2 2 2.44772 2 3L 2 5C 2 5.55228 2.44772 6 3 6L 10 6L 10 2ZM 3 0C 1.34315 0 0 1.34315 0 3L 0 5C 0 6.65685 1.34315 8 3 8L 10 8C 11.1046 8 12 7.10457 12 6L 12 2C 12 0.895431 11.1046 0 10 0L 3 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 4 2L 24 2C 25.1046 2 26 2.89543 26 4L 26 18C 26 19.1046 25.1046 20 24 20L 15.777 20C 15.6178 20.7013 15.3768 21.3715 15.0645 22L 24 22C 26.2091 22 28 20.2091 28 18L 28 4C 28 1.79086 26.2091 0 24 0L 4 0C 1.79086 0 0 1.79086 0 4L 0 12.3427C 0.570234 11.638 1.24472 11.0211 2 10.5155L 2 4C 2 2.89543 2.89543 2 4 2Z"/>
+<path id="path2_stroke" d="M 0 -1C -0.552285 -1 -1 -0.552285 -1 0C -1 0.552285 -0.552285 1 0 1L 0 -1ZM 6 1C 6.55228 1 7 0.552285 7 0C 7 -0.552285 6.55228 -1 6 -1L 6 1ZM 0 1L 6 1L 6 -1L 0 -1L 0 1Z"/>
+<path id="path3_fill" d="M 16 8C 16 12.4183 12.4183 16 8 16C 3.58172 16 0 12.4183 0 8C 0 3.58172 3.58172 0 8 0C 12.4183 0 16 3.58172 16 8Z"/>
+<path id="path4_stroke_2x" d="M 14 8C 14 11.3137 11.3137 14 8 14L 8 18C 13.5228 18 18 13.5228 18 8L 14 8ZM 8 14C 4.68629 14 2 11.3137 2 8L -2 8C -2 13.5228 2.47715 18 8 18L 8 14ZM 2 8C 2 4.68629 4.68629 2 8 2L 8 -2C 2.47715 -2 -2 2.47715 -2 8L 2 8ZM 8 2C 11.3137 2 14 4.68629 14 8L 18 8C 18 2.47715 13.5228 -2 8 -2L 8 2Z"/>
+</defs>
+</svg>

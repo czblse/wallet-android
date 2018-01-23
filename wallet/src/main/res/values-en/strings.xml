@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">wallet</string>
+    <string name="login">login</string>
+    <string name="wallet_creat_title">create new wallet</string>
+    <string name="pin_title">set PIN</string>
+    <string name="pin_tips">
+        it\'s your first time using our mobile wallet,\n
+        so you\'ll need to either create a new wallet\n
+        or load an existing one from a seed.
+    </string>
+</resources>

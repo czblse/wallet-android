@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>close-white</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(473 46)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -473 -46L -441 -46L -441 -14L -473 -14L -473 -46Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="close-white" clip-path="url(#clip-0)">
+<g id="Union">
+<use xlink:href="#path0_fill" transform="translate(-464 -37)" fill="#FBFBFB"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0.292877 11.6066C -0.0976257 11.9971 -0.0976257 12.6303 0.292877 13.0208C 0.683411 13.4113 1.31659 13.4113 1.70709 13.0208L 6.65686 8.07106L 11.6066 13.0208C 11.9971 13.4113 12.6303 13.4113 13.0208 13.0208C 13.4113 12.6303 13.4113 11.9971 13.0208 11.6066L 8.07108 6.65685L 13.0208 1.70711C 13.4113 1.31658 13.4113 0.68342 13.0208 0.292894C 12.6303 -0.0976315 11.9971 -0.0976315 11.6066 0.292894L 6.65686 5.24264L 1.70709 0.292894C 1.31659 -0.0976315 0.683411 -0.0976315 0.292908 0.292894C -0.0976257 0.68342 -0.0976257 1.31658 0.292908 1.70711L 5.24265 6.65685L 0.292877 11.6066Z"/>
+</defs>
+</svg>

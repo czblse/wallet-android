@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>chevron-right-white</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(224 46)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -224 -46L -192 -46L -192 -14L -224 -14L -224 -46Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="chevron-right-white" clip-path="url(#clip-0)">
+<g id="Vector">
+<use xlink:href="#path0_stroke" transform="matrix(-1 -1.22465e-16 1.22465e-16 -1 -205 -23)" fill="#FBFBFB"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 0 7L -0.707107 6.29289C -1.09763 6.68342 -1.09763 7.31658 -0.707107 7.70711L 0 7ZM 7.70711 0.707107C 8.09763 0.316583 8.09763 -0.316583 7.70711 -0.707107C 7.31658 -1.09763 6.68342 -1.09763 6.29289 -0.707107L 7.70711 0.707107ZM 6.29289 14.7071C 6.68342 15.0976 7.31658 15.0976 7.70711 14.7071C 8.09763 14.3166 8.09763 13.6834 7.70711 13.2929L 6.29289 14.7071ZM 0.707107 7.70711L 7.70711 0.707107L 6.29289 -0.707107L -0.707107 6.29289L 0.707107 7.70711ZM -0.707107 7.70711L 6.29289 14.7071L 7.70711 13.2929L 0.707107 6.29289L -0.707107 7.70711Z"/>
+</defs>
+</svg>
