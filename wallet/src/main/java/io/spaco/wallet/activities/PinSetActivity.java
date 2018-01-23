@@ -1,5 +1,7 @@
 package io.spaco.wallet.activities;
 
+import android.view.View;
+
 import io.spaco.wallet.base.BaseActivity;
 
 /**
@@ -7,8 +9,25 @@ import io.spaco.wallet.base.BaseActivity;
  */
 
 public class PinSetActivity extends BaseActivity {
+
+
     @Override
-    protected int getContentViewId() {
+    protected int attachLayoutRes() {
         return 0;
+    }
+
+    @Override
+    protected void initViews() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

@@ -10,6 +10,11 @@ android {
         versionCode build_versions.versionCode
         versionName build_versions.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi'
+        }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -25,9 +30,10 @@ dependencies {
     implementation deps.support.v4
     implementation deps.support.constraint
     testImplementation deps.other.junit
-    compile 'org.bitcoinj:bitcoinj-core:0.14.5'
-    compile 'com.google.zxing:core:3.1.0'
-    compile 'com.google.protobuf:protobuf-java:2.5.0'
+    implementation 'org.bitcoinj:bitcoinj-core:0.14.5'
+    implementation 'com.google.zxing:core:3.1.0'
+    implementation 'com.google.protobuf:protobuf-java:2.5.0'
+    implementation 'com.android.support:multidex:1.0.1'
     androidTestImplementation deps.other.testrunner
     androidTestImplementation deps.other.testespresso
 }

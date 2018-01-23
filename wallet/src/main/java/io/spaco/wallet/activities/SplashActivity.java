@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
@@ -14,39 +15,51 @@ import io.spaco.wallet.utils.SpacoWalletUtils;
  */
 
 public class SplashActivity extends BaseActivity {
+
+
     @Override
-    protected int getContentViewId() {
+    protected int attachLayoutRes() {
         return R.layout.activity_splash;
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViews() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(SplashActivity.this, PinSetActivity.class));
             }
-        },3000);
+        }, 3000);
     }
+
+    @Override
+    protected void initData() {
+
+    }
+
 
     /**
      * 如果pin没有设定的话，跳到pin设置页面
      * 如果没有创建钱包，则跳转到pin输入页面
      */
-    private void launchToNextAcitivity(){
-        if (SpacoWalletUtils.isPinSet()){
+    private void launchToNextAcitivity() {
+        if (SpacoWalletUtils.isPinSet()) {
             launchToPinInputActvity();
         } else {
             launchToPinSetActivity();
         }
     }
 
-    private void launchToPinSetActivity(){
+    private void launchToPinSetActivity() {
 
     }
 
-    private void launchToPinInputActvity(){
+    private void launchToPinInputActvity() {
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }
