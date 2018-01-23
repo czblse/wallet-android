@@ -27,7 +27,7 @@ public class NumberKeyboard extends FrameLayout {
     public NumberKeyboard(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.views_number_keyboard,this,true);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new GridLayoutManager(context,3));
         numberKeyboardAdapter = new NumberKeyboardAdapter();
         recyclerView.setAdapter(numberKeyboardAdapter);

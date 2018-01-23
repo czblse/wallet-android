@@ -25,9 +25,11 @@ public class NumberKeyboardAdapter extends RecyclerView.Adapter<NumberKeyboardAd
 
     @Override
     public void onBindViewHolder(NumberKeyboardViewHolder holder, int position) {
-        if(position == 10){
+        holder.number.setEnabled(true);
+        if(position == 9){
+            holder.number.setEnabled(false);
             holder.number.setText("");
-        }else if(position == 11){
+        }else if(position == 10){
             holder.number.setText("0");
         }else if(position == NUMBER_SIZI - 1){
             holder.number.setText("");
@@ -48,10 +50,10 @@ public class NumberKeyboardAdapter extends RecyclerView.Adapter<NumberKeyboardAd
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag();
-            if(onNumberKeyboardDownListener != null && position != 10){
+            if(onNumberKeyboardDownListener != null && position != 9){
                 if(position == NUMBER_SIZI -1){
                     onNumberKeyboardDownListener.onNumberKeyboardDelete();
-                }else if(position == 11){
+                }else if(position == 10){
                     onNumberKeyboardDownListener.onNumberKeyboardDown(0);
                 }else{
                     onNumberKeyboardDownListener.onNumberKeyboardDown(position+1);
