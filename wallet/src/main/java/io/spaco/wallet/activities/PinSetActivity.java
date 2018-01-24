@@ -3,13 +3,16 @@ package io.spaco.wallet.activities;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+
 import io.spaco.wallet.R;
-import io.spaco.wallet.activities.pin.PinSetListener;
-import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.activities.pin.PinSetFragment;
+import io.spaco.wallet.activities.pin.PinSetListener;
 import io.spaco.wallet.activities.pin.VerifyPinSetFragment;
+import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.ToastUtils;
+import mobile.Mobile;
 
 /**
  * Pin设置界面，用于为钱包设置Pin保护密码
@@ -37,7 +40,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
 
     @Override
     protected void initData() {
-
+        String seed = Mobile.newSeed();
+        LogUtils.d("seed = " + seed);
     }
 
     @Override
