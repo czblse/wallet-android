@@ -2,6 +2,10 @@ package io.spaco.wallet;
 
 import org.junit.Test;
 
+import mobile.Config;
+import mobile.Mobile;
+import mobile.SendOption;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,4 +18,9 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+    public void print(String str){
+        System.out.println(str);
+    }
+
 }

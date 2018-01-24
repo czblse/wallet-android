@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/pin_create_wallet_background"
     android:layout_height="match_parent">
+
+    <TextView
+        style="@style/middle_titile_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pin_title"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:textColor="#75C4FC"
+        android:gravity="center"
+        android:text="@string/pin_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <io.spaco.wallet.widget.KeyboardProgress
+        android:id="@+id/keyboardtips"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </io.spaco.wallet.widget.KeyboardProgress>
 
     <io.spaco.wallet.widget.NumberKeyboard
         android:id="@+id/numberkeyboard"
