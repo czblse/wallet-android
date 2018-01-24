@@ -1,88 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:background="@drawable/pin_create_wallet_background"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_gravity="center_horizontal"
+        style="@style/middle_titile_style"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:text="@string/pin_title"/>
+        android:text="@string/wallet_creat_title"/>
 
     <TextView
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:textColor="#75C4FC"
         android:gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:text="@string/wallet_create_tips"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:background="@drawable/border_oval"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/pin_tips"/>
-
-    <TextView
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:text="@string/pin_create_wallet_name"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:background="@drawable/common_edit_radio_bg"
-        android:textColor="@android:color/white"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <TextView
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:text="@string/pin_create_wallet_seed"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:background="@drawable/common_edit_radio_bg"
-        android:enabled="false"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <TextView
-        android:textColor="@android:color/white"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_gravity="right"
-        android:text="@string/pin_create_wallet_generate_seed"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:checked="true"
+            style="@style/create_wallet_radio_style"
+            android:id="@+id/create_wallet"
+            android:text="创建"/>
+        <RadioButton
+            style="@style/create_wallet_radio_style"
+            android:id="@+id/import_wallet"
+            android:text="导入" />
+    </RadioGroup>
 
     <FrameLayout
+        android:id="@+id/container"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_gravity="center"
-            android:background="@drawable/common_next_bg"
-            android:layout_width="wrap_content"
-            android:text="@string/common_next"
-            android:layout_height="wrap_content" />
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
     </FrameLayout>
 </LinearLayout>

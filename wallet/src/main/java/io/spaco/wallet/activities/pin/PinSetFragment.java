@@ -22,11 +22,25 @@ import io.spaco.wallet.widget.NumberKeyboardAdapter;
 
 public class PinSetFragment extends BaseFragment {
 
+    /**
+     * 数字键盘
+     */
     NumberKeyboard numberKeyboard;
+
+    /**
+     * 数字键盘进度控件
+     */
     KeyboardProgress keyboardProgress;
+
+    /**
+     * PIN监听器
+     */
     PinSetListener pinSetListener;
 
-    StringBuilder pin = new StringBuilder();
+    /**
+     * PIN安全码
+     */
+    StringBuilder pinCode = new StringBuilder();
 
     public static PinSetFragment newInstance(Bundle args){
         PinSetFragment instance = new PinSetFragment();
@@ -57,18 +71,20 @@ public class PinSetFragment extends BaseFragment {
 
         @Override
         public void onNumberKeyboardDown(int number) {
-            pin.append(number);
             keyboardProgress.insetUpdate();
-            if(pin.length() == 4){
-                pinSetListener.onPinSetSuccess(pin.toString());
+            if(pinCode.length() < 4){
+                pinCode.append(number);
+            }
+            if(pinCode.length() == 4){
+                pinSetListener.onPinSetSuccess(pinCode.toString());
             }
         }
 
         @Override
         public void onNumberKeyboardDelete() {
             keyboardProgress.deleteUpdate();
-            if(pin.length() > 0){
-                pin.deleteCharAt(pin.length() - 1);
+            if(pinCode.length() > 0){
+                pinCode.deleteCharAt(pinCode.length() - 1);
             }
         }
     };

@@ -32,11 +32,12 @@ public class StatusBarUtils {
         if(toolbar != null && toolbar.getVisibility() == View.VISIBLE){
             ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
             layoutParams.height = actionBarHeight + statusBarHeight;
-            toolbar.setPadding(0,statusBarHeight,0,0);
+            toolbar.setPadding(toolbar.getPaddingLeft(),toolbar.getPaddingTop() + statusBarHeight,toolbar.getPaddingRight(),toolbar.getPaddingBottom());
             toolbar.requestLayout();
         }else{
-            View contentView = activity.getWindow().getDecorView().findViewById(android.R.id.content);
-            contentView.setPadding(0,getStatusBarHeight(activity),0,0);
+            ViewGroup parent = activity.getWindow().getDecorView().findViewById(android.R.id.content);
+            View contentView = parent.getChildAt(0);
+            contentView.setPadding(contentView.getPaddingLeft(),contentView.getPaddingTop() + statusBarHeight,contentView.getPaddingRight(),contentView.getPaddingBottom());
             contentView.requestLayout();
         }
     }
@@ -53,10 +54,10 @@ public class StatusBarUtils {
         if(toolbar != null && toolbar.getVisibility() == View.VISIBLE){
             ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
             layoutParams.height = actionBarHeight + statusBarHeight;
-            toolbar.setPadding(0,statusBarHeight,0,0);
+            toolbar.setPadding(toolbar.getPaddingLeft(),toolbar.getPaddingTop() + statusBarHeight,toolbar.getPaddingRight(),toolbar.getPaddingBottom());
             toolbar.requestLayout();
         }else{
-            view.setPadding(0,statusBarHeight,0,0);
+            view.setPadding(view.getPaddingLeft(),view.getPaddingTop() + statusBarHeight,view.getPaddingRight(),view.getPaddingBottom());
             view.requestLayout();
         }
     }
