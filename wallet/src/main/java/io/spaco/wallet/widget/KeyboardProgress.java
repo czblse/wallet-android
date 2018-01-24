@@ -15,20 +15,20 @@ import android.view.View;
  * Created by kimi on 2018/1/23.
  */
 
-public class KeyboardTips extends View {
+public class KeyboardProgress extends View {
 
     private int radius = 18;//默认半径为18
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int normalColor = Color.parseColor("#1E2227");
     private int updateColor = Color.parseColor("#FFC125");
     private int size = 4;
-    private int progress = -1;
+    private int progress = 0;
 
-    public KeyboardTips(Context context) {
+    public KeyboardProgress(Context context) {
         this(context,null);
     }
 
-    public KeyboardTips(Context context, @Nullable AttributeSet attrs) {
+    public KeyboardProgress(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint.setColor(normalColor);
     }
@@ -52,7 +52,7 @@ public class KeyboardTips extends View {
         int minWidth = getMeasuredWidth() / size;
         int cx = minWidth / 2;
         int cy = getHeight() / 2;
-        for (int i = 0; i < size; i ++){
+        for (int i = 1; i <= size; i ++){
             if(i <= progress){
                 paint.setColor(updateColor);
             }else{
@@ -68,14 +68,14 @@ public class KeyboardTips extends View {
      * @return
      */
     public boolean isPassVerify(){
-        return progress == size - 2;
+        return progress == size;
     }
 
     /**
      * 增加刷新
      */
     public void insetUpdate(){
-        if(progress <= size - 2){
+        if(progress < size){
             progress ++ ;
             invalidate();
         }
@@ -85,7 +85,7 @@ public class KeyboardTips extends View {
      * 删除刷新
      */
     public void deleteUpdate(){
-        if(progress > -1){
+        if(progress > 0){
             progress -- ;
             invalidate();
         }

@@ -2,12 +2,11 @@ package io.spaco.wallet.fragments;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.utils.ToastUtils;
-import io.spaco.wallet.widget.KeyboardTips;
+import io.spaco.wallet.widget.KeyboardProgress;
 import io.spaco.wallet.widget.NumberKeyboard;
 import io.spaco.wallet.widget.NumberKeyboardAdapter;
 import mobile.Mobile;
@@ -20,7 +19,7 @@ import mobile.Mobile;
 public class PinSetFragment extends BaseFragment {
 
     NumberKeyboard numberKeyboard;
-    KeyboardTips keyboardTips;
+    KeyboardProgress keyboardTips;
 
     public static PinSetFragment newInstance(Bundle args){
         PinSetFragment instance = new PinSetFragment();
@@ -61,7 +60,7 @@ public class PinSetFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        String result = Mobile.newSeed();
-        ToastUtils.show(result);
+//        String result = Mobile.newSeed();
+//        ToastUtils.show(result);
     }
 }

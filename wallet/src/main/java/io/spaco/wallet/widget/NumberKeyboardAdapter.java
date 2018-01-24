@@ -80,7 +80,7 @@ public class NumberKeyboardAdapter extends RecyclerView.Adapter<NumberKeyboardAd
 
         public NumberKeyboardViewHolder(View itemView) {
             super(itemView);
-            number = itemView.findViewById(R.id.tv_number);
+            number = (TextView) itemView;
         }
     }
 
