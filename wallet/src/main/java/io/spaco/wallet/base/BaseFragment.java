@@ -1,5 +1,7 @@
 package io.spaco.wallet.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected Bundle savedInstanceState;
     protected View rootView;
+    protected Activity mActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,13 +27,23 @@ public abstract class BaseFragment extends Fragment {
         this.savedInstanceState = savedInstanceState;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mActivity = (Activity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(savedInstanceState == null){
             rootView = inflater.inflate(attachLayoutRes(),container,false);
-            initViews(rootView);
         }else{
             ViewParent parent = rootView.getParent();
             if(parent != null && parent instanceof ViewGroup){
@@ -45,6 +58,7 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(this.savedInstanceState == null){
+            initViews(rootView);
             initData();
         }
     }

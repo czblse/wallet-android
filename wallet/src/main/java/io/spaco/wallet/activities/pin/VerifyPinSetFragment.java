@@ -1,41 +1,42 @@
-package io.spaco.wallet.fragments;
+package io.spaco.wallet.activities.pin;
 
 import android.os.Bundle;
 import android.view.View;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
+import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.KeyboardProgress;
 import io.spaco.wallet.widget.NumberKeyboard;
 import io.spaco.wallet.widget.NumberKeyboardAdapter;
-import mobile.Mobile;
 
 /**
- * Pin界面碎片
+ * Pin确认界面碎片
  * Created by kimi on 2018/1/23.
  */
 
-public class PinSetFragment extends BaseFragment {
+public class VerifyPinSetFragment extends BaseFragment {
 
     NumberKeyboard numberKeyboard;
-    KeyboardProgress keyboardTips;
+    KeyboardProgress keyboardProgress;
 
-    public static PinSetFragment newInstance(Bundle args){
-        PinSetFragment instance = new PinSetFragment();
+    public static VerifyPinSetFragment newInstance(Bundle args){
+        VerifyPinSetFragment instance = new VerifyPinSetFragment();
         instance.setArguments(args);
         return instance;
     }
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.fragment_pin_set;
+        return R.layout.fragment_verify_pin_set;
     }
 
     @Override
     protected void initViews(View rootView) {
+        StatusBarUtils.statusBarCompat(this);
         numberKeyboard = rootView.findViewById(R.id.numberkeyboard);
-        keyboardTips = rootView.findViewById(R.id.keyboardtips);
+        keyboardProgress = rootView.findViewById(R.id.keyboardtips);
         numberKeyboard.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);
     }
 
@@ -43,24 +44,18 @@ public class PinSetFragment extends BaseFragment {
 
         @Override
         public void onNumberKeyboardDown(int number) {
-            keyboardTips.insetUpdate();
-            if(keyboardTips.isPassVerify()){
-                ToastUtils.show("pass verify");
-            }else{
-                ToastUtils.show(number + "");
-            }
+            keyboardProgress.insetUpdate();
         }
 
         @Override
         public void onNumberKeyboardDelete() {
-            keyboardTips.deleteUpdate();
+            keyboardProgress.deleteUpdate();
             ToastUtils.show("delete");
         }
     };
 
     @Override
     protected void initData() {
-//        String result = Mobile.newSeed();
-//        ToastUtils.show(result);
+
     }
 }

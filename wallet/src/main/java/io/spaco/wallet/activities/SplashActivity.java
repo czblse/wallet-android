@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.utils.AppUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
+import io.spaco.wallet.utils.StatusBarUtils;
 
 /**
  * Created by zjy on 2018/1/20.

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import io.spaco.wallet.utils.AppManager;
+import io.spaco.wallet.utils.StatusBarUtils;
 
 /**
  * Created by zjy on 2018/1/20.

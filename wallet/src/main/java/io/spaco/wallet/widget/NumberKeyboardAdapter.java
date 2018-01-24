@@ -32,7 +32,7 @@ public class NumberKeyboardAdapter extends RecyclerView.Adapter<NumberKeyboardAd
         }else if(position == 10){
             holder.number.setText("0");
         }else if(position == NUMBER_SIZI - 1){
-            holder.number.setText("");
+            holder.number.setText("删除");
         }else{
             holder.number.setText((position + 1) + "");
         }

@@ -10,14 +10,16 @@
         android:supportsRtl="true"
         android:name=".base.SpacoAppliacation"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity">
+
+        <activity android:name=".activities.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.PinSetActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.PinSetActivity" />
+        <activity android:name=".activities.WalletCreatActivity" />
     </application>
 
 </manifest>

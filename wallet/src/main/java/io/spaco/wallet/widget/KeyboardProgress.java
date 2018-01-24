@@ -64,14 +64,6 @@ public class KeyboardProgress extends View {
     }
 
     /**
-     * 校验是否通过
-     * @return
-     */
-    public boolean isPassVerify(){
-        return progress == size;
-    }
-
-    /**
      * 增加刷新
      */
     public void insetUpdate(){
