@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_edit_radio_bg"
+
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/whitesmoke"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/send_sky"
+            android:textColor="@color/black"
+            android:id="@+id/tx_title"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/img_exit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/exit" />
+    </RelativeLayout>
+
+    <include layout="@layout/layout_default_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="#FAFAFA"
+        android:layout_height="200dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tx_sky"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tx_dollar"
+            android:textSize="14sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <include layout="@layout/layout_default_line" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="Date"
+           />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_date"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_default_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="Status"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_status"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_default_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="From"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_form"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_default_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="To"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_to"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_default_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="Notes"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_notes"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_default_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/whitesmoke"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:text="Tx Time"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_time"/>
+    </RelativeLayout>
+</LinearLayout>
