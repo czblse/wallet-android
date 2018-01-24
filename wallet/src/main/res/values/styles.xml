@@ -2,9 +2,9 @@
 
     <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@android:color/transparent</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
     </style>
 
     <style name="AppTheme" parent="@style/BaseTheme">
@@ -16,6 +16,16 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="create_wallet_radio_style">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/create_wallet_radio_color_selecter</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">40sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/create_wallet_radio_selecter</item>
     </style>
 
 
