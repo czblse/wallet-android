@@ -17,6 +17,8 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
+import io.spaco.wallet.widget.DisclaimerDialog;
+import io.spaco.wallet.widget.ShowQrDialog;
 
 /**
  * 创建或导入钱包界面
@@ -99,10 +101,13 @@ public class WalletCreatActivity extends BaseActivity implements WalletListener 
     @Override
     public void createWallet(String walletName, String seed) {
         ToastUtils.show("开始创建钱包");
+
+
     }
 
     @Override
     public void importWallet(String walletName, String seed) {
         ToastUtils.show("开始导入钱包");
+
     }
 }

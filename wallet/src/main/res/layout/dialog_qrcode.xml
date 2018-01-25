@@ -38,7 +38,6 @@
             android:layout_margin="30dp"
             android:id="@+id/img_qrcode"
             android:layout_gravity="center_horizontal"
-            android:background="@mipmap/ic_launcher"
             android:layout_height="wrap_content" />
     <include layout="@layout/layout_default_line" />
     <RelativeLayout

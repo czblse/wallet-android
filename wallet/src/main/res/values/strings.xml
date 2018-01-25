@@ -25,4 +25,8 @@
     <string name="wallet_create_tips">
         如果你还没有钱包，那就自动生成一个种子，我们会为你创建一个钱包。如果你已经有了一个钱包，请输入下面的种子并开始导入它。
     </string>
+    <string name="disclaimer_info">
+        通过继续，您可以理解与加密令牌和基于区块链的软件相关的风险。Skycoin的移动钱包，以及Skycoin的加密货币。您理解这个产品是按原样提供的，并同意使用该产品的使用和条件
+    </string>
+    <string name="hint_agree">是的,我理解</string>
 </resources>
