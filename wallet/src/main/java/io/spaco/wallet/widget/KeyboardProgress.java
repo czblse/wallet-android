@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * 配合数字键盘的提醒控件
@@ -21,7 +22,7 @@ public class KeyboardProgress extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int normalColor = Color.parseColor("#1E2227");
     private int updateColor = Color.parseColor("#FFC125");
-    private int size = 4;
+    private int maxSize = 4;
     private int progress = 0;
 
     public KeyboardProgress(Context context) {
@@ -38,7 +39,7 @@ public class KeyboardProgress extends View {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if(widthMode != MeasureSpec.EXACTLY){
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(radius * 2 + radius * 4 * size, MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(radius * 2 + radius * 4 * maxSize, MeasureSpec.EXACTLY);
         }
         if(heightMode != MeasureSpec.EXACTLY){
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(radius * 2, MeasureSpec.EXACTLY);
@@ -49,10 +50,10 @@ public class KeyboardProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int minWidth = getMeasuredWidth() / size;
+        int minWidth = getMeasuredWidth() / maxSize;
         int cx = minWidth / 2;
         int cy = getHeight() / 2;
-        for (int i = 1; i <= size; i ++){
+        for (int i = 1; i <= maxSize; i ++){
             if(i <= progress){
                 paint.setColor(updateColor);
             }else{
@@ -67,7 +68,7 @@ public class KeyboardProgress extends View {
      * 增加刷新
      */
     public void insetUpdate(){
-        if(progress < size){
+        if(progress < maxSize){
             progress ++ ;
             invalidate();
         }

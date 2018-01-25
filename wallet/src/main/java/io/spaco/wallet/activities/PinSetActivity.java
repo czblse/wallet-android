@@ -40,8 +40,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
 
     @Override
     protected void initData() {
-        String seed = Mobile.newSeed();
-        LogUtils.d("seed = " + seed);
+//        String seed = Mobile.newSeed();
+//        LogUtils.d("seed = " + seed);
     }
 
     @Override
