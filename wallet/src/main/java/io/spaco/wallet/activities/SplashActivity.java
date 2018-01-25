@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
@@ -53,12 +55,11 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-//        StringBuilder sb = new StringBuilder();
-//        byte[] entropy = new byte[Words.TWELVE.byteLength()];
-//        new SecureRandom().nextBytes(entropy);
-//        new MnemonicGenerator(English.INSTANCE)
-//                .createMnemonic(entropy, sb.append());
-//        System.out.println(sb.toString());
+        byte[] entropy = new byte[Words.TWELVE.byteLength()];
+        new SecureRandom().nextBytes(entropy);
+        ArrayList<String>result = new MnemonicGenerator(English.INSTANCE)
+                .createMnemonicList(entropy);
+        Log.i("tmptest",result.toString());
     }
 
 

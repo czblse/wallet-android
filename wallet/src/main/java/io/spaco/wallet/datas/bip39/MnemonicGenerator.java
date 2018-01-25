@@ -21,6 +21,7 @@
 
 package io.spaco.wallet.datas.bip39;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static io.github.novacrypto.hashing.Sha256.sha256;
@@ -69,6 +70,22 @@ public final class MnemonicGenerator {
         }
     }
 
+    public ArrayList<String> createMnemonicList(
+            final CharSequence entropyHex) {
+        final int length = entropyHex.length();
+        if (length % 2 == 1)
+            throw new RuntimeException("Length of hex chars must be divisible by 2");
+        final byte[] entropy = new byte[length / 2];
+        try {
+            for (int i = 0, j = 0; i < length; i += 2, j++) {
+                entropy[j] = (byte) (parseHex(entropyHex.charAt(i)) << 4 | parseHex(entropyHex.charAt(i + 1)));
+            }
+            return createMnemonicList(entropy);
+        } finally {
+            Arrays.fill(entropy, (byte) 0);
+        }
+    }
+
     /**
      * Create a mnemonic from the word list given the entropy.
      *
@@ -86,6 +103,16 @@ public final class MnemonicGenerator {
         }
     }
 
+    public ArrayList<String> createMnemonicList(
+            final byte[] entropy) {
+        final int[] wordIndexes = wordIndexes(entropy);
+        try {
+            return createMnemonicList(wordIndexes);
+        } finally {
+            Arrays.fill(wordIndexes, 0);
+        }
+    }
+
     private void createMnemonic(
             final int[] wordIndexes,
             final Target target) {
@@ -94,6 +121,17 @@ public final class MnemonicGenerator {
             if (i > 0) target.append(space);
             target.append(wordList.getWord(wordIndexes[i]));
         }
+    }
+
+    private ArrayList<String> createMnemonicList(
+            final int[] wordIndexes) {
+        ArrayList<String> result = new ArrayList<>();
+        final String space = String.valueOf(wordList.getSpace());
+        for (int i = 0; i < wordIndexes.length; i++) {
+            if (i > 0) result.add(String.valueOf(wordList.getSpace()));
+            result.add(wordList.getWord(wordIndexes[i]));
+        }
+        return result;
     }
 
     private static int[] wordIndexes(byte[] entropy) {
