@@ -45,6 +45,10 @@ dependencies {
     implementation deps.support.constraint
     testImplementation deps.other.junit
     implementation 'com.google.zxing:core:3.1.0'
+
+    compile 'com.madgag.spongycastle:core:1.58.0.0@jar'
+    compile 'io.github.novacrypto:SHA256:0.0.1@jar'
+    compile 'io.github.novacrypto:ToRuntime:0.9.0@jar'
     implementation 'com.google.protobuf:protobuf-java:2.5.0'
     implementation 'com.android.support:multidex:1.0.1'
     androidTestImplementation deps.other.testrunner
