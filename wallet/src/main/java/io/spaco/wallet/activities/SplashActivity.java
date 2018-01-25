@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.security.SecureRandom;
+
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.datas.bip39.MnemonicGenerator;
+import io.spaco.wallet.datas.bip39.Words;
+import io.spaco.wallet.datas.bip39.wordlists.English;
 import io.spaco.wallet.utils.AppUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
@@ -48,7 +53,12 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+//        StringBuilder sb = new StringBuilder();
+//        byte[] entropy = new byte[Words.TWELVE.byteLength()];
+//        new SecureRandom().nextBytes(entropy);
+//        new MnemonicGenerator(English.INSTANCE)
+//                .createMnemonic(entropy, sb.append());
+//        System.out.println(sb.toString());
     }
 
 
