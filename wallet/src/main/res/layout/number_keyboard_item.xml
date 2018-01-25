@@ -2,9 +2,9 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tv_number"
-    android:layout_width="100dp"
+    android:layout_width="90dp"
     android:gravity="center"
-    android:layout_height="100dp"
+    android:layout_height="90dp"
     android:background="@drawable/keyboard_item_click"
     android:textSize="30dp"
     android:textColor="@android:color/white"/>

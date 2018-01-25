@@ -5,7 +5,7 @@ package io.spaco.wallet.activities.wallet;
  * Created by kimi on 2018/1/24.
  */
 
-public interface WalletListener {
+public interface WalletCreateListener {
 
     /**
      * 开始创建钱包

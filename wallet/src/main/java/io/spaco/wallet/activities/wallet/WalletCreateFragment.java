@@ -14,7 +14,7 @@ import io.spaco.wallet.base.BaseFragment;
 
 public class WalletCreateFragment extends BaseFragment {
 
-    WalletListener walletListener;
+    WalletCreateListener walletListener;
 
     public static WalletCreateFragment newInstance(Bundle args){
         WalletCreateFragment instance = new WalletCreateFragment();
@@ -25,8 +25,8 @@ public class WalletCreateFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof WalletListener){
-            walletListener = (WalletListener) context;
+        if(context instanceof WalletCreateListener){
+            walletListener = (WalletCreateListener) context;
         }
     }
 

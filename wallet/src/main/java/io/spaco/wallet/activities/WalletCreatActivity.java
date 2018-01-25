@@ -1,10 +1,10 @@
 package io.spaco.wallet.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.RadioGroup;
 
 import java.util.List;
@@ -12,20 +12,17 @@ import java.util.List;
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.wallet.WalletCreateFragment;
 import io.spaco.wallet.activities.wallet.WalletImportFragment;
-import io.spaco.wallet.activities.wallet.WalletListener;
+import io.spaco.wallet.activities.wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
-import io.spaco.wallet.widget.DisclaimerDialog;
-import io.spaco.wallet.widget.ShowQrDialog;
 
 /**
  * 创建或导入钱包界面
  * Created by zjy on 2018/1/20.
  */
 
-public class WalletCreatActivity extends BaseActivity implements WalletListener {
+public class WalletCreatActivity extends BaseActivity implements WalletCreateListener {
 
     RadioGroup radioGroup;
     /**
@@ -100,9 +97,9 @@ public class WalletCreatActivity extends BaseActivity implements WalletListener 
 
     @Override
     public void createWallet(String walletName, String seed) {
-        ToastUtils.show("开始创建钱包");
-
-
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

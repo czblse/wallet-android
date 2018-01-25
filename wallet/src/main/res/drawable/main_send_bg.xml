@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="30dp"></corners>
+            <gradient  android:startColor="#00ABFF" android:endColor="#0189FF" android:angle="0"></gradient>
+            <size android:width="80dp" android:height="40dp"></size>
+        </shape>
+    </item>
+    <item >
+        <bitmap android:src="@drawable/main_send_normal" android:gravity="center"></bitmap>
+    </item>
+</layer-list>

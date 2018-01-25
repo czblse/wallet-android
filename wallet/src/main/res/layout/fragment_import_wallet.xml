@@ -12,26 +12,28 @@
         android:textSize="15sp" />
 
     <EditText
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/common_edit_radio_bg"
-        android:textColor="@android:color/white" />
+        android:background="@drawable/common_edit_radio_bg"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/pin_create_wallet_seed"
         android:textColor="@android:color/white"
         android:textSize="15sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:padding="5dp"
+        android:gravity="top"
         android:layout_marginTop="5dp"
-        android:background="@drawable/common_edit_radio_bg"
-        android:enabled="false" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/common_edit_radio_bg" />
 
 
     <FrameLayout
@@ -39,8 +41,7 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/next"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
