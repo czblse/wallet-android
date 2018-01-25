@@ -42,20 +42,24 @@
             android:id="@+id/tx_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="@string/disclaimer_info"
             android:layout_margin="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="6dp"
             android:layout_margin="10dp">
 
             <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/checkbox"
+                android:id="@+id/checkbox_know"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:theme="@style/MyCheckBox"
-                android:text="我知道" />
+                android:text="@string/hint_agree" />
 
         </LinearLayout>
 
@@ -63,7 +67,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="13dp"
             android:layout_gravity="center"
             android:id="@+id/tx_continue"
             android:background="@drawable/dialog_next_bg"

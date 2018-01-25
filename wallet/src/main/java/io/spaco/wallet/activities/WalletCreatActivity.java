@@ -17,6 +17,8 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
+import io.spaco.wallet.widget.DisclaimerDialog;
+import io.spaco.wallet.widget.ShowQrDialog;
 
 /**
  * 创建或导入钱包界面
@@ -95,14 +97,41 @@ public class WalletCreatActivity extends BaseActivity implements WalletListener 
         }
         fragmentTransaction.commit();
     }
-
+    DisclaimerDialog dialog;
+    ShowQrDialog mDialog;
     @Override
     public void createWallet(String walletName, String seed) {
         ToastUtils.show("开始创建钱包");
+        dialog = new DisclaimerDialog(this, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.img_exit:
+                        dialog.dismiss();
+                        break;
+                    case R.id.tx_continue:
+                        if (dialog.isCheck()){
+                            dialog.dismiss();
+                            ToastUtils.show("已同意声明");
+                        }else {
+                            ToastUtils.show("未同意");
+                        }
+                        break;
+                        default:
+
+                }
+            }
+        });
+        dialog.show();
+
     }
 
     @Override
     public void importWallet(String walletName, String seed) {
         ToastUtils.show("开始导入钱包");
+        mDialog = new ShowQrDialog(this);
+        mDialog.show();
+        mDialog.setKey("12dad9sad8192e921je212jd");
+
     }
 }
