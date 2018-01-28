@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="deep_blue">#0962FF</color>
+    <color name="shallow_blue">#14A0FE</color>
 
     <!--颜色值 -->
     <color name="white">#FFFFFF</color><!--白色 -->

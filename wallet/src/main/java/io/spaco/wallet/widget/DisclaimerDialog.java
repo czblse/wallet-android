@@ -1,5 +1,6 @@
 package io.spaco.wallet.widget;
 
+import android.animation.Animator;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,9 +39,10 @@ public class DisclaimerDialog extends Dialog {
     private AppCompatCheckBox mCheckboxKnow;
     private TextView mTxContinue;
     private boolean isCheck;
+    private TranslateAnimation animation;
 
     public DisclaimerDialog(@NonNull Context context,
-            View.OnClickListener onClickListener) {
+                            View.OnClickListener onClickListener) {
         super(context, R.style.customDialog);
         this.context = context;
         this.onClickListener = onClickListener;
@@ -53,12 +59,11 @@ public class DisclaimerDialog extends Dialog {
         //点击空白区域可以取消dialog
         this.setCanceledOnTouchOutside(false);
         //点击back键可以取消dialog
-        this.setCancelable(true);
+        this.setCancelable(false);
         Window window = this.getWindow();
-        //让Dialog显示在屏幕的底部
         window.setGravity(Gravity.CENTER);
         //设置窗口出现和窗口隐藏的动画
-        // window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
+        window.setWindowAnimations(R.style.ActionSheetDialogAnimation);
         //设置BottomDialog的宽高属性
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -78,9 +83,18 @@ public class DisclaimerDialog extends Dialog {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 isCheck = b;
+                if (isCheck) {
+                    mTxTitle.setTextColor(0xff000000);
+                    mTxTitle.setText(context.getText(R.string.disclaimer));
+                }
             }
         });
 
+        animation = new TranslateAnimation(0, -5, 0, 0);
+        animation.setInterpolator(new OvershootInterpolator());
+        animation.setDuration(100);
+        animation.setRepeatCount(2);
+        animation.setRepeatMode(Animation.REVERSE);
     }
 
 
@@ -96,6 +110,9 @@ public class DisclaimerDialog extends Dialog {
         mTxTitle.setText(msg);
         if (color != 0) {
             mTxTitle.setTextColor(0xffFF0000);
+            mTxTitle.startAnimation(animation);
         }
     }
+
+
 }

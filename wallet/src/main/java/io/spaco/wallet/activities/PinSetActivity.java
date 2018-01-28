@@ -3,6 +3,7 @@ package io.spaco.wallet.activities;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 
 import io.spaco.wallet.R;
@@ -62,6 +63,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                     case R.id.tx_continue:
                         if (mDialog.isCheck()) {
                             mDialog.dismiss();
+                        }else {
+                            mDialog.setTitle("Saftguard your seed!",1);
                         }
                         break;
                     default:
@@ -103,6 +106,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             ToastUtils.show(getString(R.string.toast_pin_error));
         }
     }
+
 
     @Override
     protected void onDestroy() {
