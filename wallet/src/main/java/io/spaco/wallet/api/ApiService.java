@@ -6,7 +6,7 @@ package io.spaco.wallet.api;
  * Description: 钱包Api接口
  */
 
-public class ApiService {
+public interface ApiService {
 
 
 
