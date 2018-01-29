@@ -22,6 +22,7 @@
     <string name="creates">创建</string>
     <string name="imports">导入</string>
 
+    <string name="generate_seed">生成种子</string>
 
     <string name="wallet_creat_title">创建钱包</string>
     <string name="wallet_create_tips">

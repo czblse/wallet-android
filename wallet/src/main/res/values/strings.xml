@@ -24,6 +24,7 @@
 
 
     <string name="wallet_creat_title">Create a wallet</string>
+    <string name="generate_seed">generate_seed</string>
     <string name="wallet_create_tips">
         If you don\'t yet have a wallet, generate a seed and we\'ll create one for you. If you already have a wallet, enter the seed below and load it.</string>
     <string name="disclaimer_info">
