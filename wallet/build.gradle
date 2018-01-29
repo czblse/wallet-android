@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'sky'
+            keyPassword 'io.wallet'
+            storeFile file('/Users/luch/Desktop/workSpace/wallet-android/sky.jks')
+            storePassword 'io.wallet'
+        }
+    }
     compileSdkVersion build_versions.compileSdkVersion
     buildToolsVersion build_versions.buildToolsVersion
     sourceSets {
@@ -14,6 +22,7 @@ android {
         targetSdkVersion build_versions.targetSdkVersion
         versionCode build_versions.versionCode
         versionName build_versions.versionName
+        flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构
@@ -30,11 +39,26 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     buildToolsVersion '26.0.2'
+    productFlavors {
+        google {
+            manifestPlaceholders = [CHANNEL_VALUE: "google"]
+        }
+        huawei {
+            manifestPlaceholders = [CHANNEL_VALUE: "huawei"]
+        }
+        yyb {
+            manifestPlaceholders = [CHANNEL_VALUE: "yyb"]
+        }
+        xiaomi {
+            manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"]
+        }
+    }
 }
 
 dependencies {
@@ -47,7 +71,6 @@ dependencies {
     implementation deps.support.design
     testImplementation deps.other.junit
     implementation 'com.google.zxing:core:3.1.0'
-
     compile 'com.madgag.spongycastle:core:1.58.0.0@jar'
     compile 'io.github.novacrypto:SHA256:0.0.1@jar'
     compile 'io.github.novacrypto:ToRuntime:0.9.0@jar'
@@ -63,4 +86,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
     implementation 'io.reactivex.rxjava2:rxandroid:+'
     implementation 'io.reactivex.rxjava2:rxjava:+'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 }

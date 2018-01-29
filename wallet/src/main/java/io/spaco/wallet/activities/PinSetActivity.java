@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.PIN.PinSetFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
