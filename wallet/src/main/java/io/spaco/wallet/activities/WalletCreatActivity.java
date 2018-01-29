@@ -10,9 +10,9 @@ import android.widget.RadioGroup;
 import java.util.List;
 
 import io.spaco.wallet.R;
-import io.spaco.wallet.activities.wallet.WalletCreateFragment;
-import io.spaco.wallet.activities.wallet.WalletImportFragment;
-import io.spaco.wallet.activities.wallet.WalletCreateListener;
+import io.spaco.wallet.activities.Wallet.WalletCreateFragment;
+import io.spaco.wallet.activities.Wallet.WalletImportFragment;
+import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;

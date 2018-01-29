@@ -8,6 +8,7 @@ import android.util.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.spaco.wallet.datas.bip39.MnemonicGenerator;
 import mobile.Mobile;
 
 import static org.junit.Assert.*;

@@ -12,10 +12,11 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import io.spaco.wallet.R;
-import io.spaco.wallet.activities.main.MainTransactionFragment;
-import io.spaco.wallet.activities.main.MainWalletFragment;
+import io.spaco.wallet.activities.Main.MainTransactionFragment;
+import io.spaco.wallet.activities.Main.MainWalletFragment;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.utils.ToastUtils;
+import io.spaco.wallet.widget.SendKeyDialog;
 
 /**
  * 主界面，一级界面
@@ -61,7 +62,7 @@ public class MainActivity extends BaseActivity {
         if(index == 0){
             switchFragment(mainWalletFragment);
         }else if(index == 1){
-            ToastUtils.show("发送交易");
+            new SendKeyDialog(this).show();
         }else if(index == 2){
             switchFragment(mainTransactionFragment);
         }

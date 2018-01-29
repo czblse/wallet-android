@@ -13,6 +13,7 @@ ext.build_versions = build_versions
 def versions = [:]
 versions.v7 = "26.0.2"
 versions.v4 = "26.0.2"
+versions.design = "26.0.2"
 versions.constraint = "1.0.2"
 versions.junit = "4.12"
 versions.testrunner = "1.0.1"
@@ -22,6 +23,7 @@ def support = [:]
 support.v7 = "com.android.support:appcompat-v7:$versions.v7"
 support.v4 = "com.android.support:support-v4:$versions.v4"
 support.constraint = "com.android.support.constraint:constraint-layout:$versions.constraint"
+support.design = "com.android.support:design:$versions.design"
 
 def other = [:]
 other.junit = "junit:junit:$versions.junit"

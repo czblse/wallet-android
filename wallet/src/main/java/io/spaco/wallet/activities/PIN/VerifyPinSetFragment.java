@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.pin;
+package io.spaco.wallet.activities.PIN;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.view.View;
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.utils.StatusBarUtils;
-import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.KeyboardProgress;
 import io.spaco.wallet.widget.NumberKeyboard;
 import io.spaco.wallet.widget.NumberKeyboardAdapter;

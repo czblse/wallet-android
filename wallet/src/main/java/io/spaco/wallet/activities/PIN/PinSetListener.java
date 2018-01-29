@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.pin;
+package io.spaco.wallet.activities.PIN;
 
 /**
  * Created by kimi on 2018/1/24.</br>

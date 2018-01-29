@@ -37,11 +37,11 @@
             android:checked="true"
             style="@style/create_wallet_radio_style"
             android:id="@+id/create_wallet"
-            android:text="创建"/>
+            android:text="@string/creates"/>
         <RadioButton
             style="@style/create_wallet_radio_style"
             android:id="@+id/import_wallet"
-            android:text="导入" />
+            android:text="@string/imports" />
     </RadioGroup>
 
     <FrameLayout

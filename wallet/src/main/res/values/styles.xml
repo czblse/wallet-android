@@ -1,16 +1,22 @@
 <resources>
 
     <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@android:color/transparent</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+         Customize your theme here.
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme" parent="@style/BaseTheme">
 
     </style>
 
+    <style name="toolbar_style" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="actionMenuTextColor">@android:color/white</item>
+        //设置menu 中文字的颜色
+        <item name="colorControlNormal">@android:color/white</item>
+        //设置navigationIcon 和 溢出图标的颜色
+    </style>
 
     <style name="middle_titile_style">
         <item name="android:layout_marginTop">20dp</item>

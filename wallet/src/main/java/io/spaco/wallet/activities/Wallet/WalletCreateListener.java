@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.wallet;
+package io.spaco.wallet.activities.Wallet;
 
 /**
  * 创建或导入钱包监听器

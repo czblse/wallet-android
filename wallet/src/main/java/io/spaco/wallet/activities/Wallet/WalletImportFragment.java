@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.wallet;
+package io.spaco.wallet.activities.Wallet;
 
 import android.content.Context;
 import android.os.Bundle;

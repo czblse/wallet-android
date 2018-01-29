@@ -18,7 +18,9 @@
 
     <string name="common_next">next</string>
     <string name="start_import_wallet">Import</string>
-    <string name="toast_pin_error">两次输入的PIN安全码不一致</string>
+    <string name="toast_pin_error">The PIN security code of the two inputs is inconsistent.</string>
+    <string name="creates">Create</string>
+    <string name="imports">Import</string>
 
 
     <string name="wallet_creat_title">Create a wallet</string>
@@ -28,4 +30,13 @@
         By continuing, you understand the risks related to the use of cryptographic tokens and blockchain-based software, the skycoin mobile wallet, and the Skyconin cryptocrrenc. You understand this product is provided as-is, and agree to the Terms and Conditions governing the usage of this product
     </string>
     <string name="hint_agree">Yeah, I understand</string>
+    <string name="wallets">Wallets</string>
+    <string name="wallet">Wallet</string>
+    <string name="sky_hours">SKY Hours</string>
+    <string name="balance">Balance</string>
+    <string name="new_wallet">New Wallet</string>
+    <string name="load_wallet">Load Wallet</string>
+    <string name="Address">Address</string>
+    <string name="new_address">New Address</string>
+    <string name="transaction">Transaction</string>
 </resources>

@@ -1,12 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="#ff0000"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="wallet"
-        android:layout_height="wrap_content" />
+   <android.support.design.widget.AppBarLayout
+       android:layout_width="match_parent"
+       android:background="@drawable/pin_create_wallet_background"
+       android:layout_height="wrap_content">
 
-</LinearLayout>
+       <android.support.v7.widget.Toolbar
+           android:id="@id/id_toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:layout_gravity="center|center_vertical"
+               android:layout_width="wrap_content"
+               android:text="@string/wallets"
+               android:textSize="20sp"
+               android:textColor="@android:color/white"
+               android:layout_height="wrap_content" />
+
+           <ImageView
+               android:paddingRight="5dp"
+               android:layout_gravity="right|center_vertical"
+               android:layout_width="wrap_content"
+               android:src="@drawable/main_refresh"
+               android:layout_height="wrap_content" />
+       </android.support.v7.widget.Toolbar>
+
+       <LinearLayout
+           android:layout_marginTop="20dp"
+           android:layout_marginBottom="40dp"
+           android:layout_gravity="center_horizontal"
+           android:gravity="center_horizontal"
+           android:orientation="vertical"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:id="@+id/tv_balance"
+                   android:layout_width="wrap_content"
+                   android:textSize="30sp"
+                   android:textColor="@android:color/white"
+                   android:text="0"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:layout_toRightOf="@id/tv_balance"
+                   android:text="sky"
+                   android:textColor="@android:color/white"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+           </LinearLayout>
+           <TextView
+               android:textColor="@android:color/white"
+               android:layout_width="wrap_content"
+               android:text="$0.009"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:textColor="@android:color/black"
+               android:layout_width="wrap_content"
+               android:layout_marginTop="20dp"
+               android:text="0.0SKY Hours"
+               android:layout_height="wrap_content" />
+       </LinearLayout>
+
+   </android.support.design.widget.AppBarLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+</android.support.design.widget.CoordinatorLayout>
