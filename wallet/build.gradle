@@ -4,9 +4,9 @@ android {
     signingConfigs {
         release {
             keyAlias 'sky'
-            keyPassword 'io.wallet'
+            keyPassword 'iowallet'
             storeFile file('/Users/luch/Desktop/workSpace/wallet-android/sky.jks')
-            storePassword 'io.wallet'
+            storePassword 'iowallet'
         }
     }
     compileSdkVersion build_versions.compileSdkVersion
@@ -39,9 +39,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
     buildToolsVersion '26.0.2'
