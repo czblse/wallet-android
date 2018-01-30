@@ -47,19 +47,14 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, PinSetActivity.class));
+                launchToNextAcitivity();
                 finish();
             }
-        }, 3000);
+        }, 1500);
     }
 
     @Override
     protected void initData() {
-        byte[] entropy = new byte[Words.TWELVE.byteLength()];
-        new SecureRandom().nextBytes(entropy);
-        ArrayList<String>result = new MnemonicGenerator(English.INSTANCE)
-                .createMnemonicList(entropy);
-        Log.i("tmptest",result.toString());
     }
 
 

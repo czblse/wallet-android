@@ -13,6 +13,7 @@ import io.spaco.wallet.activities.PIN.PinSetListener;
 import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.DisclaimerDialog;
 
@@ -47,7 +48,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             public void run() {
                 showDialog();
             }
-        }, 1000);
+        }, 10);
 
     }
 
@@ -92,6 +93,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                 VerifyPinSetFragment.class.getSimpleName());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        SpacoWalletUtils.setPinSetted();
     }
 
     @Override
