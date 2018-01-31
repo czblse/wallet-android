@@ -5,7 +5,7 @@ android {
         release {
             keyAlias 'sky'
             keyPassword 'iowallet'
-            storeFile file('/Users/luch/Desktop/workSpace/wallet-android/sky.jks')
+            storeFile file('/Users/luch/IntelliJIDEAProjects/wallet-android/skyss.jks')
             storePassword 'iowallet'
         }
     }
@@ -38,10 +38,15 @@ android {
         }
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     buildToolsVersion '26.0.2'
