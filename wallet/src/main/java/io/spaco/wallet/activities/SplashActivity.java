@@ -71,11 +71,13 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void launchToPinSetActivity() {
-
+        Intent intent = new Intent(this, WalletDetailsActivity.class);
+        startActivity(intent);
     }
 
     private void launchToPinInputActvity() {
-
+        Intent intent = new Intent(this, PinSetActivity.class);
+        startActivity(intent);
     }
 
     @Override

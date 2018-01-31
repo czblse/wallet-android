@@ -9,6 +9,7 @@ package io.spaco.wallet.utils;
  */
 public class SpacoWalletUtils {
     public static final String PINSETTED = "PIN_SET";
+    public static final String PIN_KEY = "PIN_SET";
     public static boolean isPinSet(){
         return SharePrefrencesUtil.getInstance().getBoolean(PINSETTED);
     }
@@ -19,5 +20,13 @@ public class SpacoWalletUtils {
 
     public static boolean isHasWallet(){
         return false;
+    }
+
+    public static String getPin(){
+        return SharePrefrencesUtil.getInstance().getString(PIN_KEY);
+    }
+
+    public static void setPin(String pin){
+        SharePrefrencesUtil.getInstance().putString(PIN_KEY, pin);
     }
 }
