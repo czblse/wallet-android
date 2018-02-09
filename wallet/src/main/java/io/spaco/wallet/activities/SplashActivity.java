@@ -1,25 +1,19 @@
 package io.spaco.wallet.activities;
 
+import android.Manifest;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-import java.security.SecureRandom;
-import java.util.ArrayList;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.datas.bip39.MnemonicGenerator;
-import io.spaco.wallet.datas.bip39.Words;
-import io.spaco.wallet.datas.bip39.wordlists.English;
 import io.spaco.wallet.utils.AppUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
-import io.spaco.wallet.utils.StatusBarUtils;
+import mobile.Mobile;
 
 /**
  * Created by zjy on 2018/1/20.
@@ -55,8 +49,15 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        initWallet();
     }
 
+    private void initWallet() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+            String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
+            Mobile.init(walletDir);
+        }
+    }
 
     /**
      * 如果pin没有设定的话，跳到pin设置页面

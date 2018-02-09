@@ -59,6 +59,13 @@ public class WalletCreateFragment extends BaseFragment {
                         .createMnemonicList(entropy);
                 String string = StringUtils.converListToString(result);
                 editTextSeedShow.setText(Mobile.newSeed());
+                String mobileWallt;
+                try {
+                    Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 generateSeed.setVisibility(View.GONE);
             }
         });

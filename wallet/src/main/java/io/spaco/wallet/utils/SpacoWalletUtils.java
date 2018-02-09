@@ -11,7 +11,7 @@ public class SpacoWalletUtils {
     public static final String PINSETTED = "PIN_SET";
     public static final String PIN_KEY = "PIN_SET";
     public static boolean isPinSet(){
-        return SharePrefrencesUtil.getInstance().getBoolean(PINSETTED);
+        return true;
     }
 
     public static void setPinSetted(){
