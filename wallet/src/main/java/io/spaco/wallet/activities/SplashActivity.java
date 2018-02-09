@@ -50,6 +50,14 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initData() {
         initWallet();
+        try {
+            //
+            Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
+            Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
+            Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initWallet() {

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
+import mobile.Mobile;
 
 /**
  * 创建或导入钱包界面
@@ -96,10 +98,18 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     }
 
     @Override
-    public void createWallet(String walletName, String seed) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+    public boolean createWallet(String walletType, String walletName, String seed) {
+        try {
+            Mobile.newWallet(walletType, walletName, seed);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 
     @Override

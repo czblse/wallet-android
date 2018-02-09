@@ -3,8 +3,10 @@ package io.spaco.wallet.activities.Wallet;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.datas.bip39.MnemonicGenerator;
 import io.spaco.wallet.datas.bip39.Words;
 import io.spaco.wallet.datas.bip39.wordlists.English;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StringUtils;
 import mobile.Mobile;
 
@@ -23,7 +26,7 @@ import mobile.Mobile;
  */
 
 public class WalletCreateFragment extends BaseFragment {
-    EditText editTextSeedShow,editTextTextSeedInput;
+    EditText editTextModileName,editTextSeedShow,editTextTextSeedInput;
     WalletCreateListener walletListener;
     public static WalletCreateFragment newInstance(Bundle args){
         WalletCreateFragment instance = new WalletCreateFragment();
@@ -48,24 +51,13 @@ public class WalletCreateFragment extends BaseFragment {
     protected void initViews(View rootView) {
 
         final View generateSeed = rootView.findViewById(R.id.generate_seed);
+        editTextModileName = rootView.findViewById(R.id.mobile_name);
         editTextSeedShow = rootView.findViewById(R.id.ed_seed);
         generateSeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                byte[] entropy = new byte[Words.TWELVE.byteLength()];
-
-                new SecureRandom().nextBytes(entropy);
-                ArrayList<String> result = new MnemonicGenerator(English.INSTANCE)
-                        .createMnemonicList(entropy);
-                String string = StringUtils.converListToString(result);
-                editTextSeedShow.setText(Mobile.newSeed());
-                String mobileWallt;
-                try {
-                    Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                String seed = Mobile.newSeed();
+                editTextSeedShow.setText(seed);
                 generateSeed.setVisibility(View.GONE);
             }
         });
@@ -74,8 +66,9 @@ public class WalletCreateFragment extends BaseFragment {
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(walletListener != null && checkInputSeed()){
-                    walletListener.createWallet("","");
+                String walletName = editTextModileName.getText().toString();
+                if(checkWalletName("skycoin", walletName) && walletListener != null && checkInputSeed()){
+                    walletListener.createWallet("skycoin", walletName, editTextSeedShow.getText().toString());
                 }
             }
         });
@@ -92,6 +85,20 @@ public class WalletCreateFragment extends BaseFragment {
         return false;
     }
 
+    private boolean checkWalletName(String coinType, String walletName){
+        if (TextUtils.isEmpty(walletName)){
+            editTextModileName.requestFocus();
+            Toast.makeText(this.getActivity(), getResources().getString(R.string.pls_input_wallet_name), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (SpacoWalletUtils.isWalletExist(coinType, walletName)){
+            editTextModileName.requestFocus();
+            Toast.makeText(this.getActivity(), getResources().getString(R.string.pls_input_wallet_name), Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+        return true;
+    }
     @Override
     protected void initData() {
 

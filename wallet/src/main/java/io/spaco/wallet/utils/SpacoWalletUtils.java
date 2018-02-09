@@ -29,4 +29,22 @@ public class SpacoWalletUtils {
     public static void setPin(String pin){
         SharePrefrencesUtil.getInstance().putString(PIN_KEY, pin);
     }
+
+    /**
+     * 判断钱包是否已经创建过
+     * @param coinType
+     * @param walletName
+     * @return
+     */
+    public static boolean isWalletExist(String coinType, String walletName){
+        return false;
+    }
+
+    /**
+     * 保存生成过的钱包
+     * @param coinType
+     * @param walletName
+     */
+    public static void saveNewWallet(String coinType, String walletName){
+    }
 }

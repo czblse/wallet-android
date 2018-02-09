@@ -10,9 +10,10 @@ public interface WalletCreateListener {
     /**
      * 开始创建钱包
      * @param walletName
+     * @param walletyType 币种
      * @param seed
      */
-    void createWallet(String walletName,String seed);
+    boolean createWallet(String walletyType, String walletName,String seed);
 
     /**
      * 开始导入钱包
