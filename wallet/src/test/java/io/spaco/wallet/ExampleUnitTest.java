@@ -1,12 +1,21 @@
 package io.spaco.wallet;
 
+import android.content.Intent;
+
 import org.junit.Test;
 
-import mobile.Config;
-import mobile.Mobile;
-import mobile.SendOption;
+import java.security.Key;
+import java.security.SecureRandom;
 
-import static org.junit.Assert.*;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+
+import io.spaco.wallet.utils.DES;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -19,8 +28,18 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    public void print(String str){
-        System.out.println(str);
-    }
+    @Test
+    public void testEnrypt(){
+        String text = "123456789";
+        String password = "95880288";
+        try {
+            String result = DES.encryptDES(text, password);
+            System.out.println("加密结果"  + result);
 
+            result = DES.decryptDES(result, password);
+            System.out.println("原始数据"  + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
