@@ -10,6 +10,12 @@ package io.spaco.wallet.utils;
 public class SpacoWalletUtils {
     public static final String PINSETTED = "PIN_SET";
     public static final String PIN_KEY = "PIN_SET";
+    /**
+     * 是否同意免责声明
+     */
+    public static final String GGREE = "GRAEE_SELE";
+
+
     public static boolean isPinSet(){
         return true;
     }
@@ -21,6 +27,15 @@ public class SpacoWalletUtils {
     public static boolean isHasWallet(){
         return false;
     }
+
+    public static boolean getGgreeState(){
+        return SharePrefrencesUtil.getInstance().getBoolean(GGREE);
+    }
+
+    public static void setGgreeState(Boolean state){
+        SharePrefrencesUtil.getInstance().putBoolean(GGREE, state);
+    }
+
 
     public static String getPin(){
         return SharePrefrencesUtil.getInstance().getString(PIN_KEY);

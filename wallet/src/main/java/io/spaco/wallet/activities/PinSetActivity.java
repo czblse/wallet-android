@@ -5,8 +5,6 @@ import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
-import com.tencent.bugly.crashreport.CrashReport;
-
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.PIN.PinSetFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
@@ -28,6 +26,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     private DisclaimerDialog mDialog;
     Handler handler = new Handler();
 
+
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_pin_set;
@@ -43,13 +42,26 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showDialog();
-            }
-        }, 10);
 
+    }
+
+    @Override
+    protected void initData() {
+        isShowDialog();
+    }
+
+    /**
+     * 判断是否已同意免责声明
+     */
+    private void isShowDialog() {
+        if (!SpacoWalletUtils.getGgreeState()) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showDialog();
+                }
+            }, 10);
+        }
     }
 
     private void showDialog() {
@@ -58,13 +70,14 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.img_exit:
-                        mDialog.dismiss();
+                        mDialog.setTitle(getResources().getString(R.string.error_agreement), 1);
                         break;
                     case R.id.tx_continue:
                         if (mDialog.isCheck()) {
                             mDialog.dismiss();
-                        }else {
-                            mDialog.setTitle("Saftguard your seed!",1);
+                            SpacoWalletUtils.setGgreeState(true);
+                        } else {
+                            mDialog.setTitle(getResources().getString(R.string.error_agreement), 1);
                         }
                         break;
                     default:
@@ -74,11 +87,6 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         mDialog.show();
     }
 
-    @Override
-    protected void initData() {
-//        String seed = Mobile.newSeed();
-//        LogUtils.d("seed = " + seed);
-    }
 
     @Override
     public void onClick(View view) {
@@ -113,5 +121,14 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+
+    /**
+     * 捕捉到了Fragment回退事件
+     */
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

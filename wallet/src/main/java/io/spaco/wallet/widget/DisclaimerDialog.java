@@ -90,10 +90,10 @@ public class DisclaimerDialog extends Dialog {
             }
         });
 
-        animation = new TranslateAnimation(0, -5, 0, 0);
+        animation = new TranslateAnimation(0, -10, 0, 0);
         animation.setInterpolator(new OvershootInterpolator());
-        animation.setDuration(100);
-        animation.setRepeatCount(2);
+        animation.setDuration(50);
+        animation.setRepeatCount(5);
         animation.setRepeatMode(Animation.REVERSE);
     }
 

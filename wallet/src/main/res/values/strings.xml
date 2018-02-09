@@ -30,7 +30,8 @@
     <string name="disclaimer_info">
         By continuing, you understand the risks related to the use of cryptographic tokens and blockchain-based software, the skycoin mobile wallet, and the Skyconin cryptocrrenc. You understand this product is provided as-is, and agree to the Terms and Conditions governing the usage of this product
     </string>
-    <string name="hint_agree">Yeah, I understand</string>
+    <string name="error_agreement">Saftguard your seed!</string>
+    <string name="hint_agree"> Yeah, I understand</string>
     <string name="wallets">Wallets</string>
     <string name="wallet">Wallet</string>
     <string name="sky_hours">SKY Hours</string>

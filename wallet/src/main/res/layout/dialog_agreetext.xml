@@ -58,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:button="@drawable/disclaimer_box"
                 android:theme="@style/MyCheckBox"
                 android:text="@string/hint_agree" />
 

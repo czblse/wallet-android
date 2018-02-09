@@ -37,7 +37,7 @@ public class PinSetFragment extends BaseFragment {
      */
     StringBuilder pinCode = new StringBuilder();
 
-    public static PinSetFragment newInstance(Bundle args){
+    public static PinSetFragment newInstance(Bundle args) {
         PinSetFragment instance = new PinSetFragment();
         instance.setArguments(args);
         return instance;
@@ -54,7 +54,7 @@ public class PinSetFragment extends BaseFragment {
         numberKeyboard = rootView.findViewById(R.id.numberkeyboard);
         keyboardProgress = rootView.findViewById(R.id.keyboardtips);
         numberKeyboard.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);
-        if(mActivity instanceof PinSetListener){
+        if (mActivity instanceof PinSetListener) {
             pinSetListener = (PinSetListener) mActivity;
         }
     }
@@ -62,27 +62,28 @@ public class PinSetFragment extends BaseFragment {
     /**
      * 数字键盘结果回调
      */
-    NumberKeyboardAdapter.OnNumberKeyboardDownListener onNumberKeyboardDownListener = new NumberKeyboardAdapter.OnNumberKeyboardDownListener(){
+    NumberKeyboardAdapter.OnNumberKeyboardDownListener onNumberKeyboardDownListener =
+            new NumberKeyboardAdapter.OnNumberKeyboardDownListener() {
 
-        @Override
-        public void onNumberKeyboardDown(int number) {
-            keyboardProgress.insetUpdate();
-            if(pinCode.length() < 4){
-                pinCode.append(number);
-            }
-            if(pinCode.length() == 4){
-                pinSetListener.onPinSetSuccess(pinCode.toString());
-            }
-        }
+                @Override
+                public void onNumberKeyboardDown(int number) {
+                    keyboardProgress.insetUpdate();
+                    if (pinCode.length() < 4) {
+                        pinCode.append(number);
+                    }
+                    if (pinCode.length() == 4) {
+                        pinSetListener.onPinSetSuccess(pinCode.toString());
+                    }
+                }
 
-        @Override
-        public void onNumberKeyboardDelete() {
-            keyboardProgress.deleteUpdate();
-            if(pinCode.length() > 0){
-                pinCode.deleteCharAt(pinCode.length() - 1);
-            }
-        }
-    };
+                @Override
+                public void onNumberKeyboardDelete() {
+                    keyboardProgress.deleteUpdate();
+                    if (pinCode.length() > 0) {
+                        pinCode.deleteCharAt(pinCode.length() - 1);
+                    }
+                }
+            };
 
     @Override
     protected void initData() {
