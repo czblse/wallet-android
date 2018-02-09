@@ -85,11 +85,5 @@ dependencies {
     androidTestImplementation deps.other.testespresso
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:26.0.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
-    implementation 'io.reactivex.rxjava2:rxandroid:+'
-    implementation 'io.reactivex.rxjava2:rxjava:+'
     implementation 'com.tencent.bugly:crashreport:latest.release'
 }
