@@ -7,7 +7,7 @@ import android.support.multidex.MultiDex;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import io.spaco.wallet.BuildConfig;
-import io.spaco.wallet.api.RetrofitService;
+//import io.spaco.wallet.api.RetrofitService;
 import io.spaco.wallet.utils.AppUtils;
 
 /**
@@ -36,7 +36,7 @@ public class SpacoAppliacation extends Application {
      * 初始化网络
      */
     private void initNet() {
-        RetrofitService.init();
+//        RetrofitService.init();
     }
 
     /**

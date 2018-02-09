@@ -7,5 +7,8 @@ package io.spaco.wallet.common;
 public interface Constant {
 
     String KEY_PIN = "key_pin";
+    String COIN_TYPE_SPACO = "spo";
+    String COIN_TYPE_SKY = "skycoin";
+    String COIN_TYPE_SUN = "suncoin";
 
 }

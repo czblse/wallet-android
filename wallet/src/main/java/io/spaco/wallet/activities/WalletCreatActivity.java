@@ -113,8 +113,18 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     }
 
     @Override
-    public void importWallet(String walletName, String seed) {
+    public boolean importWallet(String walletType, String walletName, String seed) {
         ToastUtils.show("开始导入钱包");
-
+        try {
+            Mobile.newWallet(walletType, walletName, seed);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 }

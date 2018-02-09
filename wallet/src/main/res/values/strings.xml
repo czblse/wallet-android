@@ -41,6 +41,7 @@
     <string name="new_address">New Address</string>
     <string name="transaction">Transaction</string>
     <string name="pls_input_wallet_name">Please input a wallet name.</string>
+    <string name="pls_input_seed">Please input seed.</string>
     <string name="wallet_is_existed">Wallet name has used, please input another one.</string>
 
 </resources>

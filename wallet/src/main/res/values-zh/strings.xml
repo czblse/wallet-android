@@ -42,4 +42,6 @@
     <string name="new_address">创建地址</string>
     <string name="transaction">交易</string>
     <string name="pls_input_wallet_name">请输入钱包名称</string>
+    <string name="pls_input_seed">请输入种子</string>
+    <string name="wallet_is_existed">钱包名称已使用，请换一个</string>
 </resources>

@@ -20,6 +20,6 @@ public interface WalletCreateListener {
      * @param walletName
      * @param seed
      */
-    void importWallet(String walletName,String seed);
+    boolean importWallet(String walletType, String walletName,String seed);
 
 }
