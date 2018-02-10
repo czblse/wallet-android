@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
+import io.spaco.wallet.beans.WalletDetailsBean;
+import io.spaco.wallet.utils.JsonUtils;
+import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import mobile.Mobile;
 
@@ -18,9 +21,10 @@ import mobile.Mobile;
  */
 
 public class WalletCreateFragment extends BaseFragment {
-    EditText editTextMobileName,editTextSeedShow,editTextTextSeedInput;
+    EditText editTextMobileName, editTextSeedShow, editTextTextSeedInput;
     WalletCreateListener walletListener;
-    public static WalletCreateFragment newInstance(Bundle args){
+
+    public static WalletCreateFragment newInstance(Bundle args) {
         WalletCreateFragment instance = new WalletCreateFragment();
         instance.setArguments(args);
         return instance;
@@ -29,7 +33,7 @@ public class WalletCreateFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof WalletCreateListener){
+        if (context instanceof WalletCreateListener) {
             walletListener = (WalletCreateListener) context;
         }
     }
@@ -59,17 +63,18 @@ public class WalletCreateFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String walletName = editTextMobileName.getText().toString();
-                if(checkWalletName("skycoin", walletName) && walletListener != null && checkInputSeed()){
+                if (checkWalletName("skycoin", walletName) && walletListener != null && checkInputSeed()) {
                     walletListener.createWallet("skycoin", walletName, editTextSeedShow.getText().toString());
                 }
             }
         });
     }
-    private boolean checkInputSeed(){
-        if (editTextSeedShow != null && editTextTextSeedInput != null){
+
+    private boolean checkInputSeed() {
+        if (editTextSeedShow != null && editTextTextSeedInput != null) {
             String input = editTextSeedShow.getText().toString();
             String output = editTextTextSeedInput.getText().toString();
-            if (TextUtils.equals(input.trim(), output.trim())){
+            if (TextUtils.equals(input.trim(), output.trim())) {
                 return true;
             }
             return false;
@@ -77,13 +82,13 @@ public class WalletCreateFragment extends BaseFragment {
         return false;
     }
 
-    private boolean checkWalletName(String coinType, String walletName){
-        if (TextUtils.isEmpty(walletName)){
+    private boolean checkWalletName(String coinType, String walletName) {
+        if (TextUtils.isEmpty(walletName)) {
             editTextMobileName.requestFocus();
             Toast.makeText(this.getActivity(), getResources().getString(R.string.pls_input_wallet_name), Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (SpacoWalletUtils.isWalletExist(coinType, walletName)){
+        if (SpacoWalletUtils.isWalletExist(coinType, walletName)) {
             editTextMobileName.requestFocus();
             Toast.makeText(this.getActivity(), getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
             return false;
@@ -91,8 +96,28 @@ public class WalletCreateFragment extends BaseFragment {
         }
         return true;
     }
+
     @Override
     protected void initData() {
 
+    }
+
+    //todo  钱包数据加解密存储测试
+    private void testJson() {
+        try {
+            WalletDetailsBean bean = new WalletDetailsBean();
+            bean.setAddress("sdniadsadhaidiadhaidadsadada");
+            bean.setId(1);
+            bean.setSkyHours("302");
+            bean.setTotalBalance("86.12");
+            //存
+            SpacoWalletUtils.setEncryptWallet(JsonUtils.getInstance().getEncryptStr(bean));
+            String str = SpacoWalletUtils.getEncryptWallet();
+            //取
+            bean = JsonUtils.getInstance().getDecryptStr(str);
+            LogUtils.d(bean.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
