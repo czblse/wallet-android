@@ -14,6 +14,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.utils.JsonUtils;
 import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
@@ -141,8 +142,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
      * 否则去创建钱包
      */
     private void launchToWalletActivity() {
-        if (SpacoWalletUtils.isWalletExist(Wallet.buildTestData().getWalletType(),Wallet.buildTestData().getWalletName())){
-            Intent intent = new Intent(this, WalletDetailsActivity.class);
+        if (WalletManager.getInstance().getAllWallet() != null && WalletManager.getInstance().getAllWallet().size() > 0){
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else {
             Intent intent = new Intent(this, WalletCreatActivity.class);

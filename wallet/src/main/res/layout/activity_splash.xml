@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/black"
+    android:background="#171A1D"
     android:layout_height="match_parent">
     <ImageView
         android:layout_width="wrap_content"
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/version_name"
         tools:text="v 0.1.0"
+        android:background="@null"
         android:textColor="@android:color/white"
         android:layout_marginBottom="@dimen/splash_version_margin_bottom"
         android:layout_centerHorizontal="true"
