@@ -29,7 +29,6 @@
         <activity android:name=".activities.WalletCreatActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.WalletDetailsActivity"/>
-        <activity android:name=".activities.PIN.InputPinActivity"/>
     </application>
 
 </manifest>

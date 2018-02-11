@@ -69,7 +69,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    launchToNextAcitivity();
+                    launchToPinInputActvity();
                     finish();
                 }
             }, 1500);
@@ -92,22 +92,19 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
         }
     }
 
-    /**
-     * 如果pin没有设定的话，跳到pin设置页面
-     * 如果没有创建钱包，则跳转到pin输入页面
-     */
-    private void launchToNextAcitivity() {
-        if (SpacoWalletUtils.isPinSet()) {
-            launchToPinInputActvity();
-        } else {
-            launchToPinSetActivity();
-        }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+            //6.0动态权限申请
+            if(EasyPermissions.hasPermissions(this, Constant.ALL_PERMISSIONS)){
+                initWallet();
+            }else{
+                EasyPermissions.requestPermissions(this,"",Constant.ALL_RERMISSIONS_REQUEST_CODE,Constant.ALL_PERMISSIONS);
+            }
     }
 
-    private void launchToPinSetActivity() {
-        Intent intent = new Intent(this, WalletDetailsActivity.class);
-        startActivity(intent);
-    }
+
+
 
     private void launchToPinInputActvity() {
         Intent intent = new Intent(this, PinSetActivity.class);
