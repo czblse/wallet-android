@@ -9,33 +9,49 @@ import java.util.List;
 
 public class TransactionInfo implements Serializable {
 
-    Status status;
-    String time;
-    Txn txn;
+    public Status status;
+    public String time;
+    public Txn txn;
 
     public static class Status implements Serializable{
-        String confirmed;
-        String unconfirmed;
-        String height;
-        String block_seq;
-        String unknown;
+        public boolean confirmed;
+        public boolean unconfirmed;
+        public String height;
+        public String block_seq;
+        public boolean unknown;
+
+        /**
+         * 获取交易状态
+         * @return
+         */
+        public String getStatusValues(){
+            if(confirmed){
+                return "已完成";
+            }else if(unconfirmed){
+                return "未校验";
+            }else if(unknown){
+                return "未知的";
+            }else{
+                return "";
+            }
+        }
     }
 
     public static class Txn implements Serializable{
-        String length;
-        String type;
-        String txid;
-        String inner_hash;
-        String timestamp;
-        List<String> sigs;
-        List<String> inputs;
-        List<Outputs>  outputs;
+        public String length;
+        public String type;
+        public String txid;
+        public String inner_hash;
+        public String timestamp;
+        public List<String> sigs;
+        public  List<String> inputs;
+        public  List<Outputs>  outputs;
 
         public static class Outputs implements Serializable{
-            String uxid;
-            String dst;
-            String coins;
-            String hours;
+            public String uxid;
+            public String dst;
+            public  String coins;
+            public String hours;
         }
     }
 

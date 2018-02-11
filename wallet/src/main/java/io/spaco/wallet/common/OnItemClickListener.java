@@ -6,5 +6,5 @@ package io.spaco.wallet.common;
 
 public interface OnItemClickListener<T> {
 
-    void onClick(int position,T bean);
+    void onClick(int viewId,int positon,T bean);
 }

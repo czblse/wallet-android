@@ -40,7 +40,7 @@ public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransaction
             if(onItemClickListener == null)
                 return;
             int position = (int) v.getTag();
-            onItemClickListener.onClick(position,transactionInfos.get(position));
+            onItemClickListener.onClick(v.getId(),position,transactionInfos.get(position));
         }
     };
 
@@ -53,6 +53,8 @@ public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransaction
     public void onBindViewHolder(MainTransactionViewHolder holder, int position) {
         TransactionInfo transactionInfo = transactionInfos.get(position);
         holder.itemView.setTag(position);
+        holder.address.setTag(position);
+        holder.address.setOnClickListener(onClickListener);
         holder.itemView.setOnClickListener(onClickListener);
     }
 
