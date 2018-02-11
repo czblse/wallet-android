@@ -3,12 +3,16 @@ package io.spaco.wallet.datas;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+
 import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import io.spaco.wallet.base.SpacoAppliacation;
+import mobile.Mobile;
 
 /**
  * 钱包管理
@@ -41,7 +45,7 @@ public class WalletManager {
      * 静态内部类单利
      */
     private static class WalletManagerHolder{
-        private static WalletManager minstance = new WalletManager();
+        private static final WalletManager minstance = new WalletManager();
     }
 
     public static WalletManager getInstance(){
@@ -72,14 +76,23 @@ public class WalletManager {
      * @return true代表增加成功，false表示失败,或者已经存在此钱包
      */
     public boolean saveWallet(Wallet wallet){
-        SharedPreferences.Editor edit = walletSharedPreferences.edit();
-        edit.putString(wallet.getWalletID(),gosn.toJson(wallet));
-        edit.commit();
-        //通知监听器
-        for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
-            onWalletChangeListener.onSaveWallet(wallet);
+        try {
+            boolean exist = Mobile.isExist(wallet.getWalletID());
+            if(exist){
+                SharedPreferences.Editor edit = walletSharedPreferences.edit();
+                edit.putString(wallet.getWalletID(),gosn.toJson(wallet));
+                edit.commit();
+                //通知监听器
+                for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
+                    onWalletChangeListener.onSaveWallet(wallet);
+                }
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return true;
+
+        return false;
     }
 
     /**
@@ -92,14 +105,22 @@ public class WalletManager {
         if(TextUtils.isEmpty(walletJson)){
             return false;
         }
-        SharedPreferences.Editor edit = walletSharedPreferences.edit();
-        edit.remove(wallet.getWalletID());
-        edit.commit();
-        //通知监听器
-        for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
-            onWalletChangeListener.onRemoveWallet(wallet);
+        try {
+            if(Mobile.isExist(wallet.getWalletID())){
+                Mobile.remove(wallet.getWalletID());
+                SharedPreferences.Editor edit = walletSharedPreferences.edit();
+                edit.remove(wallet.getWalletID());
+                edit.commit();
+                //通知监听器
+                for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
+                    onWalletChangeListener.onRemoveWallet(wallet);
+                }
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     /**

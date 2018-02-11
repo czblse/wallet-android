@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import io.spaco.wallet.R;
-import io.spaco.wallet.beans.MainTransactionBean;
+import io.spaco.wallet.beans.TransactionInfo;
 import io.spaco.wallet.common.OnItemClickListener;
 
 /**
@@ -18,15 +18,19 @@ import io.spaco.wallet.common.OnItemClickListener;
 
 public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransactionAdapter.MainTransactionViewHolder> {
 
-    List<MainTransactionBean> mainTransactionBeanList;
-    OnItemClickListener<MainTransactionBean> onItemClickListener;
+    List<TransactionInfo> transactionInfos;
+    OnItemClickListener<TransactionInfo> onItemClickListener;
 
-    public MainTransactionAdapter(List<MainTransactionBean> mainTransactionBeanList){
-        this.mainTransactionBeanList = mainTransactionBeanList == null ? new ArrayList<MainTransactionBean>() : mainTransactionBeanList;
+    public MainTransactionAdapter(List<TransactionInfo> mainTransactionBeanList){
+        this.transactionInfos = mainTransactionBeanList == null ? new ArrayList<TransactionInfo>() : mainTransactionBeanList;
     }
 
-    public void setOnItemClickListener( OnItemClickListener<MainTransactionBean> onItemClickListener){
+    public void setOnItemClickListener( OnItemClickListener<TransactionInfo> onItemClickListener){
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public List<TransactionInfo> getDatas(){
+        return transactionInfos;
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener(){
@@ -36,7 +40,7 @@ public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransaction
             if(onItemClickListener == null)
                 return;
             int position = (int) v.getTag();
-            onItemClickListener.onClick(position,mainTransactionBeanList.get(position));
+            onItemClickListener.onClick(position,transactionInfos.get(position));
         }
     };
 
@@ -47,14 +51,14 @@ public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransaction
 
     @Override
     public void onBindViewHolder(MainTransactionViewHolder holder, int position) {
-        MainTransactionBean mainTransactionBean = mainTransactionBeanList.get(position);
+        TransactionInfo transactionInfo = transactionInfos.get(position);
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(onClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return mainTransactionBeanList.size();
+        return transactionInfos.size();
     }
 
 

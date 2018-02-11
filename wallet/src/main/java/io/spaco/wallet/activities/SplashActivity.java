@@ -105,7 +105,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
     }
 
     private void launchToPinSetActivity() {
-        Intent intent = new Intent(this, WalletDetailsActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

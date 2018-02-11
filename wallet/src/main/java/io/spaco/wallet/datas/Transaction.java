@@ -5,4 +5,6 @@ package io.spaco.wallet.datas;
  */
 
 public class Transaction {
+    public String coinType;
+    public String txid;
 }

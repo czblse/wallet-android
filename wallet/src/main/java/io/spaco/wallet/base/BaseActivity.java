@@ -1,10 +1,15 @@
 package io.spaco.wallet.base;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 
+import io.spaco.wallet.R;
 import io.spaco.wallet.utils.AppManager;
 import io.spaco.wallet.utils.StatusBarUtils;
 
@@ -72,4 +77,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onDestroy();
     }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(R.string.app_name);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("\n正在努力加载中...\n");
+        return progressDialog;
+    }
 }
