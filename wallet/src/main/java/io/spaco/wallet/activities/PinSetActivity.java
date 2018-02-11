@@ -6,11 +6,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import io.spaco.wallet.R;
+import io.spaco.wallet.activities.PIN.PinInputFragment;
 import io.spaco.wallet.activities.PIN.PinSetFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
 import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.datas.WalletManager;
+import io.spaco.wallet.utils.JsonUtils;
+import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.DisclaimerDialog;
@@ -37,10 +43,16 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.container, PinSetFragment.newInstance(null),
-                    PinSetFragment.class.getSimpleName());
+            if (SpacoWalletUtils.isPinSet()){
+                fragmentTransaction.add(R.id.container, PinInputFragment.newInstance(null),
+                        PinInputFragment.class.getSimpleName());
+            }else {
+                fragmentTransaction.add(R.id.container, PinSetFragment.newInstance(null),
+                        PinSetFragment.class.getSimpleName());
+            }
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
+
         }
 
     }
@@ -96,21 +108,23 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     @Override
     public void onPinSetSuccess(String pin) {
         pinCode = pin;
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
-                VerifyPinSetFragment.class.getSimpleName());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        SpacoWalletUtils.setPinSetted();
+        if (SpacoWalletUtils.isPinSet()){
+            launchToWalletActivity();
+        }else {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
+                    VerifyPinSetFragment.class.getSimpleName());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+
     }
 
     @Override
     public void onPinSetVerifySuccess(String verifyPin) {
         if (pinCode.equals(verifyPin)) {
-            Intent intent = new Intent(this, WalletCreatActivity.class);
-            intent.putExtra(Constant.KEY_PIN, pinCode);
-            startActivity(intent);
-            finish();
+            SpacoWalletUtils.setPin(verifyPin);
+            launchToWalletActivity();
         } else {
             ToastUtils.show(getString(R.string.toast_pin_error));
         }
@@ -123,6 +137,23 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         handler.removeCallbacksAndMessages(null);
     }
 
+    /**
+     * 如果钱包已经创建直接进入钱包详情页面
+     * 否则去创建钱包
+     */
+    private void launchToWalletActivity() {
+        if (WalletManager.getInstance().getAllWallet() != null && WalletManager.getInstance().getAllWallet().size() > 0){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(this, WalletCreatActivity.class);
+            intent.putExtra(Constant.KEY_PIN, pinCode);
+            startActivity(intent);
+
+        }
+        finish();
+
+    }
 
     /**
      * 捕捉到了Fragment回退事件

@@ -9,4 +9,9 @@ package io.spaco.wallet.api;
 public class Const {
 
     public static final String HOST = "http://www.baidu.com";
+
+    /**
+     * 要求长度为8
+     */
+   public static final String DESKey = "95880288";
 }

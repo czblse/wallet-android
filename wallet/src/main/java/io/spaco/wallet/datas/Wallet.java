@@ -1,49 +1,96 @@
-//package io.spaco.wallet.datas;
-//
-//import java.security.SecureRandom;
-//import java.util.List;
-//import org.bitcoinj.crypto.MnemonicCode;
-//import org.bitcoinj.crypto.MnemonicException;
-///**
-// * Created by zjy on 2018/1/22.
-// */
-//
-//public class Wallet {
-//    //生成助记词的种子长度
-//    public static final int SEED_ENTROPY_DEFAULT = 192;
-//    public static final int SEED_ENTROPY_EXTRA = 256;
-//
-//    public static String generateMnemonicString(int entropyBitsSize) {
-//        List<String> mnemonicWords = Wallet.generateMnemonic(entropyBitsSize);
-//        return mnemonicToString(mnemonicWords);
-//    }
-//
-//    public static String mnemonicToString(List<String> mnemonicWords) {
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < mnemonicWords.size(); i++) {
-//            if (i != 0) sb.append(' ');
-//            sb.append(mnemonicWords.get(i));
-//        }
-//        return sb.toString();
-//    }
-//
-//    public static List<String> generateMnemonic(int entropyBitsSize) {
-//        byte[] entropy;
-//        entropy = new byte[entropyBitsSize / 8];
-//
-//        SecureRandom sr = new SecureRandom();
-//        sr.nextBytes(entropy);
-//
-//        return bytesToMnemonic(entropy);
-//    }
-//
-//    static List<String> bytesToMnemonic(byte[] bytes) {
-//        List<String> mnemonic;
-//        try {
-//            mnemonic = MnemonicCode.INSTANCE.toMnemonic(bytes);
-//        } catch (MnemonicException.MnemonicLengthException e) {
-//            throw new RuntimeException(e); // should not happen, we have 16bytes of entropy
-//        }
-//        return mnemonic;
-//    }
-//}
+package io.spaco.wallet.datas;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import mobile.Mobile;
+
+/**
+ * Created by zjy on 2018/1/22.
+ */
+
+public class Wallet {
+
+    String walletID;
+    String walletType;
+    String walletName;
+    int walletDeep;
+    String balance;
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public String getWalletID() {
+        return walletID;
+    }
+
+
+    public Wallet(String walletType, String walletName, String walletID) {
+        this.walletType = walletType;
+        this.walletName = walletName;
+        this.walletID = walletID;
+    }
+
+    private Wallet(){
+
+    }
+
+    public String getWalletType() {
+        return walletType;
+    }
+
+    public void setWalletType(String walletType) {
+        this.walletType = walletType;
+    }
+
+    public String getWalletName() {
+        return walletName;
+    }
+
+    public void setWalletName(String walletName) {
+        this.walletName = walletName;
+    }
+
+    public int getWalletDeep() {
+        return walletDeep;
+    }
+
+    public void setWalletDeep(int walletDeep) {
+        this.walletDeep = walletDeep;
+    }
+
+    public Wallet restoreWalletFromLocal() {
+        Wallet wallet = new Wallet();
+        return wallet;
+    }
+
+    public void save() {
+        WalletManager.getInstance().saveWallet(this);
+    }
+
+    public static Wallet buildTestData(){
+        Wallet wallet = new Wallet();
+        wallet.setWalletType("sky");
+        wallet.setWalletName("test");
+        wallet.setWalletDeep(15);
+        return wallet;
+    }
+
+    public static float getBalanceFromRawData(String rawString){
+        try {
+            JSONObject jsonObject = new JSONObject(rawString);
+            return jsonObject.optInt("balance");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0f;
+        }
+    }
+
+}

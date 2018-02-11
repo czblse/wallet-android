@@ -3,6 +3,7 @@ package io.spaco.wallet.activities;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -12,14 +13,20 @@ import io.spaco.wallet.activities.WalletDetails.WalletDetailsAdapter;
 import io.spaco.wallet.activities.WalletDetails.WalletDetailsListener;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.beans.WalletDetailsBean;
+import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.datas.Address;
+import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.ShowQrDialog;
+import mobile.Mobile;
 
 public class WalletDetailsActivity extends BaseActivity implements WalletDetailsListener {
 
     RecyclerView recyclerView;
     WalletDetailsAdapter walletDetailsAdapter;
+    String walletId;
+    ArrayList<Address> walletDetailsBeans = new ArrayList<>();
 
     @Override
     protected int attachLayoutRes() {
@@ -42,10 +49,6 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ArrayList<WalletDetailsBean> walletDetailsBeans = new ArrayList<>();
-        walletDetailsBeans.add(new WalletDetailsBean());
-        walletDetailsBeans.add(new WalletDetailsBean());
-        walletDetailsBeans.add(new WalletDetailsBean());
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);
         recyclerView.setAdapter(walletDetailsAdapter);
@@ -53,18 +56,31 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
     @Override
     protected void initData() {
-
+        walletId  = getIntent().getStringExtra(Constant.KEY_WALLET_ID);
+        loadAddressMsg(walletId);
     }
 
     @Override
-    public void onItemClick(int position, WalletDetailsBean bean) {
+    public void onItemClick(int position, Address bean) {
         ShowQrDialog showQrDialog = new ShowQrDialog(this);
-        showQrDialog.setKey("http://www.baidu.com");
+        showQrDialog.setKey(bean.getAddress());
         showQrDialog.show();
+    }
+
+    private void loadAddressMsg(String walletId){
+        if (!TextUtils.isEmpty(walletId)) {
+            walletDetailsAdapter.setWalletDetails(WalletManager.getInstance().getAddressesByWalletId(walletId));
+            walletDetailsAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void onCreateAddress() {
-        ToastUtils.show("创建新地址");
+        try {
+            Mobile.newAddress(walletId, 1);
+            loadAddressMsg(walletId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

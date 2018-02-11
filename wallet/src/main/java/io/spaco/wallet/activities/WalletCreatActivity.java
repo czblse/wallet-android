@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import io.spaco.wallet.activities.Wallet.WalletCreateFragment;
 import io.spaco.wallet.activities.Wallet.WalletImportFragment;
 import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
@@ -100,7 +102,10 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     @Override
     public boolean createWallet(String walletType, String walletName, String seed) {
         try {
-            Mobile.newWallet(walletType, walletName, seed);
+            String walletId = Mobile.newWallet(walletType, walletName, seed);
+            Wallet wallet = new Wallet(walletType, walletName, walletId);
+            wallet.save();
+            Log.i("temptest", walletId);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -116,7 +121,9 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     public boolean importWallet(String walletType, String walletName, String seed) {
         ToastUtils.show("开始导入钱包");
         try {
-            Mobile.newWallet(walletType, walletName, seed);
+            String walletId = Mobile.newWallet(walletType, walletName, seed);
+            Wallet wallet = new Wallet(walletType, walletName, walletId);
+            wallet.save();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

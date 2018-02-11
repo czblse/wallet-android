@@ -1,6 +1,6 @@
 package io.spaco.wallet.activities.Main;
 
-import io.spaco.wallet.beans.MainWalletBean;
+import io.spaco.wallet.datas.Wallet;
 
 /**
  * Created by kimi on 2018/1/29.</br>
@@ -13,7 +13,7 @@ public interface MainWalletListener {
      * @param position
      * @param bean
      */
-    void onItemClick(int position,MainWalletBean bean);
+    void onItemClick(int position,Wallet bean);
 
     /**
      * 创建钱包

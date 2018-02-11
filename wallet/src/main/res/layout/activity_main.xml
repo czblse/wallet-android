@@ -11,12 +11,12 @@
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1"/>
 
     <View
         android:layout_width="match_parent"
         android:background="#F0F0F0"
-        android:layout_height="1dp"></View>
+        android:layout_height="1dp"/>
    <LinearLayout
        android:id="@+id/main_bottom_container"
        android:layout_width="match_parent"
@@ -29,11 +29,11 @@
        <FrameLayout
            android:layout_width="0dp"
            android:layout_weight="1"
-           android:layout_height="match_parent"></FrameLayout>
+           android:layout_height="match_parent"/>
        <FrameLayout
            android:layout_width="0dp"
            android:layout_weight="1"
-           android:layout_height="match_parent"></FrameLayout>
+           android:layout_height="match_parent"/>
    </LinearLayout>
 
 </LinearLayout>

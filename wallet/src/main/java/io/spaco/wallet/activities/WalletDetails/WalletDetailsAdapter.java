@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.spaco.wallet.R;
-import io.spaco.wallet.beans.WalletDetailsBean;
+import io.spaco.wallet.datas.Address;
 
 /**
  * 钱包主页视图碎片适配器
@@ -24,10 +24,14 @@ public class WalletDetailsAdapter extends RecyclerView.Adapter {
      */
     WalletDetailsListener walletDetailsListener;
 
-    List<WalletDetailsBean> walletDetails;
+    public void setWalletDetails(List<Address> walletDetails) {
+        this.walletDetails = walletDetails;
+    }
 
-    public WalletDetailsAdapter(List<WalletDetailsBean> wallets){
-        this.walletDetails = wallets == null ? new ArrayList<WalletDetailsBean>() : wallets;
+    List<Address> walletDetails;
+
+    public WalletDetailsAdapter(List<Address> wallets){
+        this.walletDetails = wallets == null ? new ArrayList<Address>() : wallets;
     }
 
     public void setWalletDetailsListener(WalletDetailsListener walletDetailsListener){
@@ -67,10 +71,13 @@ public class WalletDetailsAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int type = getItemViewType(position);
         if(type == 0){
+            Address address = walletDetails.get(position);
             WalletDetailsViewHolder hd = (WalletDetailsViewHolder) holder;
             hd.navigation.setVisibility(position > 0 ? View.GONE : View.VISIBLE);
             hd.content.setTag(position);
             hd.content.setOnClickListener(onClickListener);
+            hd.id.setText(address.getAddressId());
+            hd.address.setText(address.getAddress());
         }else if(type == 1){
             WalletDetailsExpandViewHolder hd = (WalletDetailsExpandViewHolder) holder;
             hd.createAddress.setTag(position);

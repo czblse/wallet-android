@@ -15,7 +15,6 @@ import io.spaco.wallet.R;
 import io.spaco.wallet.activities.Main.MainTransactionFragment;
 import io.spaco.wallet.activities.Main.MainWalletFragment;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.SendKeyDialog;
 
 /**
@@ -29,7 +28,6 @@ public class MainActivity extends BaseActivity {
     LinearLayout bottomContainer;
     int[] normalDrawableIds = new int[]{R.drawable.main_wallet_normal,R.drawable.main_send_bg,R.drawable.main_transation_normal};
     int[] drawableIds = new int[]{R.drawable.main_wallet,R.drawable.main_send_bg,R.drawable.main_transation};
-
     /**
      * 底部导航选中位置
      */
@@ -147,5 +145,6 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
 
     }
+
 
 }

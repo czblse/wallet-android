@@ -1,10 +1,12 @@
 package io.spaco.wallet.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +82,6 @@ public abstract class BaseFragment extends Fragment {
      * 初始化数据
      */
     protected abstract void initData();
-
 
 
 
