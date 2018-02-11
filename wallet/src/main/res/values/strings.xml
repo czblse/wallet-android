@@ -3,6 +3,7 @@
     <string name="login">Login</string>
     <string name="pin_title">Set a PIN#</string>
     <string name="pin_verify_title">Confirm PIN#</string>
+    <string name="pin_Input_title">Verify PIN security code</string>
     <string name="pin_tips">
         It’s your first time using our mobile wallet, \n so you’ll need to either create a new wallet \n or load an existing one from a seed.
     </string>
@@ -12,6 +13,7 @@
     <string name="pin_create_wallet_generate_seed">generate seed</string>
     <string name="pin_explain">This PIN # will used to open the wallet. \n Don’t forget your pin. If you do, you may \n lose access to your mobile wallet.</string>
     <string name="pin_verify_explain">Enter your PIN once more to continue</string>
+    <string name="pin_input_explain">Please enter your PIN code</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="continues">Continue</string>
     <string name="send_sky">Send SKY</string>

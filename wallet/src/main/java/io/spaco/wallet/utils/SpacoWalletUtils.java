@@ -4,11 +4,13 @@ package io.spaco.wallet.utils;
  * Created by zjy on 2018/1/20.
  */
 
+import android.text.TextUtils;
+
 /**
  * 目前没有啥需要的类，所以以后复杂了再拆分
  */
 public class SpacoWalletUtils {
-    public static final String PINSETTED = "PIN_SET";
+
     public static final String PIN_KEY = "PIN_SET";
     /**
      * 是否同意免责声明
@@ -20,12 +22,13 @@ public class SpacoWalletUtils {
     public static final String Wallet_KEY = "Wallet_KEY";
 
     public static boolean isPinSet() {
+<<<<<<< HEAD
         return false;
+=======
+        return !TextUtils.isEmpty(getPin());
+>>>>>>> a5bc271e55ccece050d132fb572c70d2eb6c82f5
     }
 
-    public static void setPinSetted() {
-        SharePrefrencesUtil.getInstance().putBoolean(PINSETTED, true);
-    }
 
     public static boolean isHasWallet() {
         return false;
