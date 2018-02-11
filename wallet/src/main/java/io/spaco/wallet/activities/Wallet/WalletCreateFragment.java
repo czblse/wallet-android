@@ -12,6 +12,7 @@ import android.widget.Toast;
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.beans.WalletDetailsBean;
+import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.utils.JsonUtils;
 import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
@@ -77,8 +78,8 @@ public class WalletCreateFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String walletName = editTextMobileName.getText().toString();
-                if (checkWalletName("skycoin", walletName) && walletListener != null && checkInputSeed()) {
-                    walletListener.createWallet("skycoin", walletName, editTextSeedShow.getText().toString());
+                if (checkWalletName(Constant.COIN_TYPE_SKY, walletName) && walletListener != null && checkInputSeed()) {
+                    walletListener.createWallet(Constant.COIN_TYPE_SKY, walletName, editTextSeedShow.getText().toString());
                 }
             }
         });

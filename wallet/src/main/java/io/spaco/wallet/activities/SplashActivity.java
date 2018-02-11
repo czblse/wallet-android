@@ -80,7 +80,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                launchToNextAcitivity();
+                launchToPinInputActvity();
                 finish();
             }
         }, 1500);
