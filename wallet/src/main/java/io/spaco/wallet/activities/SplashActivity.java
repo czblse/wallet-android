@@ -38,13 +38,6 @@ public class SplashActivity extends BaseActivity {
     protected void initViews() {
         TextView mVersionName = findViewById(R.id.version_name);
         mVersionName.setText(AppUtils.getVersionName(getApplicationContext()));
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                launchToNextAcitivity();
-                finish();
-            }
-        }, 1500);
     }
 
     @Override
@@ -58,6 +51,14 @@ public class SplashActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //钱包初始化完成后执行下一步业务操作
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                launchToNextAcitivity();
+                finish();
+            }
+        }, 1500);
     }
 
     private void initWallet() {
