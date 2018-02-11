@@ -19,9 +19,10 @@ public class Wallet {
     }
 
 
-    public Wallet(String walletType, String walletName) {
+    public Wallet(String walletType, String walletName, String walletID) {
         this.walletType = walletType;
         this.walletName = walletName;
+        this.walletID = walletID;
     }
 
     private Wallet(){
