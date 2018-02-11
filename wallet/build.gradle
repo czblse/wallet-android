@@ -92,4 +92,5 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:+'
     implementation 'com.android.support:recyclerview-v7:26.0.2'
     implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'pub.devrel:easypermissions:1.0.1'
 }

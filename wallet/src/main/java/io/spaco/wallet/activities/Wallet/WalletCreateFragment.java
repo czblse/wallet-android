@@ -1,5 +1,7 @@
 package io.spaco.wallet.activities.Wallet;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +15,7 @@ import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.utils.JsonUtils;
 import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
+import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
 
 /**
@@ -49,6 +52,17 @@ public class WalletCreateFragment extends BaseFragment {
         final View generateSeed = rootView.findViewById(R.id.generate_seed);
         editTextMobileName = rootView.findViewById(R.id.mobile_name);
         editTextSeedShow = rootView.findViewById(R.id.ed_seed);
+        //长按复制seed
+        editTextSeedShow.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ClipboardManager cm = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("", editTextSeedShow.getText().toString());
+                cm.setPrimaryClip(clipData);
+                ToastUtils.show(getString(R.string.str_copy_success));
+                return true;
+            }
+        });
         generateSeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +88,7 @@ public class WalletCreateFragment extends BaseFragment {
         if (editTextSeedShow != null && editTextTextSeedInput != null) {
             String input = editTextSeedShow.getText().toString();
             String output = editTextTextSeedInput.getText().toString();
-            if (TextUtils.equals(input.trim(), output.trim())) {
+            if (TextUtils.equals(input.trim(), output.trim()) && !TextUtils.isEmpty(output)) {
                 return true;
             }
             return false;

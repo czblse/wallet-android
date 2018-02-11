@@ -44,5 +44,6 @@
     <string name="pls_input_wallet_name">Please input a wallet name.</string>
     <string name="pls_input_seed">Please input seed.</string>
     <string name="wallet_is_existed">Wallet name has used, please input another one.</string>
+    <string name="str_copy_success">copy success</string>
 
 </resources>
