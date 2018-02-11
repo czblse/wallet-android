@@ -11,7 +11,7 @@ public class Address {
     String pubkey;
     String seckey;
     String addressId;
-
+    String balance;
     public String getAddressId() {
         return addressId;
     }

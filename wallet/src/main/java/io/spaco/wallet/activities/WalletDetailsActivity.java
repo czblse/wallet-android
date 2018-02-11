@@ -69,7 +69,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
     private void loadAddressMsg(String walletId){
         if (!TextUtils.isEmpty(walletId)) {
-            walletDetailsAdapter.setWalletDetails(WalletManager.getInstance().getAddressesByWalletId(walletId));
+            walletDetailsAdapter.setWalletDetails(WalletManager.getInstance().getAddressesByWalletId(Constant.COIN_TYPE_SKY, walletId));
             walletDetailsAdapter.notifyDataSetChanged();
         }
     }

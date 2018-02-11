@@ -86,7 +86,7 @@ public class Wallet {
     public static float getBalanceFromRawData(String rawString){
         try {
             JSONObject jsonObject = new JSONObject(rawString);
-            return jsonObject.optInt("balance");
+            return (float) jsonObject.optDouble("balance");
         } catch (JSONException e) {
             e.printStackTrace();
             return 0f;

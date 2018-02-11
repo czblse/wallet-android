@@ -65,12 +65,12 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
             wallets = new ArrayList<>();
             wallets.add(wallet);
         }
-        String walletBalance;
+        float walletBalance;
         for (Wallet wallet : mainWalletBeans) {
             try {
-                walletBalance = Mobile.getWalletBalance(Constant.COIN_TYPE_SKY, wallet.getWalletID());
-                accountBalance += Wallet.getBalanceFromRawData(walletBalance);
-                wallet.setBalance(walletBalance);
+                walletBalance = Wallet.getBalanceFromRawData(Mobile.getWalletBalance(Constant.COIN_TYPE_SKY, wallet.getWalletID()));
+                accountBalance += walletBalance;
+                wallet.setBalance(String.valueOf(walletBalance));
             } catch (Exception e) {
                 e.printStackTrace();
             }

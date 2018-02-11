@@ -153,7 +153,7 @@ public class WalletManager {
         void onRemoveWallet(Wallet wallet);
     }
 
-    public List<Address> getAddressesByWalletId(String walletID){
+    public List<Address> getAddressesByWalletId(String walletType, String walletID){
         List<Address> result = new ArrayList<>();
         try {
             String rawAddresses = Mobile.getAddresses(walletID);
@@ -163,8 +163,9 @@ public class WalletManager {
                 int len = addressArray.length();
                 for (int i = 0; i< len; i++) {
                     Address address = new Address();
-                    address.setAddressId(String.valueOf(i));
+                    address.setAddressId(String.valueOf(i + 1));
                     address.setAddress(String.valueOf(addressArray.get(i)));
+                    address.setAddresBalance(String.valueOf(Wallet.getBalanceFromRawData(Mobile.getBalance(walletType, address.getAddress()))));
                     result.add(address);
                 }
             }

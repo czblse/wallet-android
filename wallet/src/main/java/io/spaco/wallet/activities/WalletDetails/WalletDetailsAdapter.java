@@ -77,6 +77,7 @@ public class WalletDetailsAdapter extends RecyclerView.Adapter {
             hd.content.setTag(position);
             hd.content.setOnClickListener(onClickListener);
             hd.id.setText(address.getAddressId());
+            hd.balance.setText(address.getAddresBalance());
             hd.address.setText(address.getAddress());
         }else if(type == 1){
             WalletDetailsExpandViewHolder hd = (WalletDetailsExpandViewHolder) holder;
