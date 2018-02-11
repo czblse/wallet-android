@@ -8,6 +8,8 @@ import org.json.JSONObject;
  */
 
 public class Wallet {
+
+    String walletID;
     String walletType;
     String walletName;
     int walletDeep;
@@ -16,7 +18,6 @@ public class Wallet {
         return walletID;
     }
 
-    String walletID;
 
     public Wallet(String walletType, String walletName) {
         this.walletType = walletType;
@@ -57,7 +58,6 @@ public class Wallet {
     }
 
     public void save() {
-
     }
 
     public static Wallet buildTestData(){
