@@ -13,6 +13,7 @@ public interface Constant {
     String COIN_TYPE_SPACO = "spo";
     String COIN_TYPE_SKY = "skycoin";
     String COIN_TYPE_SUN = "suncoin";
+    String KEY_WALLET_ID = "wallet_id";
 
 
     /**

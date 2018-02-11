@@ -83,6 +83,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     @Override
     public void onItemClick(int position, Wallet bean) {
         Intent intent = new Intent(getActivity(), WalletDetailsActivity.class);
+        intent.putExtra(Constant.KEY_WALLET_ID, bean.getWalletID());
         startActivity(intent);
     }
 

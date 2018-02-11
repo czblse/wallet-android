@@ -6,6 +6,9 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -148,6 +151,27 @@ public class WalletManager {
     public interface OnWalletChangeListener{
         void onSaveWallet(Wallet wallet);
         void onRemoveWallet(Wallet wallet);
+    }
+
+    public List<Address> getAddressesByWalletId(String walletID){
+        List<Address> result = new ArrayList<>();
+        try {
+            String rawAddresses = Mobile.getAddresses(walletID);
+            JSONObject jsonObject = new JSONObject(rawAddresses);
+            JSONArray addressArray = jsonObject.optJSONArray("addresses");
+            if (addressArray != null && addressArray.length() > 0) {
+                int len = addressArray.length();
+                for (int i = 0; i< len; i++) {
+                    Address address = new Address();
+                    address.setAddressId(String.valueOf(i));
+                    address.setAddress(String.valueOf(addressArray.get(i)));
+                    result.add(address);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
