@@ -22,11 +22,7 @@ public class SpacoWalletUtils {
     public static final String Wallet_KEY = "Wallet_KEY";
 
     public static boolean isPinSet() {
-<<<<<<< HEAD
-        return false;
-=======
         return !TextUtils.isEmpty(getPin());
->>>>>>> a5bc271e55ccece050d132fb572c70d2eb6c82f5
     }
 
 
