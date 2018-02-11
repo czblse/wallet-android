@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 
 import io.reactivex.Observer;
@@ -14,14 +12,9 @@ import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.beans.TransactionInfo;
-import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.common.OnItemClickListener;
-import io.spaco.wallet.datas.Transaction;
-import io.spaco.wallet.datas.TransactionManager;
 import io.spaco.wallet.utils.StatusBarUtils;
-import io.spaco.wallet.viewmodel.TransactionViewModel;
 import io.spaco.wallet.widget.ShowQrDialog;
-import mobile.Mobile;
 
 /**
  * 交易记录视图碎片

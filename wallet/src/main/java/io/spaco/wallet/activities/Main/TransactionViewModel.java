@@ -1,4 +1,4 @@
-package io.spaco.wallet.viewmodel;
+package io.spaco.wallet.activities.Main;
 
 import com.google.gson.Gson;
 
