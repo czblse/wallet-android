@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import io.spaco.wallet.R;
 import io.spaco.wallet.beans.MainWalletBean;
+import io.spaco.wallet.datas.Wallet;
 
 /**
  * 钱包主页视图碎片适配器
@@ -23,10 +24,14 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
      */
     MainWalletListener mainWalletListener;
 
-    List<MainWalletBean> wallets;
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
+    }
 
-    public MainWalletAdapter(List<MainWalletBean> wallets){
-        this.wallets = wallets == null ? new ArrayList<MainWalletBean>() : wallets;
+    List<Wallet> wallets;
+
+    public MainWalletAdapter(List<Wallet> wallets){
+        this.wallets = wallets == null ? new ArrayList<Wallet>() : wallets;
     }
 
     public void setMainWalletListener(MainWalletListener mainWalletListener){
@@ -74,6 +79,10 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             hd.navigation.setVisibility(position > 0 ? View.GONE : View.VISIBLE);
             hd.content.setTag(position);
             hd.content.setOnClickListener(onClickListener);
+            Wallet wallet = wallets.get(position);
+            hd.walletName.setText(wallet.getWalletName());
+            hd.balance.setText(wallet.getBalance());
+
         }else if(type == 1){
             MainWalletExpandViewHolder hd = (MainWalletExpandViewHolder) holder;
             hd.importWallet.setTag(position);

@@ -3,6 +3,10 @@ package io.spaco.wallet.datas;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import mobile.Mobile;
+
 /**
  * Created by zjy on 2018/1/22.
  */
@@ -13,6 +17,15 @@ public class Wallet {
     String walletType;
     String walletName;
     int walletDeep;
+    String balance;
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
 
     public String getWalletID() {
         return walletID;
@@ -59,6 +72,7 @@ public class Wallet {
     }
 
     public void save() {
+        WalletManager.getInstance().saveWallet(this);
     }
 
     public static Wallet buildTestData(){
@@ -78,4 +92,5 @@ public class Wallet {
             return 0f;
         }
     }
+
 }

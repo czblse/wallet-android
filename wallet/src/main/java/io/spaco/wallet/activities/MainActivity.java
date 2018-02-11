@@ -9,18 +9,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.Main.MainTransactionFragment;
 import io.spaco.wallet.activities.Main.MainWalletFragment;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.common.Constant;
-import io.spaco.wallet.datas.Wallet;
-import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.SendKeyDialog;
-import mobile.Mobile;
 
 /**
  * 主界面，一级界面
@@ -33,8 +28,6 @@ public class MainActivity extends BaseActivity {
     LinearLayout bottomContainer;
     int[] normalDrawableIds = new int[]{R.drawable.main_wallet_normal,R.drawable.main_send_bg,R.drawable.main_transation_normal};
     int[] drawableIds = new int[]{R.drawable.main_wallet,R.drawable.main_send_bg,R.drawable.main_transation};
-    ArrayList<Wallet> wallets;
-    private float accountBalance = 0;//账户余额
     /**
      * 底部导航选中位置
      */
@@ -150,24 +143,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        wallets = restoreWalletFromLocal();
-        if (wallets == null || wallets.size() == 0){
-            Wallet wallet = Wallet.buildTestData();
-            wallets = new ArrayList<>();
-            wallets.add(wallet);
-        }
 
-        for (Wallet wallet : wallets) {
-            try {
-                accountBalance += Wallet.getBalanceFromRawData(Mobile.getBalance(Constant.COIN_TYPE_SKY, wallet.getWalletID()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
-    private ArrayList<Wallet> restoreWalletFromLocal(){
-        return null;
-    }
 
 }
