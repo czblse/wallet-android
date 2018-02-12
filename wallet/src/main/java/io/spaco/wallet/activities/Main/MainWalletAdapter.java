@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import io.spaco.wallet.R;
-import io.spaco.wallet.beans.MainWalletBean;
 import io.spaco.wallet.datas.Wallet;
 
 /**
@@ -81,6 +81,7 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             hd.content.setOnClickListener(onClickListener);
             Wallet wallet = wallets.get(position);
             hd.walletName.setText(wallet.getWalletName());
+            hd.skyHours.setText(wallet.getWalletType());
             hd.balance.setText(wallet.getBalance());
 
         }else if(type == 1){

@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 
+import com.trello.rxlifecycle2.components.RxActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
 import io.spaco.wallet.R;
 import io.spaco.wallet.utils.AppManager;
 import io.spaco.wallet.utils.StatusBarUtils;
@@ -18,7 +21,7 @@ import io.spaco.wallet.utils.StatusBarUtils;
  * 基类Activity
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
+public abstract class BaseActivity extends RxAppCompatActivity implements View.OnClickListener{
 
     protected Bundle savedInstanceState;
 
@@ -38,8 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * 初始化数据
      */
     protected abstract void initData();
-
-
 
 
     @Override
@@ -79,10 +80,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     protected Dialog onCreateDialog(int id) {
+        super.onCreateDialog(id);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(R.string.app_name);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("\n正在努力加载中...\n");
         return progressDialog;
     }
+
 }

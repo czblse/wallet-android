@@ -3,6 +3,7 @@ package io.spaco.wallet.activities;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 
 import io.spaco.wallet.R;
@@ -11,12 +12,8 @@ import io.spaco.wallet.activities.PIN.PinSetFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
 import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.common.Constant;
-import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
-import io.spaco.wallet.utils.JsonUtils;
-import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.DisclaimerDialog;
@@ -109,7 +106,10 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     public void onPinSetSuccess(String pin) {
         pinCode = pin;
         if (SpacoWalletUtils.isPinSet()){
-            launchToWalletActivity();
+            if(TextUtils.equals(pinCode,SpacoWalletUtils.getPin()))
+                launchToWalletActivity();
+            else
+                ToastUtils.show("PIN输入错误，请重试");
         }else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
@@ -117,7 +117,6 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
-
     }
 
     @Override
@@ -152,7 +151,6 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
 
         }
         finish();
-
     }
 
     /**

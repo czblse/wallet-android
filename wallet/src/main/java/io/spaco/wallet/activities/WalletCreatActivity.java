@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import io.spaco.wallet.activities.Wallet.WalletCreateFragment;
 import io.spaco.wallet.activities.Wallet.WalletImportFragment;
 import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
+import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -37,7 +39,6 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
      * 导入钱包碎片视图
      */
     WalletImportFragment walletImportFragment;
-
 
     @Override
     protected int attachLayoutRes() {
@@ -61,18 +62,19 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
 
         walletCreateFragment = WalletCreateFragment.newInstance(null);
         walletImportFragment = WalletImportFragment.newInstance(null);
-        //默认切换为创建钱包
-        switchFragment(walletCreateFragment);
+
+        //选中指定界面
+        int page = getIntent().getIntExtra(Constant.KEY_PAGE,0);
+        if(page == 0)
+            ((RadioButton)radioGroup.findViewById(R.id.create_wallet)).setChecked(true);
+        else
+            ((RadioButton)radioGroup.findViewById(R.id.import_wallet)).setChecked(true);
+
     }
 
     @Override
     protected void initData() {
-        //自动生成助记词
-    }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     /**

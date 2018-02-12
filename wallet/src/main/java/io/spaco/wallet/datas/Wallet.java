@@ -3,6 +3,7 @@ package io.spaco.wallet.datas;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import mobile.Mobile;
@@ -11,13 +12,13 @@ import mobile.Mobile;
  * Created by zjy on 2018/1/22.
  */
 
-public class Wallet {
+public class Wallet implements Serializable{
 
     String walletID;
     String walletType;
     String walletName;
     int walletDeep;
-    String balance;
+    String balance = "0.00";
 
     public String getBalance() {
         return balance;
@@ -75,6 +76,18 @@ public class Wallet {
         WalletManager.getInstance().saveWallet(this);
     }
 
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "walletID='" + walletID + '\'' +
+                ", walletType='" + walletType + '\'' +
+                ", walletName='" + walletName + '\'' +
+                ", walletDeep=" + walletDeep +
+                ", balance='" + balance + '\'' +
+                '}';
+    }
+
     public static Wallet buildTestData(){
         Wallet wallet = new Wallet();
         wallet.setWalletType("sky");
@@ -83,13 +96,13 @@ public class Wallet {
         return wallet;
     }
 
-    public static float getBalanceFromRawData(String rawString){
+    public static double getBalanceFromRawData(String rawString){
         try {
             JSONObject jsonObject = new JSONObject(rawString);
-            return (float) jsonObject.optDouble("balance");
+            return  jsonObject.optDouble("balance");
         } catch (JSONException e) {
             e.printStackTrace();
-            return 0f;
+            return 0d;
         }
     }
 

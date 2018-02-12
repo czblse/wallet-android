@@ -37,7 +37,7 @@ public class WalletManager {
      */
     private List<OnWalletChangeListener> onWalletChangeListenerList = new ArrayList<>();
 
-    private Gson gosn = new Gson();
+    private Gson gson = new Gson();
 
     private WalletManager(){
         String name = "wallet_preferences";
@@ -81,9 +81,9 @@ public class WalletManager {
     public boolean saveWallet(Wallet wallet){
         try {
             boolean exist = Mobile.isExist(wallet.getWalletID());
-            if(exist){
+            if(!exist){
                 SharedPreferences.Editor edit = walletSharedPreferences.edit();
-                edit.putString(wallet.getWalletID(),gosn.toJson(wallet));
+                edit.putString(wallet.getWalletName(),gson.toJson(wallet));
                 edit.commit();
                 //通知监听器
                 for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
@@ -104,7 +104,7 @@ public class WalletManager {
      * @return true代表删除成功，false表示失败,或者此钱包不存在
      */
     public boolean removeWallet(Wallet wallet){
-        String walletJson = walletSharedPreferences.getString(wallet.getWalletID(),"");
+        String walletJson = walletSharedPreferences.getString(wallet.getWalletName(),"");
         if(TextUtils.isEmpty(walletJson)){
             return false;
         }
@@ -112,7 +112,7 @@ public class WalletManager {
             if(Mobile.isExist(wallet.getWalletID())){
                 Mobile.remove(wallet.getWalletID());
                 SharedPreferences.Editor edit = walletSharedPreferences.edit();
-                edit.remove(wallet.getWalletID());
+                edit.remove(wallet.getWalletName());
                 edit.commit();
                 //通知监听器
                 for(OnWalletChangeListener onWalletChangeListener : onWalletChangeListenerList){
@@ -139,11 +139,26 @@ public class WalletManager {
         Iterator<Map.Entry<String, String>> iterator = all.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<String, String> next = iterator.next();
-            wallets.add(gosn.fromJson(next.getValue(),Wallet.class));
+            wallets.add(gson.fromJson(next.getValue(),Wallet.class));
         }
         return wallets;
     }
 
+    /**
+     * 判断钱包名称是否已经存在
+     * @param walletName
+     * @return
+     */
+    public boolean isExitWallet(String walletName){
+        Map<String,String> all = (Map<String, String>) walletSharedPreferences.getAll();
+        Iterator<Map.Entry<String, String>> iterator = all.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, String> next = iterator.next();
+            if(walletName.equals(next.getKey()))
+                return true;
+        }
+        return false;
+    }
 
     /**
      * 监听器
@@ -153,6 +168,12 @@ public class WalletManager {
         void onRemoveWallet(Wallet wallet);
     }
 
+    /**
+     * 获取钱包已创建的所有地址
+     * @param walletType
+     * @param walletID
+     * @return
+     */
     public List<Address> getAddressesByWalletId(String walletType, String walletID){
         List<Address> result = new ArrayList<>();
         try {

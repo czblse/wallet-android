@@ -6,6 +6,8 @@ package io.spaco.wallet.utils;
 
 import android.text.TextUtils;
 
+import io.spaco.wallet.datas.WalletManager;
+
 /**
  * 目前没有啥需要的类，所以以后复杂了再拆分
  */
@@ -55,7 +57,7 @@ public class SpacoWalletUtils {
      * @return
      */
     public static boolean isWalletExist(String coinType, String walletName) {
-        return false;
+        return WalletManager.getInstance().isExitWallet(walletName);
     }
 
     /**

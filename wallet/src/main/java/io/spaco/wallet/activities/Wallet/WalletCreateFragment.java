@@ -11,10 +11,7 @@ import android.widget.Toast;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
-import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.common.Constant;
-import io.spaco.wallet.utils.JsonUtils;
-import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
@@ -89,10 +86,13 @@ public class WalletCreateFragment extends BaseFragment {
         if (editTextSeedShow != null && editTextTextSeedInput != null) {
             String input = editTextSeedShow.getText().toString();
             String output = editTextTextSeedInput.getText().toString();
-            if (TextUtils.equals(input.trim(), output.trim()) && !TextUtils.isEmpty(output)) {
+            if(TextUtils.isEmpty(input)){
+                ToastUtils.show("请生成钱包种子");
+            }else if(TextUtils.isEmpty(output)){
+                ToastUtils.show("请确认钱包种子");
+            }else if(TextUtils.equals(input.trim(), output.trim())){
                 return true;
             }
-            return false;
         }
         return false;
     }
@@ -115,24 +115,5 @@ public class WalletCreateFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-    }
-
-    //todo  钱包数据加解密存储测试
-    private void testJson() {
-        try {
-            WalletDetailsBean bean = new WalletDetailsBean();
-            bean.setAddress("sdniadsadhaidiadhaidadsadada");
-            bean.setId(1);
-            bean.setSkyHours("302");
-            bean.setTotalBalance("86.12");
-            //存
-            SpacoWalletUtils.setEncryptWallet(JsonUtils.getInstance().getEncryptStr(bean));
-            String str = SpacoWalletUtils.getEncryptWallet();
-            //取
-            bean = JsonUtils.getInstance().getDecryptStr(str);
-            LogUtils.d(bean.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

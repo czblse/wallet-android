@@ -65,14 +65,6 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
             Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
             Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");
-
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    launchToPinInputActvity();
-                    finish();
-                }
-            }, 1500);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -53,46 +53,6 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 碎片视图切换回掉
-     * @param index
-     */
-    public void onBottomContainerSelected(int index){
-        if(index == 0){
-            switchFragment(mainWalletFragment);
-        }else if(index == 1){
-            new SendKeyDialog(this).show();
-        }else if(index == 2){
-            switchFragment(mainTransactionFragment);
-        }
-    }
-
-    View.OnClickListener bottomClickListener = new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-            bottomSelectedIndex= (int) v.getTag();
-            if(bottomSelectedIndex != 1){
-                updateSelectedBottomContainer();
-            }
-            onBottomContainerSelected(bottomSelectedIndex);
-        }
-    };
-
-    /**
-     * 刷新底部容器视图
-     */
-    public void updateSelectedBottomContainer(){
-        for(int i = 0; i < bottomContainer.getChildCount(); i ++){
-            ImageView imageView = (ImageView) ((ViewGroup) bottomContainer.getChildAt(i)).getChildAt(0);
-            if(i == bottomSelectedIndex){
-                imageView.setImageResource(drawableIds[i]);
-            }else{
-                imageView.setImageResource(normalDrawableIds[i]);
-            }
-        }
-    }
-
-    /**
      * 切换碎片视图
      * @param fragment
      */
@@ -137,6 +97,46 @@ public class MainActivity extends BaseActivity {
             parent.addView(imageView,layoutParams);
             imageView.setTag(i);
             imageView.setOnClickListener(bottomClickListener);
+        }
+    }
+
+    /**
+     * 碎片视图切换回掉
+     * @param index
+     */
+    public void onBottomContainerSelected(int index){
+        if(index == 0){
+            switchFragment(mainWalletFragment);
+        }else if(index == 1){
+            new SendKeyDialog(this).show();
+        }else if(index == 2){
+            switchFragment(mainTransactionFragment);
+        }
+    }
+
+    View.OnClickListener bottomClickListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            bottomSelectedIndex= (int) v.getTag();
+            if(bottomSelectedIndex != 1){
+                updateSelectedBottomContainer();
+            }
+            onBottomContainerSelected(bottomSelectedIndex);
+        }
+    };
+
+    /**
+     * 刷新底部容器视图
+     */
+    public void updateSelectedBottomContainer(){
+        for(int i = 0; i < bottomContainer.getChildCount(); i ++){
+            ImageView imageView = (ImageView) ((ViewGroup) bottomContainer.getChildAt(i)).getChildAt(0);
+            if(i == bottomSelectedIndex){
+                imageView.setImageResource(drawableIds[i]);
+            }else{
+                imageView.setImageResource(normalDrawableIds[i]);
+            }
         }
     }
 

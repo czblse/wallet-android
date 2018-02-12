@@ -93,4 +93,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.0.2'
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'pub.devrel:easypermissions:1.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
 }

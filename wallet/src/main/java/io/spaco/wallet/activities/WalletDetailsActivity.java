@@ -3,19 +3,21 @@ package io.spaco.wallet.activities;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
+import io.spaco.wallet.activities.Main.WalletViewModel;
 import io.spaco.wallet.activities.WalletDetails.WalletDetailsAdapter;
 import io.spaco.wallet.activities.WalletDetails.WalletDetailsListener;
 import io.spaco.wallet.base.BaseActivity;
-import io.spaco.wallet.beans.WalletDetailsBean;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Address;
-import io.spaco.wallet.datas.WalletManager;
+import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.ShowQrDialog;
@@ -25,8 +27,13 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
     RecyclerView recyclerView;
     WalletDetailsAdapter walletDetailsAdapter;
-    String walletId;
     ArrayList<Address> walletDetailsBeans = new ArrayList<>();
+
+    Wallet wallet;
+    /**
+     * 钱包控制层
+     */
+    WalletViewModel walletViewModel = new WalletViewModel();
 
     @Override
     protected int attachLayoutRes() {
@@ -49,6 +56,8 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        wallet  = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
+
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);
         recyclerView.setAdapter(walletDetailsAdapter);
@@ -56,8 +65,31 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
     @Override
     protected void initData() {
-        walletId  = getIntent().getStringExtra(Constant.KEY_WALLET_ID);
-        loadAddressMsg(walletId);
+        showDialog(1);
+        walletViewModel.getAllAddressByWalletId(wallet.getWalletType(),wallet.getWalletID())
+                .subscribe(new Observer<List<Address>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Address> addresses) {
+                        walletDetailsAdapter.setWalletDetails(addresses);
+                        walletDetailsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        onComplete();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissDialog(1);
+                    }
+                });
     }
 
     @Override
@@ -67,20 +99,14 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         showQrDialog.show();
     }
 
-    private void loadAddressMsg(String walletId){
-        if (!TextUtils.isEmpty(walletId)) {
-            walletDetailsAdapter.setWalletDetails(WalletManager.getInstance().getAddressesByWalletId(Constant.COIN_TYPE_SKY, walletId));
-            walletDetailsAdapter.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onCreateAddress() {
         try {
-            Mobile.newAddress(walletId, 1);
-            loadAddressMsg(walletId);
+            Mobile.newAddress(wallet.getWalletID(), walletDetailsAdapter.getItemCount() - 1);
+            initData();
         } catch (Exception e) {
             e.printStackTrace();
+            ToastUtils.show("地址创建失败");
         }
     }
 }

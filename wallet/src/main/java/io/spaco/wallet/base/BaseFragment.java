@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.trello.rxlifecycle2.components.support.RxFragment;
+
 /**
  * 碎片基类
  * Created by kimi on 2018/1/23.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends RxFragment {
 
     protected Bundle savedInstanceState;
     protected View rootView;
