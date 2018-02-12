@@ -52,4 +52,7 @@
     <string name="send_to">接收</string>
     <string name="amount">金额</string>
     <string name="nodes">节点</string>
+
+    <string name="pls_generate_seed">请生成种子</string>
+    <string name="pls_confirm_seed">请确认你的种子</string>
 </resources>

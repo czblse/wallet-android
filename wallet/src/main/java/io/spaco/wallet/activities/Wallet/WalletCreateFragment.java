@@ -87,9 +87,9 @@ public class WalletCreateFragment extends BaseFragment {
             String input = editTextSeedShow.getText().toString();
             String output = editTextTextSeedInput.getText().toString();
             if(TextUtils.isEmpty(input)){
-                ToastUtils.show("请生成钱包种子");
+                ToastUtils.show(R.string.pls_generate_seed);
             }else if(TextUtils.isEmpty(output)){
-                ToastUtils.show("请确认钱包种子");
+                ToastUtils.show(R.string.pls_confirm_seed);
             }else if(TextUtils.equals(input.trim(), output.trim())){
                 return true;
             }
