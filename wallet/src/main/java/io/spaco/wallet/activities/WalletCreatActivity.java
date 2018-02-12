@@ -18,6 +18,7 @@ import io.spaco.wallet.activities.Wallet.WalletImportFragment;
 import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -107,6 +108,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             String walletId = Mobile.newWallet(walletType, walletName, seed);
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
+            Mobile.newAddress(walletId, 1);
             Log.i("temptest", walletId);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

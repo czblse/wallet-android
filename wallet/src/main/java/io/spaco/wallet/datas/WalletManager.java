@@ -81,7 +81,7 @@ public class WalletManager {
     public boolean saveWallet(Wallet wallet){
         try {
             boolean exist = Mobile.isExist(wallet.getWalletID());
-            if(!exist){
+            if(exist){
                 SharedPreferences.Editor edit = walletSharedPreferences.edit();
                 edit.putString(wallet.getWalletName(),gson.toJson(wallet));
                 edit.commit();
