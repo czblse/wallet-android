@@ -1,11 +1,14 @@
 package io.spaco.wallet.activities.PIN;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
+import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.KeyboardProgress;
 import io.spaco.wallet.widget.NumberKeyboard;
 import io.spaco.wallet.widget.NumberKeyboardAdapter;
@@ -68,10 +71,10 @@ public class PinInputFragment extends BaseFragment {
                 @Override
                 public void onNumberKeyboardDown(int number) {
                     keyboardProgress.insetUpdate();
-                    if (pinCode.length() < 4) {
+                    if (pinCode.length() < 6) {
                         pinCode.append(number);
                     }
-                    if (pinCode.length() == 4) {
+                    if (pinCode.length() == 6) {
                         pinSetListener.onPinSetSuccess(pinCode.toString());
                     }
                 }
@@ -84,6 +87,7 @@ public class PinInputFragment extends BaseFragment {
                     }
                 }
             };
+
 
     @Override
     protected void initData() {

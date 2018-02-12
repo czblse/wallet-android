@@ -20,6 +20,7 @@
     <string name="common_next">next</string>
     <string name="start_import_wallet">Import</string>
     <string name="toast_pin_error">The PIN security code of the two inputs is inconsistent.</string>
+    <string name="input_pin_error">PIN entered incorrectly, please try again</string>
     <string name="creates">Create</string>
     <string name="imports">Import</string>
 

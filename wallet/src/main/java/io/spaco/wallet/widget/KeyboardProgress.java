@@ -22,11 +22,11 @@ public class KeyboardProgress extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int normalColor = Color.parseColor("#1E2227");
     private int updateColor = Color.parseColor("#FFC125");
-    private int maxSize = 4;
+    private int maxSize = 6;
     private int progress = 0;
 
     public KeyboardProgress(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public KeyboardProgress(Context context, @Nullable AttributeSet attrs) {
@@ -38,10 +38,10 @@ public class KeyboardProgress extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        if(widthMode != MeasureSpec.EXACTLY){
+        if (widthMode != MeasureSpec.EXACTLY) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(radius * 2 + radius * 4 * maxSize, MeasureSpec.EXACTLY);
         }
-        if(heightMode != MeasureSpec.EXACTLY){
+        if (heightMode != MeasureSpec.EXACTLY) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(radius * 2, MeasureSpec.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -53,13 +53,13 @@ public class KeyboardProgress extends View {
         int minWidth = getMeasuredWidth() / maxSize;
         int cx = minWidth / 2;
         int cy = getHeight() / 2;
-        for (int i = 1; i <= maxSize; i ++){
-            if(i <= progress){
+        for (int i = 1; i <= maxSize; i++) {
+            if (i <= progress) {
                 paint.setColor(updateColor);
-            }else{
+            } else {
                 paint.setColor(normalColor);
             }
-            canvas.drawCircle(cx,cy,radius,paint);
+            canvas.drawCircle(cx, cy, radius, paint);
             cx += minWidth;
         }
     }
@@ -67,9 +67,9 @@ public class KeyboardProgress extends View {
     /**
      * 增加刷新
      */
-    public void insetUpdate(){
-        if(progress < maxSize){
-            progress ++ ;
+    public void insetUpdate() {
+        if (progress < maxSize) {
+            progress++;
             invalidate();
         }
     }
@@ -77,12 +77,13 @@ public class KeyboardProgress extends View {
     /**
      * 删除刷新
      */
-    public void deleteUpdate(){
-        if(progress > 0){
-            progress -- ;
+    public void deleteUpdate() {
+        if (progress > 0) {
+            progress--;
             invalidate();
         }
     }
+
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
@@ -96,8 +97,8 @@ public class KeyboardProgress extends View {
     protected Parcelable onSaveInstanceState() {
         Parcelable parcelable = super.onSaveInstanceState();
         Bundle bundle = new Bundle();
-        bundle.putInt("progress",progress);
-        bundle.putParcelable("super",parcelable);
+        bundle.putInt("progress", progress);
+        bundle.putParcelable("super", parcelable);
         return bundle;
     }
 }

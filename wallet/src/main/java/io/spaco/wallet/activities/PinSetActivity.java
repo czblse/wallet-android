@@ -40,10 +40,10 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            if (SpacoWalletUtils.isPinSet()){
+            if (SpacoWalletUtils.isPinSet()) {
                 fragmentTransaction.add(R.id.container, PinInputFragment.newInstance(null),
                         PinInputFragment.class.getSimpleName());
-            }else {
+            } else {
                 fragmentTransaction.add(R.id.container, PinSetFragment.newInstance(null),
                         PinSetFragment.class.getSimpleName());
             }
@@ -105,12 +105,13 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     @Override
     public void onPinSetSuccess(String pin) {
         pinCode = pin;
-        if (SpacoWalletUtils.isPinSet()){
-            if(TextUtils.equals(pinCode,SpacoWalletUtils.getPin()))
+        if (SpacoWalletUtils.isPinSet()) {
+            if (TextUtils.equals(pinCode, SpacoWalletUtils.getPin())) {
                 launchToWalletActivity();
-            else
-                ToastUtils.show("PIN输入错误，请重试");
-        }else {
+            } else {
+                ToastUtils.show(getResources().getString(R.string.input_pin_error));
+            }
+        } else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
                     VerifyPinSetFragment.class.getSimpleName());
@@ -141,10 +142,10 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
      * 否则去创建钱包
      */
     private void launchToWalletActivity() {
-        if (WalletManager.getInstance().getAllWallet() != null && WalletManager.getInstance().getAllWallet().size() > 0){
+        if (WalletManager.getInstance().getAllWallet() != null && WalletManager.getInstance().getAllWallet().size() > 0) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }else {
+        } else {
             Intent intent = new Intent(this, WalletCreatActivity.class);
             intent.putExtra(Constant.KEY_PIN, pinCode);
             startActivity(intent);

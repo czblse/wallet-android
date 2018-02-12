@@ -21,6 +21,7 @@
     <string name="common_next">下一步</string>
     <string name="start_import_wallet">开始导入</string>
     <string name="toast_pin_error">两次输入的PIN安全码不一致</string>
+    <string name="input_pin_error">PIN输入错误，请重试</string>
     <string name="creates">创建</string>
     <string name="imports">导入</string>
 
