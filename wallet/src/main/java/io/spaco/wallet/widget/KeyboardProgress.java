@@ -22,7 +22,7 @@ public class KeyboardProgress extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int normalColor = Color.parseColor("#1E2227");
     private int updateColor = Color.parseColor("#FFC125");
-    private int maxSize = 4;
+    private int maxSize = 6;
     private int progress = 0;
 
     public KeyboardProgress(Context context) {

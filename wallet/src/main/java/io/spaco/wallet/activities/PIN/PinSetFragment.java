@@ -68,10 +68,10 @@ public class PinSetFragment extends BaseFragment {
                 @Override
                 public void onNumberKeyboardDown(int number) {
                     keyboardProgress.insetUpdate();
-                    if (pinCode.length() < 4) {
+                    if (pinCode.length() < 6) {
                         pinCode.append(number);
                     }
-                    if (pinCode.length() == 4) {
+                    if (pinCode.length() == 6) {
                         pinSetListener.onPinSetSuccess(pinCode.toString());
                     }
                 }

@@ -23,6 +23,7 @@
     <string name="toast_pin_error">两次输入的PIN安全码不一致</string>
     <string name="creates">创建</string>
     <string name="imports">导入</string>
+    <string name="reset_pin">重设</string>
 
     <string name="generate_seed">生成种子</string>
 
