@@ -89,6 +89,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
                     @Override
                     public void onNext(List<Wallet> wallets) {
+                        walletViewModel.wallets = wallets;
                         tvBalance.setText(String.valueOf(WalletViewModel.totalBalance));
                         mainWalletAdapter.setWallets(wallets);
                         mainWalletAdapter.notifyDataSetChanged();

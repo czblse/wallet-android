@@ -9,6 +9,9 @@ import android.Manifest;
 
 public interface Constant {
 
+    /**
+     * sp keys
+     */
     String KEY_PIN = "key_pin";
     String COIN_TYPE_SPACO = "spo";
     String COIN_TYPE_SKY = "skycoin";
@@ -16,6 +19,12 @@ public interface Constant {
     String KEY_WALLET_ID = "wallet_id";
     String KEY_WALLET = "wallet";
     String KEY_PAGE = "page";
+
+    /**
+     * request code
+     */
+    int REQUEST_QRCODE = 202;
+
 
 
     /**

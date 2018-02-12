@@ -16,7 +16,6 @@
     <string name="pin_input_explain">Please enter your PIN code</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="continues">Continue</string>
-    <string name="send_sky">Send SKY</string>
 
     <string name="common_next">next</string>
     <string name="start_import_wallet">Import</string>
@@ -47,5 +46,10 @@
     <string name="pls_input_seed">Please input seed.</string>
     <string name="wallet_is_existed">Wallet name has used, please input another one.</string>
     <string name="str_copy_success">copy success</string>
+    <string name="send_sky">Send SKY</string>
+    <string name="send_from">Send from</string>
+    <string name="send_to">Send to</string>
+    <string name="amount">Amount</string>
+    <string name="nodes">Nodes</string>
 
 </resources>

@@ -38,7 +38,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     protected void initViews() {
         TextView mVersionName = findViewById(R.id.version_name);
-        mVersionName.setText(AppUtils.getVersionName(getApplicationContext()));
+        mVersionName.setText("v" + AppUtils.getVersionName(getApplicationContext()));
     }
 
     @Override

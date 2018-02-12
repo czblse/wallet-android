@@ -1,5 +1,6 @@
 package io.spaco.wallet.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
@@ -77,27 +78,11 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 初始化底部容器
+     * 开始发送交易
      */
-    private void initBottomContainer() {
-        for(int i = 0 ; i < normalDrawableIds.length; i ++ ){
-            FrameLayout parent = (FrameLayout) bottomContainer.getChildAt(i);
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, -2);
-            layoutParams.gravity = Gravity.CENTER;
-            ImageView imageView = new ImageView(this);
-            if(i == bottomSelectedIndex){
-                imageView.setImageResource(drawableIds[i]);
-            }else{
-                imageView.setImageResource(normalDrawableIds[i]);
-            }
-            //旋转第二张图片
-            if(i == 1){
-                imageView.setRotation(180);
-            }
-            parent.addView(imageView,layoutParams);
-            imageView.setTag(i);
-            imageView.setOnClickListener(bottomClickListener);
-        }
+    private void startSendCost() {
+        Intent intent = new Intent(this, SendCostActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -108,7 +93,7 @@ public class MainActivity extends BaseActivity {
         if(index == 0){
             switchFragment(mainWalletFragment);
         }else if(index == 1){
-            new SendKeyDialog(this).show();
+            startSendCost();
         }else if(index == 2){
             switchFragment(mainTransactionFragment);
         }
@@ -140,6 +125,29 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 初始化底部容器
+     */
+    private void initBottomContainer() {
+        for(int i = 0 ; i < normalDrawableIds.length; i ++ ){
+            FrameLayout parent = (FrameLayout) bottomContainer.getChildAt(i);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, -2);
+            layoutParams.gravity = Gravity.CENTER;
+            ImageView imageView = new ImageView(this);
+            if(i == bottomSelectedIndex){
+                imageView.setImageResource(drawableIds[i]);
+            }else{
+                imageView.setImageResource(normalDrawableIds[i]);
+            }
+            //旋转第二张图片
+            if(i == 1){
+                imageView.setRotation(180);
+            }
+            parent.addView(imageView,layoutParams);
+            imageView.setTag(i);
+            imageView.setOnClickListener(bottomClickListener);
+        }
+    }
 
     @Override
     protected void initData() {

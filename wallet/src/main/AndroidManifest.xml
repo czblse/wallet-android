@@ -27,8 +27,11 @@
         </activity>
         <activity android:name=".activities.PinSetActivity" />
         <activity android:name=".activities.WalletCreatActivity" />
-        <activity android:name=".activities.MainActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activities.WalletDetailsActivity"/>
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activities.WalletDetailsActivity" />
+        <activity android:name=".activities.SendCostActivity" android:theme="@style/SendCost_style"></activity>
     </application>
 
 </manifest>

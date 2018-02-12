@@ -24,6 +24,11 @@ public class WalletViewModel {
     public static double totalBalance = 0.0d;
 
     /**
+     * 所有的本地钱包
+     */
+    public static List<Wallet> wallets;
+
+    /**
      * 查询所有的本地钱包
      *
      * @return

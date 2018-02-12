@@ -11,6 +11,19 @@
 
     </style>
 
+    <style name="SendCost_style" parent="@style/AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/SendCost_animat_style</item>
+    </style>
+
+    <style name="SendCost_animat_style">
+        <item name="android:windowEnterAnimation">@anim/send_cost_in</item>
+        <item name="android:windowExitAnimation">@anim/send_cost_out</item>
+    </style>
+
     <style name="toolbar_style" parent="@style/ThemeOverlay.AppCompat.Light">
         <item name="actionMenuTextColor">@android:color/white</item>
         //设置menu 中文字的颜色
