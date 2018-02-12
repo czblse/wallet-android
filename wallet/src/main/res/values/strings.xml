@@ -16,6 +16,7 @@
     <string name="pin_input_explain">Please enter your PIN code</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="continues">Continue</string>
+    <string name="reset_pin">reset</string>
 
     <string name="common_next">next</string>
     <string name="start_import_wallet">Import</string>

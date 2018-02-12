@@ -102,7 +102,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     @Override
     public void onCreateAddress() {
         try {
-            Mobile.newAddress(wallet.getWalletID(), walletDetailsAdapter.getItemCount() - 1);
+            Mobile.newAddress(wallet.getWalletID(), 1);
             initData();
         } catch (Exception e) {
             e.printStackTrace();

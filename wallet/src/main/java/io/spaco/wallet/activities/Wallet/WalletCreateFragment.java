@@ -66,7 +66,6 @@ public class WalletCreateFragment extends BaseFragment {
             public void onClick(View v) {
                 String seed = Mobile.newSeed();
                 editTextSeedShow.setText(seed);
-                editTextTextSeedInput.setText(seed);
             }
         });
         editTextTextSeedInput = rootView.findViewById(R.id.confirm_seed);

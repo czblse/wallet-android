@@ -24,6 +24,7 @@
     <string name="input_pin_error">PIN输入错误，请重试</string>
     <string name="creates">创建</string>
     <string name="imports">导入</string>
+    <string name="reset_pin">重设</string>
 
     <string name="generate_seed">生成种子</string>
 
