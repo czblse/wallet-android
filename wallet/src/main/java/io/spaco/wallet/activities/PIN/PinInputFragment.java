@@ -57,6 +57,7 @@ public class PinInputFragment extends BaseFragment {
         numberKeyboard = rootView.findViewById(R.id.numberkeyboard);
         keyboardProgress = rootView.findViewById(R.id.keyboardtips);
         numberKeyboard.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);
+        numberKeyboard.setOnResetEnable(false);
         if (mActivity instanceof PinSetListener) {
             pinSetListener = (PinSetListener) mActivity;
         }
@@ -85,6 +86,11 @@ public class PinInputFragment extends BaseFragment {
                     if (pinCode.length() > 0) {
                         pinCode.deleteCharAt(pinCode.length() - 1);
                     }
+                }
+
+                @Override
+                public void onNumberKeyboardReset() {
+
                 }
             };
 

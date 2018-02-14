@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import io.spaco.wallet.R;
+import io.spaco.wallet.base.SpacoAppliacation;
 
 /**
  * 数字键盘的适配器
@@ -20,6 +21,13 @@ public class NumberKeyboardAdapter extends
 
     private int NUMBER_SIZI = 12;
     private OnNumberKeyboardDownListener onNumberKeyboardDownListener;
+
+    public void setShowBackward(boolean showBackward) {
+        this.showBackward = showBackward;
+        notifyDataSetChanged();
+    }
+
+    private boolean showBackward;//是否要显示重新输入
 
     @Override
     public NumberKeyboardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,8 +42,13 @@ public class NumberKeyboardAdapter extends
         holder.numdel.setVisibility(View.GONE);
         holder.lin_num.setTag(position);
         if (position == 9) {
-            holder.number.setEnabled(false);
-            holder.number.setText("");
+            if (showBackward){
+                holder.number.setEnabled(true);
+                holder.number.setText(SpacoAppliacation.mInstance.getResources().getString(R.string.reset_pin));
+            } else {
+                holder.number.setEnabled(false);
+                holder.number.setText("");
+            }
         } else if (position == 10) {
             holder.number.setText("0");
         } else if (position == NUMBER_SIZI - 1) {
@@ -59,8 +72,10 @@ public class NumberKeyboardAdapter extends
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag();
-            if (onNumberKeyboardDownListener != null && position != 9) {
-                if (position == NUMBER_SIZI - 1) {
+            if (onNumberKeyboardDownListener != null) {
+                if (position == 9) {
+                    onNumberKeyboardDownListener.onNumberKeyboardReset();
+                } else if (position == NUMBER_SIZI - 1) {
                     onNumberKeyboardDownListener.onNumberKeyboardDelete();
                 } else if (position == 10) {
                     onNumberKeyboardDownListener.onNumberKeyboardDown(0);
@@ -112,6 +127,11 @@ public class NumberKeyboardAdapter extends
          * 数字键盘删除按键
          */
         void onNumberKeyboardDelete();
+
+        /**
+         * 数字键盘重设键
+         */
+        void onNumberKeyboardReset();
     }
 
 }

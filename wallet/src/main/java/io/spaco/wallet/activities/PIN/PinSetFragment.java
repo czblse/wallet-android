@@ -83,6 +83,11 @@ public class PinSetFragment extends BaseFragment {
                         pinCode.deleteCharAt(pinCode.length() - 1);
                     }
                 }
+
+                @Override
+                public void onNumberKeyboardReset() {
+
+                }
             };
 
     @Override

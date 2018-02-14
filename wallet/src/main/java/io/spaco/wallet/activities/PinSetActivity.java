@@ -130,6 +130,15 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         }
     }
 
+    @Override
+    public void onPinReset() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.container, PinSetFragment.newInstance(null),
+                PinSetFragment.class.getSimpleName());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     @Override
     protected void onDestroy() {

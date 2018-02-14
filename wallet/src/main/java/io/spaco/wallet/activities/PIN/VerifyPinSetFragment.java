@@ -53,6 +53,7 @@ public class VerifyPinSetFragment extends BaseFragment {
         StatusBarUtils.statusBarCompat(this);
         numberKeyboard = rootView.findViewById(R.id.numberkeyboard);
         keyboardProgress = rootView.findViewById(R.id.keyboardtips);
+        numberKeyboard.setOnResetEnable(true);
         numberKeyboard.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);
         if(mActivity instanceof PinSetListener){
             pinSetListener = (PinSetListener) mActivity;
@@ -81,6 +82,11 @@ public class VerifyPinSetFragment extends BaseFragment {
             if(pinCode.length() > 0){
                 pinCode.deleteCharAt(pinCode.length() - 1);
             }
+        }
+
+        @Override
+        public void onNumberKeyboardReset() {
+            pinSetListener.onPinReset();
         }
     };
 

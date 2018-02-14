@@ -41,4 +41,8 @@ public class NumberKeyboard extends FrameLayout {
         numberKeyboardAdapter.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);
     }
 
+    public void  setOnResetEnable(boolean enable){
+        numberKeyboardAdapter.setShowBackward(enable);
+    }
+
 }
