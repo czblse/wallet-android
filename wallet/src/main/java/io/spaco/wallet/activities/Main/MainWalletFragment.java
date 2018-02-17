@@ -16,6 +16,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
+import io.spaco.wallet.activities.SendCostActivity;
 import io.spaco.wallet.activities.WalletCreatActivity;
 import io.spaco.wallet.activities.WalletDetailsActivity;
 import io.spaco.wallet.base.BaseFragment;
@@ -33,6 +34,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     RecyclerView recyclerView;
     MainWalletAdapter mainWalletAdapter;
     ImageView imgRefresh;
+    ImageView imgSend;
     TextView tvBalance;
     List<Wallet> mainWalletBeans = new ArrayList<>();
 
@@ -63,7 +65,14 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         recyclerView = rootView.findViewById(R.id.recyclerview);
         tvBalance = rootView.findViewById(R.id.tv_balance);
         imgRefresh = rootView.findViewById(R.id.img_refresh);
-
+        imgSend = rootView.findViewById(R.id.img_send);
+        imgSend.setRotation(180);
+        imgSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSendCost();
+            }
+        });
         imgRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +134,14 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     public void onImportWallet() {
         Intent intent = new Intent(getActivity(), WalletCreatActivity.class);
         intent.putExtra(Constant.KEY_PAGE, 1);
+        startActivity(intent);
+    }
+
+    /**
+     * 开始发送交易
+     */
+    private void startSendCost() {
+        Intent intent = new Intent(getActivity(), SendCostActivity.class);
         startActivity(intent);
     }
 

@@ -50,12 +50,12 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             int itemViewType = getItemViewType(position);
             if(itemViewType == 0){
                 mainWalletListener.onItemClick(position,wallets.get(position));
-            }else if(itemViewType == 1){
-                if(id == R.id.tv_new_wallet){
-                    mainWalletListener.onCreateWallet();
-                }else if(id == R.id.tv_import_wallet){
-                    mainWalletListener.onImportWallet();
-                }
+//            }else if(itemViewType == 1){
+//                if(id == R.id.tv_new_wallet){
+//                    mainWalletListener.onCreateWallet();
+//                }else if(id == R.id.tv_import_wallet){
+//                    mainWalletListener.onImportWallet();
+//                }
             }
         }
     };
@@ -65,8 +65,8 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
         RecyclerView.ViewHolder holder = null;
         if(viewType == 0){
             holder = new MainWalletViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_wallet,parent,false));
-        }else if(viewType == 1){
-            holder = new MainWalletExpandViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_wallet_expand,parent,false));
+//        }else if(viewType == 1){
+//            holder = new MainWalletExpandViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_wallet_expand,parent,false));
         }
         return holder;
     }
@@ -84,12 +84,12 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             hd.skyHours.setText(wallet.getWalletType());
             hd.balance.setText(wallet.getBalance());
 
-        }else if(type == 1){
-            MainWalletExpandViewHolder hd = (MainWalletExpandViewHolder) holder;
-            hd.importWallet.setTag(position);
-            hd.importWallet.setOnClickListener(onClickListener);
-            hd.createWallet.setTag(position);
-            hd.createWallet.setOnClickListener(onClickListener);
+//        }else if(type == 1){
+//            MainWalletExpandViewHolder hd = (MainWalletExpandViewHolder) holder;
+//            hd.importWallet.setTag(position);
+//            hd.importWallet.setOnClickListener(onClickListener);
+//            hd.createWallet.setTag(position);
+//            hd.createWallet.setOnClickListener(onClickListener);
         }
     }
 
@@ -100,7 +100,7 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return wallets.size() + 1;
+        return wallets.size();
     }
 
 
