@@ -1,18 +1,26 @@
 package io.spaco.wallet.base;
 
+import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import java.util.List;
+
 import io.spaco.wallet.R;
+import io.spaco.wallet.activities.PinSetActivity;
+import io.spaco.wallet.activities.SplashActivity;
 import io.spaco.wallet.utils.AppManager;
 import io.spaco.wallet.utils.StatusBarUtils;
 
@@ -24,6 +32,7 @@ import io.spaco.wallet.utils.StatusBarUtils;
 public abstract class BaseActivity extends RxAppCompatActivity implements View.OnClickListener{
 
     protected Bundle savedInstanceState;
+    private boolean isActive = true;
 
     /**
      * 绑定布局文件
@@ -36,6 +45,49 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
      * 初始化视图控件
      */
     protected abstract void initViews();
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(!isAppOnFreground()){
+            isActive = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!isActive){
+            //从后台唤醒
+            if (this instanceof PinSetActivity || this instanceof SplashActivity){
+                return;
+            }
+            isActive = true;
+            Intent n = new Intent(this, PinSetActivity.class);
+            startActivity(n);
+        }
+    }
+
+    public boolean isAppOnFreground(){
+        ActivityManager am = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+        String curPackageName = getApplicationContext().getPackageName();
+        List<ActivityManager.RunningAppProcessInfo> app = am.getRunningAppProcesses();
+        if(app==null){
+            return false;
+        }
+        for(ActivityManager.RunningAppProcessInfo a:app){
+            if(a.processName.equals(curPackageName)&&
+                    a.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND){
+                return true;
+            }
+        }
+        return false;
+        /*ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+        if(!TextUtils.isEmpty(curPackageName)&&curPackageName.equals(getPackageName())){
+            return true;
+        }
+        return false;*/
+    }
 
     /**
      * 初始化数据
@@ -88,4 +140,22 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         return progressDialog;
     }
 
+    @Override
+    public void onBackPressed() {
+        if (this instanceof PinSetActivity){
+            System.exit(0);
+        }
+        super.onBackPressed();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (this instanceof PinSetActivity){
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
