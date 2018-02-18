@@ -127,14 +127,21 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     @Override
     public void onCreateWallet() {
         Intent intent = new Intent(getActivity(), WalletCreatActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+
     }
 
     @Override
     public void onImportWallet() {
         Intent intent = new Intent(getActivity(), WalletCreatActivity.class);
         intent.putExtra(Constant.KEY_PAGE, 1);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        initData();
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**

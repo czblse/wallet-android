@@ -43,8 +43,11 @@ public class WalletViewModel {
                         for (Wallet wallet : wallets) {
                             String walletBalanceJson = Mobile.getWalletBalance(wallet.getWalletType(), wallet.getWalletID());
                             double walletBalance = Wallet.getBalanceFromRawData(walletBalanceJson);
+                            double hours = Wallet.getHoursFromRawData(walletBalanceJson);
                             totalBalance += walletBalance;
                             wallet.setBalance(String.valueOf(walletBalance));
+                            wallet.setHours(String.valueOf(hours));
+                            wallet.setCoinHour(String.valueOf(walletBalance * hours));
                         }
                         return wallets;
                     }

@@ -12,13 +12,33 @@ import mobile.Mobile;
  * Created by zjy on 2018/1/22.
  */
 
-public class Wallet implements Serializable{
+public class Wallet implements Serializable {
 
     String walletID;
     String walletType;
     String walletName;
     int walletDeep;
     String balance = "0.00";
+
+    public String getCoinHour() {
+        return coinHour;
+    }
+
+    public void setCoinHour(String coinHour) {
+        this.coinHour = coinHour;
+    }
+
+    String coinHour = "0.00";
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
+    String hours = "0";
 
     public String getBalance() {
         return balance;
@@ -39,7 +59,7 @@ public class Wallet implements Serializable{
         this.walletID = walletID;
     }
 
-    private Wallet(){
+    private Wallet() {
 
     }
 
@@ -88,7 +108,7 @@ public class Wallet implements Serializable{
                 '}';
     }
 
-    public static Wallet buildTestData(){
+    public static Wallet buildTestData() {
         Wallet wallet = new Wallet();
         wallet.setWalletType("sky");
         wallet.setWalletName("test");
@@ -96,10 +116,20 @@ public class Wallet implements Serializable{
         return wallet;
     }
 
-    public static double getBalanceFromRawData(String rawString){
+    public static double getBalanceFromRawData(String rawString) {
         try {
             JSONObject jsonObject = new JSONObject(rawString);
-            return  jsonObject.optDouble("balance");
+            return jsonObject.optDouble("balance");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0d;
+        }
+    }
+
+    public static double getHoursFromRawData(String rawString) {
+        try {
+            JSONObject jsonObject = new JSONObject(rawString);
+            return jsonObject.optDouble("hours");
         } catch (JSONException e) {
             e.printStackTrace();
             return 0d;
