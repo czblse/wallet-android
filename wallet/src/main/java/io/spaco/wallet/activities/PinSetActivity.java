@@ -17,6 +17,7 @@ import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.DisclaimerDialog;
+import mobile.Mobile;
 
 /**
  * Pin设置界面，用于为钱包设置Pin保护密码
@@ -155,6 +156,16 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {
+            String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
+            try {
+                Mobile.init(walletDir, SpacoWalletUtils.getPin16());
+                Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
+                Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
+                Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             Intent intent = new Intent(this, WalletCreatActivity.class);
             intent.putExtra(Constant.KEY_PIN, pinCode);
             startActivity(intent);

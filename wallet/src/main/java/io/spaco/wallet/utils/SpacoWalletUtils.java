@@ -45,6 +45,15 @@ public class SpacoWalletUtils {
         return SharePrefrencesUtil.getInstance().getString(PIN_KEY);
     }
 
+    /**
+     * 因为密码是16位的，所以取pin的hash的前16位作为加密的数据
+     * @return
+     */
+    public static String getPin16(){
+        String pinTemp = String.valueOf(getPin().hashCode());
+        return getPin() + pinTemp;
+    }
+
     public static void setPin(String pin) {
         SharePrefrencesUtil.getInstance().putString(PIN_KEY, pin);
     }

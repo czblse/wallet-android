@@ -20,6 +20,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
@@ -105,11 +106,9 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     @Override
     public boolean createWallet(String walletType, String walletName, String seed) {
         try {
-            String walletId = Mobile.newWallet(walletType, walletName, seed);
+            String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
-            Mobile.newAddress(walletId, 1);
-            Log.i("temptest", walletId);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -125,7 +124,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
     public boolean importWallet(String walletType, String walletName, String seed) {
         ToastUtils.show("开始导入钱包");
         try {
-            String walletId = Mobile.newWallet(walletType, walletName, seed);
+            String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
             Intent intent = new Intent(this, MainActivity.class);

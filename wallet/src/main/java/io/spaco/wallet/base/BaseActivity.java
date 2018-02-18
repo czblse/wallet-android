@@ -140,21 +140,14 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         return progressDialog;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (this instanceof PinSetActivity){
-            System.exit(0);
-        }
-        super.onBackPressed();
-    }
-
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             if (this instanceof PinSetActivity){
                 finish();
                 System.exit(0);
+                return true;
             }
-            return true;
+            return super.onKeyDown(keyCode, event);
         }
         return super.onKeyDown(keyCode, event);
     }

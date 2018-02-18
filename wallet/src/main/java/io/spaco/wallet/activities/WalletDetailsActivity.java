@@ -18,6 +18,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.ShowQrDialog;
@@ -102,7 +103,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     @Override
     public void onCreateAddress() {
         try {
-            Mobile.newAddress(wallet.getWalletID(), 1);
+            Mobile.newAddress(wallet.getWalletID(), 1, SpacoWalletUtils.getPin16());
             initData();
         } catch (Exception e) {
             e.printStackTrace();
