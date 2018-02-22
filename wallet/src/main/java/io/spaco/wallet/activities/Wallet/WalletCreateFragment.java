@@ -6,12 +6,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.datas.Coins;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
@@ -24,7 +28,8 @@ import mobile.Mobile;
 public class WalletCreateFragment extends BaseFragment {
     EditText editTextMobileName, editTextSeedShow, editTextTextSeedInput;
     WalletCreateListener walletListener;
-
+    Spinner spinner;
+    private String coinType = Constant.COIN_TYPE_SKY;
     public static WalletCreateFragment newInstance(Bundle args) {
         WalletCreateFragment instance = new WalletCreateFragment();
         instance.setArguments(args);
@@ -74,9 +79,26 @@ public class WalletCreateFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String walletName = editTextMobileName.getText().toString();
-                if (checkWalletName(Constant.COIN_TYPE_SKY, walletName) && walletListener != null && checkInputSeed()) {
+                if (checkWalletName(coinType, walletName) && walletListener != null && checkInputSeed()) {
                     walletListener.createWallet(Constant.COIN_TYPE_SKY, walletName, editTextSeedShow.getText().toString());
                 }
+            }
+        });
+        spinner = rootView.findViewById(R.id.select_coin_type);
+        ArrayAdapter<Coins> arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter.addAll(Coins.GetAllCoins());
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                    coinType = Coins.GetAllCoins().get(pos).getName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
             }
         });
         String seed = Mobile.newSeed();

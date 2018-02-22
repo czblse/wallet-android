@@ -13,6 +13,7 @@ import mobile.Mobile;
  */
 
 public class Wallet implements Serializable {
+    private static final long serialVersionUID = 2L;
 
     String walletID;
     String walletType;

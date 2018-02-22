@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
@@ -63,6 +64,8 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
             if (!TextUtils.isEmpty(SpacoWalletUtils.getPin())){
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
+                Log.i("tmptest","initing");
+
                 Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
                 Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
                 Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");

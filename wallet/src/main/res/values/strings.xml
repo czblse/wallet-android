@@ -8,6 +8,7 @@
         It’s your first time using our mobile wallet, \n so you’ll need to either create a new wallet \n or load an existing one from a seed.
     </string>
     <string name="pin_create_wallet_name">Name your wallet</string>
+    <string name="choose_coin_type">Chose coin type</string>
     <string name="pin_create_wallet_seed">Seed</string>
     <string name="pin_create_wallet_seed_verify">Confrim seed</string>
     <string name="pin_create_wallet_generate_seed">generate seed</string>
