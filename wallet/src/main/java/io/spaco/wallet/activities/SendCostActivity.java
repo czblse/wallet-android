@@ -1,13 +1,11 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zbar.lib.CaptureActivity;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.Main.WalletViewModel;
@@ -59,8 +57,9 @@ public class SendCostActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SendCostActivity.this, CaptureActivity.class);
-                startActivityForResult(intent, Constant.REQUEST_QRCODE);
+                //TODO:@KIMI
+//                Intent intent = new Intent(SendCostActivity.this, CaptureActivity.class);
+//                startActivityForResult(intent, Constant.REQUEST_QRCODE);
             }
         };
     }
