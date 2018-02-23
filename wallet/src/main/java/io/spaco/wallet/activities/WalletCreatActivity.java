@@ -20,6 +20,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -109,6 +110,8 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
+            //发送通知
+            WalletPush.getInstance().walletUpdate();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -127,6 +130,8 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
+            //发送通知
+            WalletPush.getInstance().walletUpdate();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

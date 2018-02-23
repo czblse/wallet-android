@@ -22,6 +22,8 @@ import io.spaco.wallet.activities.WalletDetailsActivity;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.push.WalletListener;
+import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.StatusBarUtils;
 
 /**
@@ -83,7 +85,33 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         mainWalletAdapter = new MainWalletAdapter(mainWalletBeans);
         mainWalletAdapter.setMainWalletListener(this);
         recyclerView.setAdapter(mainWalletAdapter);
+        //添加观察者
+        WalletPush.getInstance().addObserver(listener);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //移除观察者
+        WalletPush.getInstance().deleteObserver(listener);
+    }
+
+    private WalletListener listener = new WalletListener() {
+        @Override
+        protected void walletUpdate() {
+            initData();
+        }
+
+        @Override
+        protected void transactionUpdate() {
+
+        }
+
+        @Override
+        protected void balanceUpdate() {
+
+        }
+    };
 
     @Override
     protected void initData() {
