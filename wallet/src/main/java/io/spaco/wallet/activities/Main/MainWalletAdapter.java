@@ -81,7 +81,7 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             hd.content.setOnClickListener(onClickListener);
             Wallet wallet = wallets.get(position);
             hd.walletName.setText(wallet.getWalletName());
-            hd.skyHours.setText(wallet.getWalletType());
+            hd.skyHours.setText(wallet.getCoinHour());
             hd.balance.setText(wallet.getBalance());
 
 //        }else if(type == 1){
