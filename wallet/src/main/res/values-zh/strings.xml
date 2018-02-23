@@ -56,6 +56,7 @@
     <string name="send_to">接收</string>
     <string name="amount">金额</string>
     <string name="nodes">节点</string>
+    <string name="notes">备注</string>
     <string name="cancle">取消</string>
     <string name="network_unavailable_hint">网络不可用，请检查网络设置</string>
     <string name="set_network">去设置</string>

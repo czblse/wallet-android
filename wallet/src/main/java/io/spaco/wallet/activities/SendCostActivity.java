@@ -36,7 +36,7 @@ public class SendCostActivity extends BaseActivity {
     @Override
     protected void initViews() {
         int topPadding = StatusBarUtils.getActionBarSize(this) + StatusBarUtils.getStatusBarHeight(this);
-        getWindow().getDecorView().setPadding(0,topPadding,0,0);
+        getWindow().getDecorView().setPadding(0,topPadding,0,topPadding);
         close = findViewById(R.id.close);
         qrcode = findViewById(R.id.img_qrcode);
         fromWallet = findViewById(R.id.from_wallet);
@@ -57,7 +57,7 @@ public class SendCostActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                //TODO:@KIMI
+                //TODO:
 //                Intent intent = new Intent(SendCostActivity.this, CaptureActivity.class);
 //                startActivityForResult(intent, Constant.REQUEST_QRCODE);
             }

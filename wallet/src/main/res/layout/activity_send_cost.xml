@@ -28,7 +28,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/linen"></View>
+        android:background="@color/linen"/>
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nodes"
+                android:text="@string/notes"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 

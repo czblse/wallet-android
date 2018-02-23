@@ -56,6 +56,7 @@
     <string name="send_to">Send to</string>
     <string name="amount">Amount</string>
     <string name="nodes">Nodes</string>
+    <string name="notes">Notes</string>
     <string name="cancle">cancle</string>
     <string name="set_network">go to system setting</string>
     <string name="network_unavailable_hint">Network unavailable，please check your network setting</string>
