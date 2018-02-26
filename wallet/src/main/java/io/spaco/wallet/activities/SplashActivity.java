@@ -64,11 +64,8 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
             if (!TextUtils.isEmpty(SpacoWalletUtils.getPin())){
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
-                Log.i("tmptest","initing");
-
-                Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
-                Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
-                Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");
+                Mobile.registerNewCoin("spocoin", "47.75.36.182:8620");
+                Mobile.registerNewCoin("skycoin", "47.75.36.182:6420");
             }
             //
 

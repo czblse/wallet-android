@@ -159,9 +159,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
             try {
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
-                Mobile.registerNewCoin("spocoin", "182.92.180.92:8620");
-                Mobile.registerNewCoin("skycoin", "182.92.180.92:8620");
-                Mobile.registerNewCoin("suncoin", "182.92.180.92:8620");
+                Mobile.registerNewCoin("spocoin", "47.75.36.182:8620");
+                Mobile.registerNewCoin("skycoin", "47.75.36.182:6420");
             } catch (Exception e) {
                 e.printStackTrace();
             }
