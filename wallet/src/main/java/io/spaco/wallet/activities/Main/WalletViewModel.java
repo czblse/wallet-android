@@ -66,4 +66,5 @@ public class WalletViewModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 }

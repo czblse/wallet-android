@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import io.spaco.wallet.base.SpacoAppliacation;
+import mobile.Mobile;
 
 /**
  * 交易管理
@@ -60,6 +61,24 @@ public class TransactionManager {
             transactions.add(gson.fromJson(next.getValue(),Transaction.class));
         }
         return transactions;
+    }
+
+    /**
+     * 发送交易
+     * walletID：钱包ID
+     *toAddr：收件人地址
+     *金额：你将发送的硬币，它的值必须是0.001的倍数。
+     */
+    public Transaction sendTransaction(Transaction transaction){
+        try {
+            String state = Mobile.send(transaction.coinType,transaction.fromWallet,transaction.toWallet,transaction.amount);
+            transaction.setState(state);
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.setState(e.getMessage());
+            return transaction;
+        }
+        return transaction;
     }
 
 

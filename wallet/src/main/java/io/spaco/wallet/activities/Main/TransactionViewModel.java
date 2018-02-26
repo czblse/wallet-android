@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -39,5 +40,14 @@ public class TransactionViewModel {
                         return result;
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 发送交易
+     */
+    public Observable<Transaction> sendTransaction(Transaction transaction){
+        return Observable.just(TransactionManager.getInstance().sendTransaction(transaction))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
