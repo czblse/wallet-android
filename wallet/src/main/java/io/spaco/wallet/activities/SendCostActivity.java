@@ -1,6 +1,7 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.view.View;
@@ -64,7 +65,7 @@ public class SendCostActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,0);
+        overridePendingTransition(0,R.anim.send_cost_out);
     }
 
     private View.OnClickListener createQrcode() {

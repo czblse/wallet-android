@@ -179,6 +179,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         Intent intent = new Intent(getActivity(), SendCostActivity.class);
         intent.putExtra(Constant.KEY_WALLET,walletViewModel.wallets.get(0));
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.send_cost_in, 0);
     }
 
 }
