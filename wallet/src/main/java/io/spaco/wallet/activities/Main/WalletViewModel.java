@@ -24,6 +24,7 @@ public class WalletViewModel {
      * 所有钱包的总金额之和
      */
     public static double totalBalance = 0.0d;
+    public static double totalHours = 0.0d;
 
     /**
      * 所有的本地钱包
@@ -52,6 +53,7 @@ public class WalletViewModel {
                             double walletBalance = Wallet.getBalanceFromRawData(walletBalanceJson);
                             double hours = Wallet.getHoursFromRawData(walletBalanceJson);
                             totalBalance += walletBalance;
+                            totalHours += hours;
                             wallet.setBalance(String.valueOf(walletBalance));
                             wallet.setHours(String.valueOf(hours));
                             wallet.setCoinHour(String.valueOf(walletBalance * hours));

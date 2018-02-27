@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Transaction;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 
@@ -109,6 +111,7 @@ public class SendCostActivity extends BaseActivity {
                                 @Override
                                 public void onNext(Transaction transaction) {
                                     if (transaction != null) {
+                                        LogUtils.d(transaction.getState());
                                         ToastUtils.show(transaction.state + "");
                                     }
                                     finish();
@@ -143,7 +146,10 @@ public class SendCostActivity extends BaseActivity {
             ToastUtils.show("请输入金额");
             return false;
         }
-        if (Double.parseDouble(wallet.getBalance()) < Double.parseDouble(amount.getText().toString())) {
+        if(wallet == null){
+            return false;
+        }
+        if (Double.parseDouble(wallet.getBalance().trim()) < Double.parseDouble(amount.getText().toString().trim())) {
             ToastUtils.show("余额不足");
             return false;
         }
@@ -163,10 +169,21 @@ public class SendCostActivity extends BaseActivity {
     @Override
     protected void initData() {
         //初始化发送钱包
-        List<Wallet> wallets = WalletViewModel.wallets;
+        final List<Wallet> wallets = WalletViewModel.wallets;
         if(wallets != null && wallets.size() > 0){
             ArrayAdapter<Wallet> walletArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, wallets);
             appCompatSpinner.setAdapter(walletArrayAdapter);
+            appCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    wallet = wallets.get(position);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         }
     }
 

@@ -141,7 +141,8 @@ public class WalletManager {
         Iterator<Map.Entry<String, String>> iterator = all.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<String, String> next = iterator.next();
-            wallets.add(gson.fromJson(next.getValue(),Wallet.class));
+            Wallet wallet = gson.fromJson(next.getValue(), Wallet.class);
+            wallets.add(wallet);
         }
         return wallets;
     }
