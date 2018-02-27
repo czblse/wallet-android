@@ -1,4 +1,4 @@
-package com.zbar.lib.decode;
+package com.zxing.lib.decode;
 
 import android.app.Activity;
 import android.content.DialogInterface;

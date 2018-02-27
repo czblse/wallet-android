@@ -75,7 +75,6 @@ dependencies {
     implementation deps.support.constraint
     implementation deps.support.design
     testImplementation deps.other.junit
-    implementation 'com.google.zxing:core:3.1.0'
     implementation 'com.madgag.spongycastle:core:1.58.0.0@jar'
     implementation 'io.github.novacrypto:SHA256:0.0.1@jar'
     implementation 'io.github.novacrypto:ToRuntime:0.9.0@jar'
@@ -94,5 +93,5 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'pub.devrel:easypermissions:1.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
-    implementation project(':zbar')
+    compile project(':zxing_lib')
 }

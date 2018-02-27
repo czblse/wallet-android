@@ -1,9 +1,9 @@
-package com.zbar.lib.decode;
+package com.zxing.lib.decode;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.zbar.lib.CaptureActivity;
+import com.zxing.lib.CaptureActivity;
 
 import java.util.concurrent.CountDownLatch;
 

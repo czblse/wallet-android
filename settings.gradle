@@ -1,1 +1,1 @@
-include ':wallet', ':zbar'
+include ':wallet', ':zxing_lib'

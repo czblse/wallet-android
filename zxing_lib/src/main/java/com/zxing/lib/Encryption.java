@@ -1,4 +1,4 @@
-package com.zbar.lib;
+package com.zxing.lib;
 
 
 

@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zbar.lib" >
+    package="com.zxing.lib" >
 
     <application>
         <activity
-            android:name="com.zbar.lib.CaptureActivity"
+            android:name="com.zxing.lib.CaptureActivity"
             android:exported="false"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

@@ -19,5 +19,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.v7
     implementation deps.support.v4
-    implementation 'com.google.zxing:core:3.1.0'
+    compile 'com.google.zxing:core:3.1.0'
 }

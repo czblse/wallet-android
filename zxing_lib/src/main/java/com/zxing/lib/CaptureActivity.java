@@ -1,4 +1,4 @@
-package com.zbar.lib;
+package com.zxing.lib;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -26,9 +26,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.zbar.lib.camera.CameraManager;
-import com.zbar.lib.decode.CaptureActivityHandler;
-import com.zbar.lib.decode.InactivityTimer;
+import com.zxing.lib.camera.CameraManager;
+import com.zxing.lib.decode.CaptureActivityHandler;
+import com.zxing.lib.decode.InactivityTimer;
 
 import java.io.IOException;
 

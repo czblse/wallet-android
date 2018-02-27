@@ -1,4 +1,4 @@
-package com.zbar.lib.camera;
+package com.zxing.lib.camera;
 
 import android.hardware.Camera;
 import android.os.Handler;

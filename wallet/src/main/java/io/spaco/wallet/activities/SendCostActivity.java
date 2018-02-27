@@ -1,7 +1,6 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.zbar.lib.CaptureActivity;
+import com.zxing.lib.CaptureActivity;
 import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

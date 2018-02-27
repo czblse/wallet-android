@@ -1,11 +1,11 @@
-package com.zbar.lib.decode;
+package com.zxing.lib.decode;
 
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
-import com.zbar.lib.CaptureActivity;
-import com.zbar.lib.R;
-import com.zbar.lib.camera.CameraManager;
+import com.zxing.lib.CaptureActivity;
+import com.zxing.lib.R;
+import com.zxing.lib.camera.CameraManager;
 
 
 public final class CaptureActivityHandler extends Handler {

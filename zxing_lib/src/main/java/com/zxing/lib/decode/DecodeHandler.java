@@ -1,4 +1,4 @@
-package com.zbar.lib.decode;
+package com.zxing.lib.decode;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -11,8 +11,8 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
-import com.zbar.lib.CaptureActivity;
-import com.zbar.lib.R;
+import com.zxing.lib.CaptureActivity;
+import com.zxing.lib.R;
 
 import java.util.Hashtable;
 
