@@ -3,6 +3,8 @@ package io.spaco.wallet.activities.Main;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -34,8 +36,13 @@ public class WalletViewModel {
      * @return
      */
     public Observable<List<Wallet>> getAllWallets() {
-        return   Observable.just(WalletManager.getInstance().getAllWallet())
-                .subscribeOn(Schedulers.io())
+        return Observable.create(new ObservableOnSubscribe<List<Wallet>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<Wallet>> emitter) throws Exception {
+                emitter.onNext(WalletManager.getInstance().getAllWallet());
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
                 .map(new Function<List<Wallet>, List<Wallet>>() {
                     @Override
                     public List<Wallet> apply(List<Wallet> wallets) throws Exception {
@@ -57,14 +64,19 @@ public class WalletViewModel {
 
     /**
      * 获取当前钱包已使用的所有地址
+     *
      * @param walletType 钱包类型
-     * @param walletID 钱包id
+     * @param walletID   钱包id
      * @return
      */
-    public Observable<List<Address>> getAllAddressByWalletId(String walletType, String walletID){
-        return   Observable.just(WalletManager.getInstance().getAddressesByWalletId(walletType,walletID))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<List<Address>> getAllAddressByWalletId(final String walletType, final String walletID) {
+        return Observable.create(new ObservableOnSubscribe<List<Address>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<Address>> emitter) throws Exception {
+                emitter.onNext(WalletManager.getInstance().getAddressesByWalletId(walletType, walletID));
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
 }

@@ -6,13 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
 import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.zbar.lib.CaptureActivity;
 
 import java.util.List;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
@@ -51,7 +48,7 @@ public class SendCostActivity extends BaseActivity {
     @Override
     protected void initViews() {
         int topPadding = StatusBarUtils.getActionBarSize(this) + StatusBarUtils.getStatusBarHeight(this);
-        getWindow().getDecorView().setPadding(0, topPadding, 0, topPadding);
+        getWindow().getDecorView().setPadding(0, topPadding, 0, 0);
         close = findViewById(R.id.close);
         qrcode = findViewById(R.id.img_qrcode);
         fromWallet = findViewById(R.id.from_wallet);
@@ -72,9 +69,8 @@ public class SendCostActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                //TODO:
-//                Intent intent = new Intent(SendCostActivity.this, CaptureActivity.class);
-//                startActivityForResult(intent, Constant.REQUEST_QRCODE);
+                Intent intent = new Intent(SendCostActivity.this, CaptureActivity.class);
+                startActivityForResult(intent, Constant.REQUEST_QRCODE);
             }
         };
     }

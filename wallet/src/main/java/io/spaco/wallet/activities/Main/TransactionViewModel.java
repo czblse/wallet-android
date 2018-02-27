@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
@@ -26,8 +28,13 @@ public class TransactionViewModel {
      * @return
      */
     public Observable<ArrayList<TransactionInfo>> getAllTransaction(){
-        return  Observable.just(TransactionManager.getInstance().getAllTransaction())
-                .subscribeOn(Schedulers.io())
+        return Observable.create(new ObservableOnSubscribe<ArrayList<Transaction>>() {
+            @Override
+            public void subscribe(ObservableEmitter<ArrayList<Transaction>> emitter) throws Exception {
+                emitter.onNext(TransactionManager.getInstance().getAllTransaction());
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
                 .map(new Function<ArrayList<Transaction>, ArrayList<TransactionInfo>>() {
                     @Override
                     public ArrayList<TransactionInfo> apply(ArrayList<Transaction> transactions) throws Exception {
@@ -45,9 +52,14 @@ public class TransactionViewModel {
     /**
      * 发送交易
      */
-    public Observable<Transaction> sendTransaction(Transaction transaction){
-        return Observable.just(TransactionManager.getInstance().sendTransaction(transaction))
-                .subscribeOn(Schedulers.io())
+    public Observable<Transaction> sendTransaction(final Transaction transaction){
+       return Observable.create(new ObservableOnSubscribe<Transaction>() {
+            @Override
+            public void subscribe(ObservableEmitter<Transaction> emitter) throws Exception {
+                emitter.onNext(TransactionManager.getInstance().sendTransaction(transaction));
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

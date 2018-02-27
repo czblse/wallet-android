@@ -1,6 +1,7 @@
 package io.spaco.wallet.widget;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.SpacoAppliacation;
+import io.spaco.wallet.utils.LogUtils;
 
 /**
  * 数字键盘的适配器
@@ -39,10 +41,12 @@ public class NumberKeyboardAdapter extends
     @Override
     public void onBindViewHolder(NumberKeyboardViewHolder holder, int position) {
         holder.number.setEnabled(true);
+        holder.number.setTextSize(30);
         holder.numdel.setVisibility(View.GONE);
         holder.lin_num.setTag(position);
         if (position == 9) {
             if (showBackward){
+                holder.number.setTextSize(20);
                 holder.number.setEnabled(true);
                 holder.number.setText(SpacoAppliacation.mInstance.getResources().getString(R.string.reset_pin));
             } else {

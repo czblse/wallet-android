@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.View;
 
+import java.util.List;
+
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.PIN.PinInputFragment;
 import io.spaco.wallet.activities.PIN.PinSetFragment;
@@ -13,6 +15,7 @@ import io.spaco.wallet.activities.PIN.PinSetListener;
 import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -152,7 +155,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
      * 否则去创建钱包
      */
     private void launchToWalletActivity() {
-        if (WalletManager.getInstance().getAllWallet() != null && WalletManager.getInstance().getAllWallet().size() > 0) {
+        List<Wallet> allWallet = WalletManager.getInstance().getAllWallet();
+        if (allWallet != null && allWallet.size() > 0) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {

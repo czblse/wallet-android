@@ -24,11 +24,6 @@ import io.spaco.wallet.widget.SendKeyDialog;
  */
 public class MainActivity extends BaseActivity {
 
-    /**
-     * 底部导航选中位置
-     */
-    int bottomSelectedIndex = 0;
-
     MainWalletFragment mainWalletFragment;
     MainTransactionFragment mainTransactionFragment;
     private View createWallet, importWallet;
@@ -83,28 +78,6 @@ public class MainActivity extends BaseActivity {
             }
         }
         fragmentTransaction.commit();
-    }
-
-    /**
-     * 开始发送交易
-     */
-    private void startSendCost() {
-        Intent intent = new Intent(this, SendCostActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * 碎片视图切换回掉
-     * @param index
-     */
-    public void onBottomContainerSelected(int index){
-        if(index == 0){
-            switchFragment(mainWalletFragment);
-        }else if(index == 1){
-            startSendCost();
-        }else if(index == 2){
-            switchFragment(mainTransactionFragment);
-        }
     }
 
     @Override

@@ -4,6 +4,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +59,12 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
                 finish();
             }
         });
+        findViewById(R.id.img_refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         wallet  = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
@@ -68,6 +78,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     protected void initData() {
         showDialog(1);
         walletViewModel.getAllAddressByWalletId(wallet.getWalletType(),wallet.getWalletID())
+                .compose(this.<List<Address>>bindUntilEvent(ActivityEvent.DESTROY))
                 .subscribe(new Observer<List<Address>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
