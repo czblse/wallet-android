@@ -20,8 +20,12 @@
     </style>
 
     <style name="SendCost_animat_style">
-        <item name="android:windowEnterAnimation">@anim/send_cost_in</item>
-        <item name="android:windowExitAnimation">@anim/send_cost_out</item>
+        <!--<item name="android:windowEnterAnimation">@anim/send_cost_in</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/send_cost_out</item>-->
+        <item name="android:activityOpenEnterAnimation">@anim/send_cost_in</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/send_cost_out</item>
     </style>
 
     <style name="toolbar_style" parent="@style/ThemeOverlay.AppCompat.Light">

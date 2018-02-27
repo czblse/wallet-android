@@ -1,14 +1,14 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
+import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.zbar.lib.CaptureActivity;
-
 import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -19,7 +19,6 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Transaction;
 import io.spaco.wallet.datas.Wallet;
-import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 
@@ -29,16 +28,14 @@ import io.spaco.wallet.utils.ToastUtils;
 public class SendCostActivity extends BaseActivity {
 
     ImageView close, qrcode;
-    EditText fromWallet, toWallet, amount, nodes;
+    AppCompatSpinner appCompatSpinner;
+    EditText  toWallet, amount, nodes;
     TextView cancle, send;
 
-    /**
-     * 钱包控制层
-     */
-    WalletViewModel walletViewModel = new WalletViewModel();
     TransactionViewModel transactionViewModel = new TransactionViewModel();
     Wallet wallet;
     Transaction transaction;
+
 
     @Override
     protected int attachLayoutRes() {
@@ -51,7 +48,7 @@ public class SendCostActivity extends BaseActivity {
         getWindow().getDecorView().setPadding(0, topPadding, 0, 0);
         close = findViewById(R.id.close);
         qrcode = findViewById(R.id.img_qrcode);
-        fromWallet = findViewById(R.id.from_wallet);
+        appCompatSpinner = findViewById(R.id.from_wallet);
         toWallet = findViewById(R.id.to_wallet);
         amount = findViewById(R.id.amount);
         nodes = findViewById(R.id.nodes);
@@ -62,6 +59,12 @@ public class SendCostActivity extends BaseActivity {
         close.setOnClickListener(createClose());
         send.setOnClickListener(createSend());
         qrcode.setOnClickListener(createQrcode());
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,0);
     }
 
     private View.OnClickListener createQrcode() {
@@ -80,7 +83,7 @@ public class SendCostActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST_QRCODE && resultCode == RESULT_OK) {
             String code = data.getData().toString();
-            LogUtils.d(code);
+            toWallet.setText(code);
         }
     }
 
@@ -93,7 +96,7 @@ public class SendCostActivity extends BaseActivity {
                     transaction = new Transaction();
                     transaction.setAmount(amount.getText().toString());
                     transaction.setCoinType(Constant.COIN_TYPE_SKY);
-                    transaction.setFromWallet(fromWallet.getText().toString());
+                    transaction.setFromWallet(appCompatSpinner.getSelectedItem().toString());
                     transaction.setToWallet(toWallet.getText().toString());
                     transaction.setNodes(nodes.getText().toString());
                     transactionViewModel.sendTransaction(transaction)
@@ -128,7 +131,7 @@ public class SendCostActivity extends BaseActivity {
     }
 
     private boolean checkEmpty() {
-        if (TextUtils.isEmpty(fromWallet.getText())) {
+        if (TextUtils.isEmpty(appCompatSpinner.getSelectedItem().toString())) {
             ToastUtils.show("请输入钱包ID");
             return false;
         }
@@ -159,31 +162,12 @@ public class SendCostActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        walletViewModel.getAllWallets()
-                .compose(this.<List<Wallet>>bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(new Observer<List<Wallet>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(List<Wallet> wallets) {
-                        walletViewModel.wallets = wallets;
-                        wallet = wallets.get(0);
-                        fromWallet.setText(wallet.getWalletID());
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                        onComplete();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                });
+        //初始化发送钱包
+        List<Wallet> wallets = WalletViewModel.wallets;
+        if(wallets != null && wallets.size() > 0){
+            ArrayAdapter<Wallet> walletArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, wallets);
+            appCompatSpinner.setAdapter(walletArrayAdapter);
+        }
     }
 
 

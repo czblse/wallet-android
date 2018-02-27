@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
@@ -68,6 +69,9 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         wallet  = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
+        //设置钱包余额
+        ((TextView)findViewById(R.id.tv_balance)).setText(wallet.getBalance());
+        ((TextView)findViewById(R.id.tv_sky_hours)).setText(wallet.getHours()+"SKY Hours");
 
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);

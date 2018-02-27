@@ -67,7 +67,7 @@
            <TextView
                android:textColor="@android:color/white"
                android:layout_width="wrap_content"
-               android:text="$0.009"
+               android:text="$0.00"
                android:layout_height="wrap_content" />
            <TextView
                android:textColor="@android:color/black"

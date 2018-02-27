@@ -100,13 +100,7 @@ public class Wallet implements Serializable {
 
     @Override
     public String toString() {
-        return "Wallet{" +
-                "walletID='" + walletID + '\'' +
-                ", walletType='" + walletType + '\'' +
-                ", walletName='" + walletName + '\'' +
-                ", walletDeep=" + walletDeep +
-                ", balance='" + balance + '\'' +
-                '}';
+        return walletName;
     }
 
     public static Wallet buildTestData() {

@@ -47,15 +47,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text=""
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/tx_qr_adress"/>
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,5 +55,14 @@
             android:background="@mipmap/copy"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_toLeftOf="@id/img_copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tx_qr_adress"/>
     </RelativeLayout>
 </LinearLayout>
