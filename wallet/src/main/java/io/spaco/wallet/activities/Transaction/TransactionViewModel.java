@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.Main;
+package io.spaco.wallet.activities.Transaction;
 
 import com.google.gson.Gson;
 
@@ -27,11 +27,11 @@ public class TransactionViewModel {
      * 查询本地缓存的所有交易记录
      * @return
      */
-    public Observable<ArrayList<TransactionInfo>> getAllTransaction(){
+    public Observable<ArrayList<TransactionInfo>> getAllTransaction(final String walletId,final String cointype){
         return Observable.create(new ObservableOnSubscribe<ArrayList<Transaction>>() {
             @Override
             public void subscribe(ObservableEmitter<ArrayList<Transaction>> emitter) throws Exception {
-                emitter.onNext(TransactionManager.getInstance().getAllTransaction());
+                emitter.onNext(TransactionManager.getInstance().getAllTransaction(walletId,cointype));
                 emitter.onComplete();
             }
         }).subscribeOn(Schedulers.io())
@@ -42,7 +42,12 @@ public class TransactionViewModel {
                         Gson gson = new Gson();
                         for(Transaction transaction : transactions){
                             String valuesJson = Mobile.getTransactionByID(transaction.coinType, transaction.txid);
-                            result.add(gson.fromJson(valuesJson,TransactionInfo.class));
+                            TransactionInfo transactionInfo = gson.fromJson(valuesJson, TransactionInfo.class);
+                            transactionInfo.time = transaction.time;
+                            transactionInfo.toWallet = transaction.toWallet;
+                            transactionInfo.amount = transaction.amount;
+                            transactionInfo.coinType = transaction.coinType;
+                            result.add(transactionInfo);
                         }
                         return result;
                     }

@@ -3,21 +3,15 @@ package io.spaco.wallet.activities;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import java.util.List;
 
 import io.spaco.wallet.R;
-import io.spaco.wallet.activities.Main.MainTransactionFragment;
+import io.spaco.wallet.activities.Transaction.TransactionFragment;
 import io.spaco.wallet.activities.Main.MainWalletFragment;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
-import io.spaco.wallet.widget.SendKeyDialog;
 
 /**
  * 主界面，一级界面
@@ -25,7 +19,7 @@ import io.spaco.wallet.widget.SendKeyDialog;
 public class MainActivity extends BaseActivity {
 
     MainWalletFragment mainWalletFragment;
-    MainTransactionFragment mainTransactionFragment;
+    TransactionFragment mainTransactionFragment;
     private View createWallet, importWallet;
 
     @Override
@@ -37,7 +31,7 @@ public class MainActivity extends BaseActivity {
     protected void initViews() {
 
         mainWalletFragment = MainWalletFragment.newInstance(null);
-        mainTransactionFragment = MainTransactionFragment.newInstance(null);
+        mainTransactionFragment = TransactionFragment.newInstance(null);
         createWallet = findViewById(R.id.new_wallet);
         importWallet = findViewById(R.id.import_wallet);
         createWallet.setOnClickListener(new View.OnClickListener() {

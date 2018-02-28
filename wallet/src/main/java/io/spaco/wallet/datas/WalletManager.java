@@ -157,7 +157,8 @@ public class WalletManager {
         Iterator<Map.Entry<String, String>> iterator = all.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<String, String> next = iterator.next();
-            if(walletName.equals(next.getKey()))
+            String key = next.getKey();
+            if(walletName.equals(key))
                 return true;
         }
         return false;

@@ -81,4 +81,20 @@ public class WalletViewModel {
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 备份钱包,根据钱包id获取钱包种子
+     * @param walletId
+     * @return
+     */
+    public Observable<String> getWalletSeed(final String walletId){
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                String seed = Mobile.getSeed(walletId);
+                emitter.onNext(seed);
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
 }

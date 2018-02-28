@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".base.SpacoAppliacation"
@@ -25,13 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.PinSetActivity" />
+        <activity android:name=".activities.PinSetActivity" android:launchMode="singleTop"/>
         <activity android:name=".activities.WalletCreatActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activities.WalletDetailsActivity" />
-        <activity android:name=".activities.SendCostActivity" android:theme="@style/SendCost_style"></activity>
+        <activity
+            android:name=".activities.SendCostActivity"
+            android:theme="@style/SendCost_style" />
+        <activity android:name=".activities.TransactionActivity" />
+        <activity android:name=".activities.BackupsWalletActivity"></activity>
     </application>
 
 </manifest>

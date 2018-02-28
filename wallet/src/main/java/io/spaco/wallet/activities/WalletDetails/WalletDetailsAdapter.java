@@ -88,12 +88,14 @@ public class WalletDetailsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        return position == walletDetails.size() ? 1 : super.getItemViewType(position);
+        return super.getItemViewType(position);
+        //return position == walletDetails.size() ? 1 : super.getItemViewType(position);
     }
 
     @Override
     public int getItemCount() {
-        return walletDetails.size() + 1;
+        return walletDetails.size();
+        //return walletDetails.size() + 1;
     }
 
 

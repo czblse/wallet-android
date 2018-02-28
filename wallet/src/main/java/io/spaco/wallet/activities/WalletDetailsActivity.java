@@ -1,8 +1,12 @@
 package io.spaco.wallet.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,12 +64,6 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
                 finish();
             }
         });
-        findViewById(R.id.img_refresh).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initData();
-            }
-        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         wallet  = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
@@ -76,6 +74,45 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);
         recyclerView.setAdapter(walletDetailsAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.wallet_details,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.refresh:
+                initData();
+                break;
+            case R.id.createAddress:
+                try {
+                    Mobile.newAddress(wallet.getWalletID(), 1, SpacoWalletUtils.getPin16());
+                    initData();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ToastUtils.show("地址创建失败");
+                }
+                break;
+            case R.id.transaction:
+                Intent intent = new Intent(this, TransactionActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constant.KEY_WALLET,wallet);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
+            case R.id.backups:
+                Intent intent2 = new Intent(this, BackupsWalletActivity.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putSerializable(Constant.KEY_WALLET,wallet);
+                intent2.putExtras(bundle2);
+                startActivity(intent2);
+                break;
+        }
+        return true;
     }
 
     @Override

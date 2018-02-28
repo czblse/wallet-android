@@ -56,7 +56,7 @@ public class WalletImportFragment extends BaseFragment {
                 String importSeedString = mEdtseed.getText().toString();
                 if (checkWalletName(coinType, walletNameString, importSeedString)) {
                     if (walletListener != null) {
-                        walletListener.importWallet(walletNameString, importSeedString,"");
+                        walletListener.importWallet(Constant.COIN_TYPE_SKY,walletNameString, importSeedString);
                     }
                 }
             }

@@ -7,12 +7,12 @@ package io.spaco.wallet.datas;
 public class Transaction {
     public String coinType;
     public String txid;
-
     public String fromWallet;
     public String toWallet;
     public String amount;
     public String nodes;
     public String state;
+    public String time;
 
     @Override
     public String toString() {

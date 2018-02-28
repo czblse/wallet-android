@@ -12,6 +12,9 @@ public class TransactionInfo implements Serializable {
     public Status status;
     public String time;
     public Txn txn;
+    public String toWallet;
+    public String amount;
+    public String coinType;
 
     public static class Status implements Serializable{
         public boolean confirmed;

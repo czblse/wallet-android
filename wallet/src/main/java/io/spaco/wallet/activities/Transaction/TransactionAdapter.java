@@ -1,4 +1,4 @@
-package io.spaco.wallet.activities.Main;
+package io.spaco.wallet.activities.Transaction;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import io.spaco.wallet.R;
 import io.spaco.wallet.beans.TransactionInfo;
@@ -16,12 +19,13 @@ import io.spaco.wallet.common.OnItemClickListener;
  * Created by kimi on 2018/1/29.</br>
  */
 
-public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransactionAdapter.MainTransactionViewHolder> {
+public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.MainTransactionViewHolder> {
 
     List<TransactionInfo> transactionInfos;
     OnItemClickListener<TransactionInfo> onItemClickListener;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd") ;
 
-    public MainTransactionAdapter(List<TransactionInfo> mainTransactionBeanList){
+    public TransactionAdapter(List<TransactionInfo> mainTransactionBeanList){
         this.transactionInfos = mainTransactionBeanList == null ? new ArrayList<TransactionInfo>() : mainTransactionBeanList;
     }
 
@@ -52,6 +56,12 @@ public class MainTransactionAdapter extends RecyclerView.Adapter<MainTransaction
     @Override
     public void onBindViewHolder(MainTransactionViewHolder holder, int position) {
         TransactionInfo transactionInfo = transactionInfos.get(position);
+        String time = transactionInfo.time;
+        Date date = new Date(Long.parseLong(time));
+        holder.date.setText(simpleDateFormat.format(date));
+        holder.address.setText(transactionInfo.toWallet);
+        holder.transaction.setText("-"+transactionInfo.amount);
+        holder.flag.setText("  Send "+transactionInfo.coinType);
         holder.itemView.setTag(position);
         holder.address.setTag(position);
         holder.address.setOnClickListener(onClickListener);

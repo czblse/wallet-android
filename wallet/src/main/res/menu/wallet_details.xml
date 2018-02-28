@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/refresh" android:title="刷新钱包" app:showAsAction="never"></item>
+    <item android:id="@+id/createAddress" android:title="新建地址" app:showAsAction="never"></item>
+    <item android:id="@+id/transaction" android:title="交易明细" app:showAsAction="never"></item>
+    <item android:id="@+id/backups" android:title="备份钱包" app:showAsAction="never"></item>
+</menu>

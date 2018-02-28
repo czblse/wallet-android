@@ -9,18 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.zxing.lib.CaptureActivity;
+
 import java.util.List;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
-import io.spaco.wallet.activities.Main.TransactionViewModel;
 import io.spaco.wallet.activities.Main.WalletViewModel;
+import io.spaco.wallet.activities.Transaction.TransactionViewModel;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Transaction;
 import io.spaco.wallet.datas.Wallet;
-import io.spaco.wallet.utils.LogUtils;
+import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 
@@ -98,7 +101,7 @@ public class SendCostActivity extends BaseActivity {
                     transaction = new Transaction();
                     transaction.setAmount(amount.getText().toString());
                     transaction.setCoinType(Constant.COIN_TYPE_SKY);
-                    transaction.setFromWallet(appCompatSpinner.getSelectedItem().toString());
+                    transaction.setFromWallet(wallet.getWalletID());
                     transaction.setToWallet(toWallet.getText().toString());
                     transaction.setNodes(nodes.getText().toString());
                     transactionViewModel.sendTransaction(transaction)
@@ -110,11 +113,18 @@ public class SendCostActivity extends BaseActivity {
 
                                 @Override
                                 public void onNext(Transaction transaction) {
-                                    if (transaction != null) {
-                                        LogUtils.d(transaction.getState());
-                                        ToastUtils.show(transaction.state + "");
+                                    if (TextUtils.isEmpty(transaction.getState())) {
+                                        ToastUtils.show("发送失败，请重试");
+                                    }else{
+                                        ToastUtils.show("发送成功");
+                                        new android.os.Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                WalletPush.getInstance().walletUpdate();
+                                                finish();
+                                            }
+                                        },700);
                                     }
-                                    finish();
                                 }
 
                                 @Override

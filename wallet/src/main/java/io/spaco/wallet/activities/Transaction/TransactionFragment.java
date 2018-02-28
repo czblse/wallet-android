@@ -1,24 +1,26 @@
-package io.spaco.wallet.activities.Main;
+package io.spaco.wallet.activities.Transaction;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.util.ArrayList;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.beans.SendKeyBean;
 import io.spaco.wallet.beans.TransactionInfo;
+import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.common.OnItemClickListener;
+import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.widget.SendKeyDialog;
 import io.spaco.wallet.widget.ShowQrDialog;
@@ -28,24 +30,25 @@ import io.spaco.wallet.widget.ShowQrDialog;
  * Created by kimi on 2018/1/25.
  */
 
-public class MainTransactionFragment extends BaseFragment implements OnItemClickListener<TransactionInfo> {
+public class TransactionFragment extends BaseFragment implements OnItemClickListener<TransactionInfo> {
 
     RecyclerView recyclerView;
     View emptyContainer;
     ImageView imgRefresh;
+    Wallet wallet;
 
     /**
      * 适配器
      */
-    MainTransactionAdapter mainTransactionAdapter;
+    TransactionAdapter mainTransactionAdapter;
 
     /**
      * 控制层
      */
     TransactionViewModel transactionViewModel = new TransactionViewModel();
 
-    public static MainTransactionFragment newInstance(Bundle args) {
-        MainTransactionFragment instance = new MainTransactionFragment();
+    public static TransactionFragment newInstance(Bundle args) {
+        TransactionFragment instance = new TransactionFragment();
         instance.setArguments(args);
         return instance;
     }
@@ -57,7 +60,16 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
 
     @Override
     protected void initViews(View rootView) {
-        StatusBarUtils.statusBarCompat(this);
+        Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
+        toolbar.setTitle("");
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mActivity.finish();
+            }
+        });
         recyclerView = rootView.findViewById(R.id.recyclerview);
         emptyContainer = rootView.findViewById(R.id.empty_container);
         imgRefresh = rootView.findViewById(R.id.img_refresh);
@@ -68,9 +80,11 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
                 initData();
             }
         });
+        //钱包
+        wallet = (Wallet) getArguments().getSerializable(Constant.KEY_WALLET);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        mainTransactionAdapter = new MainTransactionAdapter(null);
+        mainTransactionAdapter = new TransactionAdapter(null);
         mainTransactionAdapter.setOnItemClickListener(this);
         recyclerView.setAdapter(mainTransactionAdapter);
     }
@@ -78,7 +92,7 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
     @Override
     protected void initData() {
         mActivity.showDialog(1);
-        transactionViewModel.getAllTransaction()
+        transactionViewModel.getAllTransaction(wallet.getWalletID(),wallet.getWalletType())
                 .compose(this.<ArrayList<TransactionInfo>>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .subscribe(new Observer<ArrayList<TransactionInfo>>() {
                     @Override
@@ -92,6 +106,7 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
                             emptyContainer.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                         } else {
+                            mainTransactionAdapter.getDatas().clear();
                             mainTransactionAdapter.getDatas().addAll(transactionInfos);
                             mainTransactionAdapter.notifyDataSetChanged();
                         }
@@ -115,7 +130,7 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
         if (viewid == R.id.tv_address) {
             showQRcodeDialog(bean);
         } else {
-            showTransactionInfoDialog(bean);
+            //showTransactionInfoDialog(bean);
         }
     }
 
@@ -126,7 +141,7 @@ public class MainTransactionFragment extends BaseFragment implements OnItemClick
      */
     private void showQRcodeDialog(TransactionInfo bean) {
         ShowQrDialog showQrDialog = new ShowQrDialog(getActivity());
-        showQrDialog.setKey("http://www.taobao.com");
+        showQrDialog.setKey(bean.toWallet);
         showQrDialog.show();
     }
 

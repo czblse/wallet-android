@@ -37,7 +37,6 @@
             android:layout_width="200dp"
             android:layout_margin="30dp"
             android:id="@+id/img_qrcode"
-            android:src="@drawable/ic_shop_bar"
             android:scaleType="centerCrop"
             android:layout_gravity="center_horizontal"
             android:layout_height="200dp" />

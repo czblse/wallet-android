@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,9 +37,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
     RecyclerView recyclerView;
     MainWalletAdapter mainWalletAdapter;
-    ImageView imgRefresh;
-    ImageView imgSend;
-    TextView tvBalance;
+    TextView tvBalance,tvHours;
     List<Wallet> mainWalletBeans = new ArrayList<>();
 
     /**
@@ -63,24 +63,25 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
     @Override
     protected void initViews(View rootView) {
-        StatusBarUtils.statusBarCompat(this);
+        Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
+        toolbar.inflateMenu(R.menu.wallet_fragment);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.refresh:
+                        initData();
+                        break;
+                    case R.id.send:
+                        startSendCost();
+                        break;
+                }
+                return true;
+            }
+        });
         recyclerView = rootView.findViewById(R.id.recyclerview);
         tvBalance = rootView.findViewById(R.id.tv_balance);
-        imgRefresh = rootView.findViewById(R.id.img_refresh);
-        imgSend = rootView.findViewById(R.id.img_send);
-        imgSend.setRotation(180);
-        imgSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startSendCost();
-            }
-        });
-        imgRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initData();
-            }
-        });
+        tvHours = rootView.findViewById(R.id.tv_hours);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         mainWalletAdapter = new MainWalletAdapter(mainWalletBeans);
         mainWalletAdapter.setMainWalletListener(this);
@@ -128,6 +129,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                     public void onNext(List<Wallet> wallets) {
                         walletViewModel.wallets = wallets;
                         tvBalance.setText(String.valueOf(WalletViewModel.totalBalance));
+                        tvHours.setText(String.valueOf(WalletViewModel.totalHours + "SKY Hours"));
                         mainWalletAdapter.setWallets(wallets);
                         mainWalletAdapter.notifyDataSetChanged();
                     }

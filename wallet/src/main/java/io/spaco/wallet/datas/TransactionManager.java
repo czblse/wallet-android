@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import io.spaco.wallet.base.SpacoAppliacation;
+import io.spaco.wallet.utils.LogUtils;
 import mobile.Mobile;
 
 /**
@@ -20,6 +21,7 @@ import mobile.Mobile;
 
 public class TransactionManager {
 
+    private static final String SEPARATOR = "-";
     SharedPreferences transactionSharedPreferences;
     ArrayList<Transaction> transactions = new ArrayList<>();
     Gson gson = new Gson();
@@ -39,26 +41,26 @@ public class TransactionManager {
      * @return
      */
     public boolean saveTransaction(Transaction transaction){
-        if(!transactionSharedPreferences.contains(transaction.txid)){
-            SharedPreferences.Editor edit = transactionSharedPreferences.edit();
-            edit.putString(transaction.coinType + transaction.txid,gson.toJson(transaction));
-            edit.commit();
-            return true;
-        }
-        return false;
+        SharedPreferences.Editor edit = transactionSharedPreferences.edit();
+        edit.putString(transaction.fromWallet + SEPARATOR + transaction.coinType + SEPARATOR + transaction.txid,gson.toJson(transaction));
+        edit.commit();
+        return true;
     }
 
     /**
      * 获取交易记录
      * @return
      */
-    public ArrayList<Transaction> getAllTransaction(){
+    public ArrayList<Transaction> getAllTransaction(String walletId,String cointype){
         transactions.clear();
         Map<String, String> all = (Map<String, String>) transactionSharedPreferences.getAll();
         Iterator<Map.Entry<String, String>> iterator = all.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<String, String> next = iterator.next();
-            transactions.add(gson.fromJson(next.getValue(),Transaction.class));
+            String key = next.getKey();
+            if(key.startsWith(walletId + SEPARATOR + cointype)){
+                transactions.add(gson.fromJson(next.getValue(),Transaction.class));
+            }
         }
         return transactions;
     }
@@ -72,10 +74,14 @@ public class TransactionManager {
     public Transaction sendTransaction(Transaction transaction){
         try {
             String state = Mobile.send(transaction.coinType,transaction.fromWallet,transaction.toWallet,transaction.amount);
+            LogUtils.d("send transaction result = " + state);
+            //发送成功的话，缓存到本地
+            transaction.txid = gson.fromJson(state, Transaction.class).txid;
+            transaction.time = System.currentTimeMillis()+"";
+            saveTransaction(transaction);
             transaction.setState(state);
         } catch (Exception e) {
             e.printStackTrace();
-            transaction.setState(e.getMessage());
             return transaction;
         }
         return transaction;

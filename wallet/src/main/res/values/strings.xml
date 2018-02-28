@@ -60,5 +60,6 @@
     <string name="cancle">cancle</string>
     <string name="set_network">go to system setting</string>
     <string name="network_unavailable_hint">Network unavailable，please check your network setting</string>
+    <string name="pin_error">密码输入错误，请重新输入</string>
 
 </resources>
