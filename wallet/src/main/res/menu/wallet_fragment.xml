@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/refresh" android:title="刷新钱包" app:showAsAction="never"></item>
-    <item android:id="@+id/send" android:title="发送交易" app:showAsAction="never"></item>
+    <item android:id="@+id/refresh" android:title="@string/menu_refresh_wallet" app:showAsAction="never"></item>
+    <item android:id="@+id/send" android:title="@string/menu_send_coin" app:showAsAction="never"></item>
 </menu>

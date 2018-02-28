@@ -13,7 +13,7 @@
             android:textSize="13sp"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:text="长按复制，请务必牢记以下内容，丢失它则意味着丢失了钱包。"
+            android:text="@string/backup_wallet_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

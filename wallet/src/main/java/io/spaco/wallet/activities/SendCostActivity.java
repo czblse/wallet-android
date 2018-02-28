@@ -114,9 +114,9 @@ public class SendCostActivity extends BaseActivity {
                                 @Override
                                 public void onNext(Transaction transaction) {
                                     if (TextUtils.isEmpty(transaction.getState())) {
-                                        ToastUtils.show("发送失败，请重试");
+                                        ToastUtils.show(getString(R.string.str_send_error));
                                     }else{
-                                        ToastUtils.show("发送成功");
+                                        ToastUtils.show(R.string.str_send_success);
                                         new android.os.Handler().postDelayed(new Runnable() {
                                             @Override
                                             public void run() {

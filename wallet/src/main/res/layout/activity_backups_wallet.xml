@@ -15,7 +15,7 @@
         android:background="@drawable/pin_create_wallet_background">
         <TextView
             android:layout_width="wrap_content"
-            android:text="备份钱包"
+            android:text="@string/backup_wallet"
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:layout_gravity="center"

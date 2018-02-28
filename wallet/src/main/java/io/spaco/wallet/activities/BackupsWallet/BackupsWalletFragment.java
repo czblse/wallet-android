@@ -52,7 +52,7 @@ public class BackupsWalletFragment extends BaseFragment {
                         .CLIPBOARD_SERVICE);
                 // 将文本内容放到系统剪贴板里。
                 cm.setText(tvSeed.getText().toString());
-                Toast.makeText(getContext(), "复制成功", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.str_copy_success, Toast.LENGTH_LONG).show();
                 return true;
             }
         });

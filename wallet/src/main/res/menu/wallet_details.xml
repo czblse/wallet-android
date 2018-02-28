@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/refresh" android:title="刷新钱包" app:showAsAction="never"></item>
-    <item android:id="@+id/createAddress" android:title="新建地址" app:showAsAction="never"></item>
-    <item android:id="@+id/transaction" android:title="交易明细" app:showAsAction="never"></item>
-    <item android:id="@+id/backups" android:title="备份钱包" app:showAsAction="never"></item>
+    <item android:id="@+id/refresh" android:title="@string/menu_refresh_wallet" app:showAsAction="never"></item>
+    <item android:id="@+id/createAddress" android:title="@string/menu_create_address" app:showAsAction="never"></item>
+    <item android:id="@+id/transaction" android:title="@string/menu_transaction_info" app:showAsAction="never"></item>
+    <item android:id="@+id/backups" android:title="@string/menu_backup_wallet" app:showAsAction="never"></item>
 </menu>

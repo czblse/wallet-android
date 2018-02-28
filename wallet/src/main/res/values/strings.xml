@@ -61,9 +61,22 @@
     <string name="amount">Amount</string>
     <string name="nodes">Nodes</string>
     <string name="notes">Notes</string>
-    <string name="cancle">cancle</string>
+    <string name="cancle">Cancle</string>
     <string name="set_network">go to system setting</string>
     <string name="network_unavailable_hint">Network unavailable，please check your network setting</string>
-    <string name="pin_error">密码输入错误，请重新输入</string>
+    <string name="pin_error">Please enter again PIN</string>
+    <string name="backup_wallet">Backup Wallet</string>
+    <string name="backup_wallet_tips">Long press copy, please keep in mind the following, missing it means losing your wallet.</string>
+    <string name="str_send_success">Send Success</string>
+    <string name="str_send_error">Send failed</string>
+    <string name="send">Send</string>
+    <string name="str_create_address_failed">Create Address Failed</string>
+    <string name="menu_refresh_wallet">Refresh Wallet</string>
+    <string name="menu_create_address">Create Address</string>
+    <string name="menu_transaction_info">Transaction Info</string>
+    <string name="menu_backup_wallet">Backup Wallet</string>
+    <string name="menu_send_coin">Send Coin</string>
+    <string name="loading_str">\nHard loading...\n</string>
+    <string name="str_show_qrcode">QR code</string>
 
 </resources>

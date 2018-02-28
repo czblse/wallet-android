@@ -136,7 +136,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(R.string.app_name);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("\n正在努力加载中...\n");
+        progressDialog.setMessage(getString(R.string.loading_str));
         return progressDialog;
     }
 

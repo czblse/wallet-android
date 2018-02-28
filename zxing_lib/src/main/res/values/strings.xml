@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_scan">Scan</string>
+    <string name="str_scan_tips">Put the qr code/bar code into the box and automatically scan.</string>
+</resources>

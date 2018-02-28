@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="查看二维码"
+            android:text="@string/str_show_qrcode"
             android:textColor="@color/black"
             android:id="@+id/tx_title"
             android:textSize="16sp" />

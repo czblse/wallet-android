@@ -69,4 +69,17 @@
     <string name="pls_generate_seed">请生成种子</string>
     <string name="pls_confirm_seed">请确认你的种子</string>
     <string name="pin_error">密码输入错误，请重新输入</string>
+    <string name="backup_wallet">备份钱包</string>
+    <string name="backup_wallet_tips">长按复制，请务必牢记以下内容，丢失它则意味着丢失了钱包。</string>
+    <string name="str_send_success">发送失败，请重试</string>
+    <string name="str_send_error">发送失败</string>
+    <string name="send">发送</string>
+    <string name="str_create_address_failed">地址创建失败</string>
+    <string name="menu_refresh_wallet">刷新钱包</string>
+    <string name="menu_create_address">新建地址</string>
+    <string name="menu_transaction_info">交易明细</string>
+    <string name="menu_backup_wallet">备份钱包</string>
+    <string name="menu_send_coin">发送交易</string>
+    <string name="loading_str">\n正在努力加载中...\n</string>
+    <string name="str_show_qrcode">查看二维码</string>
 </resources>

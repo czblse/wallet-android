@@ -94,7 +94,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
                     initData();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    ToastUtils.show("地址创建失败");
+                    ToastUtils.show(getString(R.string.str_create_address_failed));
                 }
                 break;
             case R.id.transaction:
@@ -159,7 +159,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
             initData();
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.show("地址创建失败");
+            ToastUtils.show(getString(R.string.str_create_address_failed));
         }
     }
 }
