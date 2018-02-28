@@ -135,22 +135,22 @@ public class SendCostActivity extends BaseActivity {
 
     private boolean checkEmpty() {
         if (TextUtils.isEmpty(appCompatSpinner.getSelectedItem().toString())) {
-            ToastUtils.show("请输入钱包ID");
+            ToastUtils.show(getResources().getString(R.string.input_id));
             return false;
         }
         if (TextUtils.isEmpty(toWallet.getText())) {
-            ToastUtils.show("请输入地址");
+            ToastUtils.show(getResources().getString(R.string.input_address));
             return false;
         }
         if (TextUtils.isEmpty(amount.getText())) {
-            ToastUtils.show("请输入金额");
+            ToastUtils.show(getResources().getString(R.string.input_amount));
             return false;
         }
         if(wallet == null){
             return false;
         }
         if (Double.parseDouble(wallet.getBalance().trim()) < Double.parseDouble(amount.getText().toString().trim())) {
-            ToastUtils.show("余额不足");
+            ToastUtils.show(getResources().getString(R.string.insufficient_balance));
             return false;
         }
         return true;
