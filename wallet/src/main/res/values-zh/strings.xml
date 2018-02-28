@@ -28,6 +28,11 @@
     <string name="imports">导入</string>
     <string name="reset_pin">重设</string>
 
+    <string name="input_id">请输入钱包ID</string>
+    <string name="input_amount">请输入交易金额</string>
+    <string name="input_address">请输入钱包地址</string>
+    <string name="insufficient_balance">钱包余额不足</string>
+
     <string name="generate_seed">生成种子</string>
 
     <string name="wallet_creat_title">创建钱包</string>
