@@ -30,6 +30,7 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().hide();
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +53,7 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
     @Override
     public void onPinSetSuccess(String pin) {
         if (TextUtils.equals(pin, SpacoWalletUtils.getPin())) {
+            getSupportActionBar().show();
             BackupsWalletFragment backupsWalletFragment = BackupsWalletFragment.newInstance(getIntent().getExtras());
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.container,backupsWalletFragment);
