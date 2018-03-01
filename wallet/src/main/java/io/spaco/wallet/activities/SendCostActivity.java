@@ -113,7 +113,7 @@ public class SendCostActivity extends BaseActivity {
 
                                 @Override
                                 public void onNext(Transaction transaction) {
-                                    if (TextUtils.isEmpty(transaction.getState())) {
+                                    if (transaction == null) {
                                         ToastUtils.show(getString(R.string.str_send_error));
                                     }else{
                                         ToastUtils.show(R.string.str_send_success);

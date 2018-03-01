@@ -79,12 +79,11 @@ public class TransactionManager {
             transaction.txid = gson.fromJson(state, Transaction.class).txid;
             transaction.time = System.currentTimeMillis()+"";
             saveTransaction(transaction);
-            transaction.setState(state);
+            return transaction;
         } catch (Exception e) {
             e.printStackTrace();
-            return transaction;
         }
-        return transaction;
+        return null;
     }
 
 
