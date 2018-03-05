@@ -35,43 +35,43 @@ public class SharePrefrencesUtil {
 	public void putString(String key, String value) {
 		Editor edit = sp.edit();
 		edit.putString(key, value);
-		edit.apply();
+		edit.commit();
 	}
 
 	public void putInt(String key, int value) {
 		Editor edit = sp.edit();
 		edit.putInt(key, value);
-		edit.apply();
+		edit.commit();
 	}
 	
 	public void putBoolean(String key, boolean value) {
 		Editor edit = sp.edit();
 		edit.putBoolean(key, value);
-		edit.apply();
+		edit.commit();
 	}
 	
 	public void removeObject(String key){
 		Editor edit = sp.edit();
 		edit.remove(key);
-		edit.apply();
+		edit.commit();
 	}
 
 	public void putLong(String key, long value) {
 		Editor edit = sp.edit();
 		edit.putLong(key, value);
-		edit.apply();
+		edit.commit();
 	}
 
 	public void putFloat(String key, float value) {
 		Editor edit = sp.edit();
 		edit.putFloat(key, value);
-		edit.apply();
+		edit.commit();
 	}
 
 	public void putSet(String key, Set<String> value) {
 		Editor edit = sp.edit();
 		edit.putStringSet(key, value);
-		edit.apply();
+		edit.commit();
 	}
 
 	public String getString(String key) {

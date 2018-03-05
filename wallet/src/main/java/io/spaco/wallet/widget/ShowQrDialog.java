@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,16 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.spaco.wallet.R;
-import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.utils.ZxingUtils;
-import rx.Observer;
-import rx.Scheduler;
-import rx.schedulers.Schedulers;
 
 /**
  * @author: lh on 2018/1/25 13:59.

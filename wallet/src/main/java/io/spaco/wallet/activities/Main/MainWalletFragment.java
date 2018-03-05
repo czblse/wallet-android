@@ -1,6 +1,7 @@
 package io.spaco.wallet.activities.Main;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +13,12 @@ import android.widget.TextView;
 
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -26,6 +31,8 @@ import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.push.WalletListener;
 import io.spaco.wallet.push.WalletPush;
+import io.spaco.wallet.utils.LogUtils;
+import io.spaco.wallet.utils.NetUtil;
 import io.spaco.wallet.utils.StatusBarUtils;
 
 /**
@@ -37,8 +44,10 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
     RecyclerView recyclerView;
     MainWalletAdapter mainWalletAdapter;
-    TextView tvBalance,tvHours;
+    TextView tvBalance, tvHours,tvExchangeCoin;
     List<Wallet> mainWalletBeans = new ArrayList<>();
+    boolean exchangeCoinFirst = true;//标记
+    boolean exchangeCoin = true;//标记，true表示cny，false表示usd
 
     /**
      * 钱包控制层
@@ -68,7 +77,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.refresh:
                         initData();
                         break;
@@ -79,6 +88,18 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                 return true;
             }
         });
+        rootView.findViewById(R.id.coin_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //切换对应的钱包汇率
+                if(exchangeCoin)
+                    initCNYexchangCoin();
+                else
+                    initUSDexchangCoin();
+                exchangeCoin = !exchangeCoin;
+            }
+        });
+        tvExchangeCoin = rootView.findViewById(R.id.exchange_coin);
         recyclerView = rootView.findViewById(R.id.recyclerview);
         tvBalance = rootView.findViewById(R.id.tv_balance);
         tvHours = rootView.findViewById(R.id.tv_hours);
@@ -137,12 +158,93 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        onComplete();
                     }
 
                     @Override
                     public void onComplete() {
                         mActivity.dismissDialog(1);
+                        //初始化相应的钱包汇率
+                        String language = Locale.getDefault().getLanguage();
+                        if(exchangeCoinFirst){
+                            exchangeCoinFirst = false;
+                            if("zh".equals(language)){
+                                exchangeCoin = true;
+                                initCNYexchangCoin();
+                            }else{
+                                initUSDexchangCoin();
+                                exchangeCoin = false;
+                            }
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 初始化钱包汇率CNY
+     */
+    private void initCNYexchangCoin() {
+        walletViewModel.getCNYcoinExchange()
+                .compose(this.<String>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        try {
+                            double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_cny");
+                            double value = WalletViewModel.totalBalance * price_cny;
+                            tvExchangeCoin.setText(value + "RMB");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    /**
+     * 初始化钱包汇率USD
+     */
+    private void initUSDexchangCoin() {
+        walletViewModel.getUSDcoinExchange()
+                .compose(this.<String>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        try {
+                            double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_usd");
+                            double value = WalletViewModel.totalBalance * price_cny;
+                            tvExchangeCoin.setText(value + "$");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
@@ -179,7 +281,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
      */
     private void startSendCost() {
         Intent intent = new Intent(getActivity(), SendCostActivity.class);
-        intent.putExtra(Constant.KEY_WALLET,walletViewModel.wallets.get(0));
+        intent.putExtra(Constant.KEY_WALLET, walletViewModel.wallets.get(0));
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.send_cost_in, 0);
     }

@@ -8,6 +8,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import io.spaco.wallet.api.ApiService;
+import io.spaco.wallet.api.RetrofitService;
 import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
@@ -48,6 +50,7 @@ public class WalletViewModel {
                     @Override
                     public List<Wallet> apply(List<Wallet> wallets) throws Exception {
                         totalBalance = 0.00d;
+                        totalHours = 0.0d;
                         for (Wallet wallet : wallets) {
                             String walletBalanceJson = Mobile.getWalletBalance(wallet.getWalletType(), wallet.getWalletID());
                             double walletBalance = Wallet.getBalanceFromRawData(walletBalanceJson);
@@ -97,4 +100,38 @@ public class WalletViewModel {
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * 删除钱包
+     * @param wallet
+     * @return
+     */
+    public Observable<Boolean> deleteWallet(final Wallet wallet){
+        return Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                WalletManager.getInstance().removeWallet(wallet);
+                emitter.onNext(true);
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 获取人民币的汇率
+     */
+    public Observable<String> getCNYcoinExchange(){
+        return RetrofitService.getInstance().retrofit.create(ApiService.class)
+                .getCNYcoinExchange().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+    /**
+     * 获取USD的汇率
+     */
+    public Observable<String> getUSDcoinExchange(){
+        return RetrofitService.getInstance().retrofit.create(ApiService.class)
+                .getUSDcoinExchange().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
 }

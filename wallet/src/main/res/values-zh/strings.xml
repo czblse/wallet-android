@@ -82,4 +82,8 @@
     <string name="menu_send_coin">发送交易</string>
     <string name="loading_str">\n正在努力加载中...\n</string>
     <string name="str_show_qrcode">查看二维码</string>
+    <string name="delete_wallet">删除钱包</string>
+    <string name="delete_wallet_tips">删除钱包之前请记得转移你的数字资产，否则你将无法挽回你的损失,确定继续删除吗?</string>
+    <string name="delete_confirm">确定删除</string>
+    <string name="delete_wallet_error_msg">删除钱包失败</string>
 </resources>

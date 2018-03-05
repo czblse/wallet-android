@@ -78,5 +78,9 @@
     <string name="menu_send_coin">Send Coin</string>
     <string name="loading_str">\nHard loading...\n</string>
     <string name="str_show_qrcode">QR code</string>
+    <string name="delete_wallet">Delete Wallet</string>
+    <string name="delete_wallet_tips">Please remember to transfer your digital assets before deleting your wallet, otherwise you will not be able to recover your loss.</string>
+    <string name="delete_confirm">Confirm Delete</string>
+    <string name="delete_wallet_error_msg">Delete Wallet Error!</string>
 
 </resources>

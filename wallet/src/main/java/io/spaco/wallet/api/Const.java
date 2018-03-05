@@ -8,7 +8,7 @@ package io.spaco.wallet.api;
 
 public class Const {
 
-    public static final String HOST = "http://www.baidu.com";
+    public static final String HOST = "http://api.coinmarketcap.com/";
 
     /**
      * 要求长度为8

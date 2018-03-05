@@ -6,6 +6,7 @@ package io.spaco.wallet.utils;
 
 import android.text.TextUtils;
 
+import io.spaco.wallet.api.Const;
 import io.spaco.wallet.datas.WalletManager;
 
 /**
@@ -42,8 +43,27 @@ public class SpacoWalletUtils {
 
 
     public static String getPin() {
-        return SharePrefrencesUtil.getInstance().getString(PIN_KEY);
+        try {
+            String value = SharePrefrencesUtil.getInstance().getString(PIN_KEY);
+            String pincode = DES.decryptDES(value,Const.DESKey);
+            LogUtils.d("decrypt = " + pincode);
+            return pincode;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    public static void setPin(String pin) {
+        try {
+            String value = DES.encryptDES(pin, Const.DESKey);
+            SharePrefrencesUtil.getInstance().putString(PIN_KEY, value);
+            LogUtils.d("encryp = " + value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 因为密码是16位的，所以取pin的hash的前16位作为加密的数据
@@ -52,10 +72,6 @@ public class SpacoWalletUtils {
     public static String getPin16(){
         String pinTemp = String.valueOf(getPin().hashCode());
         return getPin() + pinTemp;
-    }
-
-    public static void setPin(String pin) {
-        SharePrefrencesUtil.getInstance().putString(PIN_KEY, pin);
     }
 
     /**

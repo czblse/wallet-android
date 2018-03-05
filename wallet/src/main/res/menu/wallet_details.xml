@@ -6,4 +6,5 @@
     <item android:id="@+id/createAddress" android:title="@string/menu_create_address" app:showAsAction="never"></item>
     <item android:id="@+id/transaction" android:title="@string/menu_transaction_info" app:showAsAction="never"></item>
     <item android:id="@+id/backups" android:title="@string/menu_backup_wallet" app:showAsAction="never"></item>
+    <item android:id="@+id/delete" android:title="@string/delete_wallet" app:showAsAction="never"></item>
 </menu>

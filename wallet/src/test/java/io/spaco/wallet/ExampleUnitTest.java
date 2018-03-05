@@ -1,18 +1,8 @@
 package io.spaco.wallet;
 
-import android.content.Intent;
-
 import org.junit.Test;
 
-import java.security.Key;
-import java.security.SecureRandom;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-
+import io.spaco.wallet.api.Const;
 import io.spaco.wallet.utils.DES;
 
 import static org.junit.Assert.assertEquals;
@@ -30,8 +20,8 @@ public class ExampleUnitTest {
 
     @Test
     public void testEnrypt(){
-        String text = "123456789";
-        String password = "95880288";
+        String text = "333333";
+        String password = Const.DESKey;
         try {
             String result = DES.encryptDES(text, password);
             System.out.println("加密结果"  + result);

@@ -108,7 +108,6 @@ public class SendCostActivity extends BaseActivity {
                             .subscribe(new Observer<Transaction>() {
                                 @Override
                                 public void onSubscribe(Disposable d) {
-
                                 }
 
                                 @Override

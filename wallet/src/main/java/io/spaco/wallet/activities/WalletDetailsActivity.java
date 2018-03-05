@@ -1,7 +1,10 @@
 package io.spaco.wallet.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +30,8 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.datas.WalletManager;
+import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -111,8 +116,56 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
                 intent2.putExtras(bundle2);
                 startActivity(intent2);
                 break;
+            case R.id.delete:
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.delete_wallet)
+                        .setMessage(R.string.delete_wallet_tips)
+                        .setPositiveButton(R.string.delete_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteWallet();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).setCancelable(false).show();
+                break;
         }
         return true;
+    }
+
+    /**
+     * 删除钱包
+     */
+    public void deleteWallet(){
+        showDialog(1);
+        walletViewModel.deleteWallet(wallet)
+                .compose(this.<Boolean>bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        //通知首页钱包进行更新
+                        WalletPush.getInstance().walletUpdate();
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.show(getString(R.string.delete_wallet_error_msg));
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissDialog(1);
+                    }
+                });
     }
 
     @Override
