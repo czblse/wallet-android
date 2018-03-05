@@ -16,6 +16,7 @@ import com.trello.rxlifecycle2.android.FragmentEvent;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -150,7 +151,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                     public void onNext(List<Wallet> wallets) {
                         walletViewModel.wallets = wallets;
                         tvBalance.setText(String.valueOf(WalletViewModel.totalBalance));
-                        tvHours.setText(String.valueOf(WalletViewModel.totalHours + "SKY Hours"));
+                        tvHours.setText(String.valueOf(WalletViewModel.totalHours + " SKY Hours"));
                         mainWalletAdapter.setWallets(wallets);
                         mainWalletAdapter.notifyDataSetChanged();
                     }
@@ -196,7 +197,8 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         try {
                             double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_cny");
                             double value = WalletViewModel.totalBalance * price_cny;
-                            tvExchangeCoin.setText(value + "RMB");
+                            DecimalFormat decimalFormat=new DecimalFormat(".00");
+                            tvExchangeCoin.setText("￥" + decimalFormat.format(value));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -229,9 +231,10 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                     @Override
                     public void onNext(String s) {
                         try {
-                            double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_usd");
-                            double value = WalletViewModel.totalBalance * price_cny;
-                            tvExchangeCoin.setText(value + "$");
+                            double price_usd = new JSONArray(s).getJSONObject(0).optDouble("price_usd");
+                            double value = WalletViewModel.totalBalance * price_usd;
+                            DecimalFormat decimalFormat=new DecimalFormat(".00");
+                            tvExchangeCoin.setText("$" + decimalFormat.format(value));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -74,7 +74,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         wallet  = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
         //设置钱包余额
         ((TextView)findViewById(R.id.tv_balance)).setText(wallet.getBalance());
-        ((TextView)findViewById(R.id.tv_sky_hours)).setText(wallet.getHours()+"SKY Hours");
+        ((TextView)findViewById(R.id.tv_sky_hours)).setText(wallet.getHours()+" SKY Hours");
 
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);
