@@ -1,5 +1,6 @@
 package io.spaco.wallet.api;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -137,15 +138,17 @@ public class RetrofitService {
         // 指定缓存路径,缓存大小100Mb
         Cache cache = new Cache(new File(SpacoAppliacation.mInstance.getApplicationContext().getCacheDir(), "HttpCache"),
                 1024 * 1024 * 100);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().cache(cache)
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+           builder.cache(cache)
                 .retryOnConnectionFailure(true)
                 .addInterceptor(sLoggingInterceptor)
-                .addInterceptor(logging())
                 .addInterceptor(sRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(sRewriteCacheControlInterceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .build();
-
+                .connectTimeout(10, TimeUnit.SECONDS);
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(logging());
+        }
+        OkHttpClient okHttpClient = builder.build();
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(ScalarsConverterFactory.create())
