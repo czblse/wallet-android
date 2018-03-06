@@ -10,9 +10,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.spaco.wallet.R;
+import io.spaco.wallet.api.Const;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.utils.AppUtils;
+import io.spaco.wallet.utils.DES;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import mobile.Mobile;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -62,13 +64,11 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
     private void initWallet() {
         try {
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
-            if (!TextUtils.isEmpty(SpacoWalletUtils.getPin())){
+            if (!TextUtils.isEmpty(SpacoWalletUtils.getPin())) {
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
                 Mobile.registerNewCoin("spocoin", "47.75.36.182:8620");
                 Mobile.registerNewCoin("skycoin", "47.75.36.182:6420");
             }
-            //
-
         } catch (Exception e) {
             e.printStackTrace();
         }

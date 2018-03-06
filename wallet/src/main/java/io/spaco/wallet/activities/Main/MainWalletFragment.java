@@ -45,7 +45,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
     RecyclerView recyclerView;
     MainWalletAdapter mainWalletAdapter;
-    TextView tvBalance, tvHours,tvExchangeCoin;
+    TextView tvBalance, tvHours, tvExchangeCoin;
     List<Wallet> mainWalletBeans = new ArrayList<>();
     boolean exchangeCoinFirst = true;//标记
     boolean exchangeCoin = true;//标记，true表示cny，false表示usd
@@ -93,7 +93,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
             @Override
             public void onClick(View v) {
                 //切换对应的钱包汇率
-                if(exchangeCoin)
+                if (exchangeCoin)
                     initCNYexchangCoin();
                 else
                     initUSDexchangCoin();
@@ -166,12 +166,12 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         mActivity.dismissDialog(1);
                         //初始化相应的钱包汇率
                         String language = Locale.getDefault().getLanguage();
-                        if(exchangeCoinFirst){
+                        if (exchangeCoinFirst) {
                             exchangeCoinFirst = false;
-                            if("zh".equals(language)){
+                            if ("zh".equals(language)) {
                                 exchangeCoin = true;
                                 initCNYexchangCoin();
-                            }else{
+                            } else {
                                 initUSDexchangCoin();
                                 exchangeCoin = false;
                             }
@@ -197,7 +197,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         try {
                             double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_cny");
                             double value = WalletViewModel.totalBalance * price_cny;
-                            DecimalFormat decimalFormat=new DecimalFormat(".00");
+                            DecimalFormat decimalFormat = new DecimalFormat(".00");
                             tvExchangeCoin.setText("￥" + decimalFormat.format(value));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -233,7 +233,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         try {
                             double price_usd = new JSONArray(s).getJSONObject(0).optDouble("price_usd");
                             double value = WalletViewModel.totalBalance * price_usd;
-                            DecimalFormat decimalFormat=new DecimalFormat(".00");
+                            DecimalFormat decimalFormat = new DecimalFormat(".00");
                             tvExchangeCoin.setText("$" + decimalFormat.format(value));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -283,10 +283,14 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
      * 开始发送交易
      */
     private void startSendCost() {
-        Intent intent = new Intent(getActivity(), SendCostActivity.class);
-        intent.putExtra(Constant.KEY_WALLET, walletViewModel.wallets.get(0));
-        startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.send_cost_in, 0);
+        try {
+            Intent intent = new Intent(getActivity(), SendCostActivity.class);
+            intent.putExtra(Constant.KEY_WALLET, walletViewModel.wallets.get(0));
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.send_cost_in, 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
