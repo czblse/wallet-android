@@ -47,7 +47,7 @@ public abstract class BaseFragment extends RxFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(savedInstanceState == null){
+        if(rootView == null){
             rootView = inflater.inflate(attachLayoutRes(),container,false);
         }else{
             ViewParent parent = rootView.getParent();
