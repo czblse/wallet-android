@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        Beta.checkUpgrade();
+
     }
     public void onCreateWallet() {
         Intent intent = new Intent(this, WalletCreatActivity.class);

@@ -80,6 +80,7 @@
     <string name="menu_transaction_info">交易明细</string>
     <string name="menu_backup_wallet">备份钱包</string>
     <string name="menu_send_coin">发送交易</string>
+    <string name="menu_version_up">版本更新</string>
     <string name="loading_str">\n正在努力加载中...\n</string>
     <string name="str_show_qrcode">查看二维码</string>
     <string name="delete_wallet">删除钱包</string>
