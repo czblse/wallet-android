@@ -232,7 +232,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
      */
     private void chcekUp() {
         Beta.checkUpgrade();
-        loadUpgradeInfo();
+        //loadUpgradeInfo();
     }
 
     /**
