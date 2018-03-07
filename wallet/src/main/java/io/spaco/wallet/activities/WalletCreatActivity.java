@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -120,6 +121,10 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")){
+                Toast.makeText(this, getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
+                return false;
+            }
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return false;
@@ -139,6 +144,10 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")){
+                Toast.makeText(this, getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
+                return false;
+            }
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return false;
