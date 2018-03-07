@@ -1,8 +1,10 @@
 package io.spaco.wallet.activities.Main;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -52,7 +54,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     List<Wallet> mainWalletBeans = new ArrayList<>();
     boolean exchangeCoinFirst = true;//标记
     boolean exchangeCoin = true;//标记，true表示cny，false表示usd
-
+    SwipeRefreshLayout refresh;
     /**
      * 钱包控制层
      */
@@ -77,13 +79,20 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     @Override
     protected void initViews(View rootView) {
         Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
+        refresh = rootView.findViewById(R.id.refresh);
         toolbar.inflateMenu(R.menu.wallet_fragment);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.refresh:
-                        initData();
+                        refresh.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                refresh.setRefreshing(true);
+                                refreshDatas();
+                            }
+                        });
                         break;
                     case R.id.send:
                         startSendCost();
@@ -116,6 +125,18 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         recyclerView.setAdapter(mainWalletAdapter);
         //添加观察者
         WalletPush.getInstance().addObserver(listener);
+        refresh.setColorSchemeColors(Color.parseColor("#0075FF"), Color.parseColor("#00B9FF"));
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshDatas();
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
     }
 
     @Override
@@ -142,9 +163,10 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         }
     };
 
-    @Override
-    protected void initData() {
-        mActivity.showDialog(1);
+    /**
+     * 刷新数据
+     */
+    private void refreshDatas() {
         walletViewModel.getAllWallets()
                 .compose(this.<List<Wallet>>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .subscribe(new Observer<List<Wallet>>() {
@@ -169,7 +191,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
                     @Override
                     public void onComplete() {
-                        mActivity.dismissDialog(1);
+                        refresh.setRefreshing(false);
                         //初始化相应的钱包汇率
                         String language = Locale.getDefault().getLanguage();
                         if (exchangeCoinFirst) {
@@ -184,7 +206,9 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         }
                     }
                 });
+
     }
+
 
     /**
      * 初始化钱包汇率CNY
@@ -225,6 +249,8 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     @Override
     public void onResume() {
         super.onResume();
+        refresh.setRefreshing(true);
+        refreshDatas();
     }
 
     /**
