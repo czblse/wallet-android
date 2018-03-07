@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+
     <application
         android:name=".base.SpacoAppliacation"
         android:allowBackup="true"
@@ -27,6 +28,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 必须配置 fileProvider， 注意： android:authorities="${applicationId}.fileProvider" 不要直接copy，设置为你的包名.fileProvider-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+
+        </provider>
+
         <activity android:name=".activities.PinSetActivity" android:launchMode="singleTop"/>
         <activity android:name=".activities.WalletCreatActivity" />
         <activity
@@ -38,6 +51,11 @@
             android:theme="@style/SendCost_style" />
         <activity android:name=".activities.TransactionActivity" />
         <activity android:name=".activities.BackupsWalletActivity"></activity>
+
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

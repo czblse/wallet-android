@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.tencent.bugly.beta.Beta;
+
 import java.util.List;
 
 import io.spaco.wallet.R;
@@ -88,5 +90,6 @@ public class MainActivity extends BaseActivity {
         intent.putExtra(Constant.KEY_PAGE, 1);
         startActivity(intent);
     }
+
 
 }

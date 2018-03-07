@@ -25,8 +25,7 @@ android {
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            //设置支持的SO库架构
-//            abiFilters 'armeabi-v7a'
+            abiFilters 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         multiDexEnabled true
     }
@@ -93,7 +92,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:+'
     implementation 'com.squareup.retrofit2:converter-scalars:+'
     implementation 'com.android.support:recyclerview-v7:26.0.2'
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     implementation 'pub.devrel:easypermissions:1.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
     compile project(':zxing_lib')

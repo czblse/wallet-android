@@ -76,6 +76,7 @@
     <string name="menu_transaction_info">Transaction Info</string>
     <string name="menu_backup_wallet">Backup Wallet</string>
     <string name="menu_send_coin">Send Coin</string>
+    <string name="menu_version_up">Version update</string>
     <string name="loading_str">\nHard loading...\n</string>
     <string name="str_show_qrcode">QR code</string>
     <string name="delete_wallet">Delete Wallet</string>

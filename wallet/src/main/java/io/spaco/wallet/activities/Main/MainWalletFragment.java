@@ -1,8 +1,10 @@
 package io.spaco.wallet.activities.Main;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.beta.UpgradeInfo;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import org.json.JSONArray;
@@ -35,6 +39,7 @@ import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.NetUtil;
 import io.spaco.wallet.utils.StatusBarUtils;
+import io.spaco.wallet.utils.ToastUtils;
 
 /**
  * 钱包主页视图碎片
@@ -49,7 +54,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     List<Wallet> mainWalletBeans = new ArrayList<>();
     boolean exchangeCoinFirst = true;//标记
     boolean exchangeCoin = true;//标记，true表示cny，false表示usd
-
+    SwipeRefreshLayout refresh;
     /**
      * 钱包控制层
      */
@@ -74,16 +79,26 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
     @Override
     protected void initViews(View rootView) {
         Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
+        refresh = rootView.findViewById(R.id.refresh);
         toolbar.inflateMenu(R.menu.wallet_fragment);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.refresh:
-                        initData();
+                        refresh.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                refresh.setRefreshing(true);
+                                refreshDatas();
+                            }
+                        });
                         break;
                     case R.id.send:
                         startSendCost();
+                        break;
+                    case R.id.version:
+                        chcekUp();
                         break;
                 }
                 return true;
@@ -110,6 +125,18 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         recyclerView.setAdapter(mainWalletAdapter);
         //添加观察者
         WalletPush.getInstance().addObserver(listener);
+        refresh.setColorSchemeColors(Color.parseColor("#0075FF"), Color.parseColor("#00B9FF"));
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshDatas();
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
     }
 
     @Override
@@ -136,9 +163,10 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         }
     };
 
-    @Override
-    protected void initData() {
-        mActivity.showDialog(1);
+    /**
+     * 刷新数据
+     */
+    private void refreshDatas() {
         walletViewModel.getAllWallets()
                 .compose(this.<List<Wallet>>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
                 .subscribe(new Observer<List<Wallet>>() {
@@ -163,7 +191,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
                     @Override
                     public void onComplete() {
-                        mActivity.dismissDialog(1);
+                        refresh.setRefreshing(false);
                         //初始化相应的钱包汇率
                         String language = Locale.getDefault().getLanguage();
                         if (exchangeCoinFirst) {
@@ -178,7 +206,9 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                         }
                     }
                 });
+
     }
+
 
     /**
      * 初始化钱包汇率CNY
@@ -214,6 +244,48 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
 
                     }
                 });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh.setRefreshing(true);
+        refreshDatas();
+    }
+
+    /**
+     * 检测更新
+     */
+    private void chcekUp() {
+        Beta.checkUpgrade();
+        //loadUpgradeInfo();
+    }
+
+    /**
+     * 获取升级信息
+     */
+    private void loadUpgradeInfo() {
+
+        UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
+
+        if (upgradeInfo == null) {
+            return;
+        }
+        StringBuilder info = new StringBuilder();
+        info.append("id: ").append(upgradeInfo.id).append("\n");
+        info.append("标题: ").append(upgradeInfo.title).append("\n");
+        info.append("升级说明: ").append(upgradeInfo.newFeature).append("\n");
+        info.append("versionCode: ").append(upgradeInfo.versionCode).append("\n");
+        info.append("versionName: ").append(upgradeInfo.versionName).append("\n");
+        info.append("发布时间: ").append(upgradeInfo.publishTime).append("\n");
+        info.append("安装包Md5: ").append(upgradeInfo.apkMd5).append("\n");
+        info.append("安装包下载地址: ").append(upgradeInfo.apkUrl).append("\n");
+        info.append("安装包大小: ").append(upgradeInfo.fileSize).append("\n");
+        info.append("弹窗间隔（ms）: ").append(upgradeInfo.popInterval).append("\n");
+        info.append("弹窗次数: ").append(upgradeInfo.popTimes).append("\n");
+        info.append("发布类型（0:测试 1:正式）: ").append(upgradeInfo.publishType).append("\n");
+        info.append("弹窗类型（1:建议 2:强制 3:手工）: ").append(upgradeInfo.upgradeType);
+        ToastUtils.show(info.toString());
     }
 
     /**

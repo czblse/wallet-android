@@ -4,4 +4,5 @@
 
     <item android:id="@+id/refresh" android:title="@string/menu_refresh_wallet" app:showAsAction="never"></item>
     <item android:id="@+id/send" android:title="@string/menu_send_coin" app:showAsAction="never"></item>
+    <item android:id="@+id/version" android:title="@string/menu_version_up" app:showAsAction="never"></item>
 </menu>
