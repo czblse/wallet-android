@@ -182,6 +182,9 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
      */
     @Override
     public void onBackPressed() {
-        finish();
+        Intent home = new Intent(Intent.ACTION_MAIN);
+        home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        home.addCategory(Intent.CATEGORY_HOME);
+        startActivity(home);
     }
 }
