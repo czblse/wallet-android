@@ -3,6 +3,8 @@ package io.spaco.wallet.utils;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -56,6 +58,11 @@ public class AppUtils {
             }
         }
         return null;
+    }
+
+    public static void hideKeyboard(Context context, EditText editText){
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
 }

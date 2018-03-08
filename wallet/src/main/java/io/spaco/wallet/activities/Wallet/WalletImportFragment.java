@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import io.spaco.wallet.R;
-import io.spaco.wallet.api.Const;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Coins;
@@ -95,7 +94,7 @@ public class WalletImportFragment extends BaseFragment {
         }
         if (SpacoWalletUtils.isWalletExist(coinType, walletName)){
             mEdtWalletName.requestFocus();
-            Toast.makeText(this.getActivity(), getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity(), getResources().getString(R.string.wallet_name_existed), Toast.LENGTH_SHORT).show();
             return false;
 
         }

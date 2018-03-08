@@ -71,6 +71,7 @@ public class WalletCreateFragment extends BaseFragment {
             public void onClick(View v) {
                 String seed = Mobile.newSeed();
                 editTextSeedShow.setText(seed);
+                editTextTextSeedInput.setText(null);
             }
         });
         editTextTextSeedInput = rootView.findViewById(R.id.confirm_seed);
@@ -128,7 +129,7 @@ public class WalletCreateFragment extends BaseFragment {
         }
         if (SpacoWalletUtils.isWalletExist(coinType, walletName)) {
             editTextMobileName.requestFocus();
-            Toast.makeText(this.getActivity(), getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity(), getResources().getString(R.string.wallet_name_existed), Toast.LENGTH_SHORT).show();
             return false;
 
         }

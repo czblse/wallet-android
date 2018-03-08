@@ -55,7 +55,8 @@
     <string name="transaction">交易明细</string>
     <string name="pls_input_wallet_name">请输入钱包名称</string>
     <string name="pls_input_seed">请输入种子</string>
-    <string name="wallet_is_existed">钱包名称已使用，请换一个</string>
+    <string name="wallet_name_existed">钱包名称已使用，请换一个</string>
+    <string name="wallet_is_existed">钱包已经创建</string>
     <string name="str_copy_success">复制成功</string>
     <string name="send_from">发送</string>
     <string name="send_to">接收</string>

@@ -53,7 +53,8 @@
     <string name="pls_generate_seed">Please generate a seed.</string>
     <string name="pls_confirm_seed">Please confirm your seed.</string>
     <string name="pls_input_seed">Please input seed.</string>
-    <string name="wallet_is_existed">Wallet name has used, please input another one.</string>
+    <string name="wallet_name_existed">Wallet name has used, please input another one.</string>
+    <string name="wallet_is_existed">Wallet has created.</string>
     <string name="str_copy_success">copy success</string>
     <string name="send_sky">Send SKY</string>
     <string name="send_from">Send from</string>

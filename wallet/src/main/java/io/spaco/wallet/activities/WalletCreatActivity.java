@@ -1,12 +1,9 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -19,14 +16,10 @@ import io.spaco.wallet.activities.Wallet.WalletImportFragment;
 import io.spaco.wallet.activities.Wallet.WalletCreateListener;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
-import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
-import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.push.WalletPush;
-import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
-import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
 
 /**
@@ -122,7 +115,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
         } catch (Exception e) {
             e.printStackTrace();
             if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")){
-                Toast.makeText(this, getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.wallet_name_existed), Toast.LENGTH_SHORT).show();
                 return false;
             }
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
