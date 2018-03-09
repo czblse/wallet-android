@@ -1,8 +1,10 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,6 +43,7 @@ public class SendCostActivity extends BaseActivity {
     Wallet wallet;
     Transaction transaction;
 
+    Handler handler = new Handler();
 
     @Override
     protected int attachLayoutRes() {
@@ -115,14 +118,7 @@ public class SendCostActivity extends BaseActivity {
                                     if (transaction == null) {
                                         ToastUtils.show(getString(R.string.str_send_error));
                                     }else{
-                                        ToastUtils.show(R.string.str_send_success);
-                                        new android.os.Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                WalletPush.getInstance().walletUpdate();
-                                                finish();
-                                            }
-                                        },700);
+                                        sendSuccess();
                                     }
                                 }
 
@@ -140,6 +136,34 @@ public class SendCostActivity extends BaseActivity {
 
             }
         };
+    }
+
+    private void sendSuccess(){
+        /**
+         * 发送成功后，先暂停2秒回到首页，然后8s后自动刷新钱包余额
+         */
+        close.setEnabled(false);
+        ToastUtils.show(R.string.str_send_success);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                WalletPush.getInstance().walletUpdate();
+                finish();
+            }
+        },2000);
+    }
+
+    /**
+     * 拦截返回按键
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+            return true;
+        return super.onKeyDown(keyCode, event);
     }
 
     private boolean checkEmpty() {
@@ -195,6 +219,4 @@ public class SendCostActivity extends BaseActivity {
             });
         }
     }
-
-
 }

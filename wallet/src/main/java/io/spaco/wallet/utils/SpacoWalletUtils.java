@@ -6,8 +6,6 @@ package io.spaco.wallet.utils;
 
 import android.text.TextUtils;
 
-import java.util.Date;
-
 import io.spaco.wallet.api.Const;
 import io.spaco.wallet.datas.WalletManager;
 

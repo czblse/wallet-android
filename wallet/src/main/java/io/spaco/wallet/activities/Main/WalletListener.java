@@ -6,7 +6,7 @@ import io.spaco.wallet.datas.Wallet;
  * Created by kimi on 2018/1/29.</br>
  */
 
-public interface MainWalletListener {
+public interface WalletListener {
 
     /**
      * 点击事件

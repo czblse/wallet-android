@@ -7,13 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import io.spaco.wallet.R;
 import io.spaco.wallet.beans.TransactionInfo;
+import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.common.OnItemClickListener;
+import io.spaco.wallet.utils.SharePrefrencesUtil;
 
 /**
  * Created by kimi on 2018/1/29.</br>
@@ -23,7 +27,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     List<TransactionInfo> transactionInfos;
     OnItemClickListener<TransactionInfo> onItemClickListener;
+
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd") ;
+
+    //汇率
+    double exchangeCoin = SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH)
+            ? Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.CNYEXCHAGECOIN))
+            : Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.USDEXCHAGECOIN));
+    DecimalFormat decimalFormat = new DecimalFormat(".00");
 
     public TransactionAdapter(List<TransactionInfo> mainTransactionBeanList){
         this.transactionInfos = mainTransactionBeanList == null ? new ArrayList<TransactionInfo>() : mainTransactionBeanList;
@@ -66,6 +77,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.address.setTag(position);
         holder.address.setOnClickListener(onClickListener);
         holder.itemView.setOnClickListener(onClickListener);
+        double value = Double.valueOf(transactionInfo.amount) * exchangeCoin;
+        if (SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH))
+            holder.balance.setText("- ￥" + decimalFormat.format(value));
+        else
+            holder.balance.setText("- $" + decimalFormat.format(value));
     }
 
     @Override

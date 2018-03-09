@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.push.WalletPush;
+import io.spaco.wallet.utils.SharePrefrencesUtil;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -43,12 +45,19 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     RecyclerView recyclerView;
     WalletDetailsAdapter walletDetailsAdapter;
     ArrayList<Address> walletDetailsBeans = new ArrayList<>();
+    TextView tvExchangeCoin;
 
     Wallet wallet;
     /**
      * 钱包控制层
      */
     WalletViewModel walletViewModel = new WalletViewModel();
+
+    //汇率
+    double exchangeCoin = SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH)
+            ? Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.CNYEXCHAGECOIN))
+            : Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.USDEXCHAGECOIN));
+    DecimalFormat decimalFormat = new DecimalFormat(".00");
 
     @Override
     protected int attachLayoutRes() {
@@ -59,6 +68,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     protected void initViews() {
         StatusBarUtils.statusBarCompat(this);
         recyclerView = findViewById(R.id.recyclerview);
+        tvExchangeCoin = findViewById(R.id.exchange_coin);
         Toolbar toolbar = findViewById(R.id.id_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -75,6 +85,11 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         //设置钱包余额
         ((TextView)findViewById(R.id.tv_balance)).setText(wallet.getBalance());
         ((TextView)findViewById(R.id.tv_sky_hours)).setText(wallet.getHours()+" SKY Hours");
+        //设置钱包汇率
+        if (SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH))
+            tvExchangeCoin.setText("￥" + decimalFormat.format(Double.parseDouble(wallet.getBalance()) * exchangeCoin));
+        else
+            tvExchangeCoin.setText("$" + decimalFormat.format(Double.parseDouble(wallet.getBalance()) * exchangeCoin));
 
         walletDetailsAdapter = new WalletDetailsAdapter(walletDetailsBeans);
         walletDetailsAdapter.setWalletDetailsListener(this);

@@ -2,29 +2,23 @@ package io.spaco.wallet.activities.Main;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
@@ -34,11 +28,9 @@ import io.spaco.wallet.activities.WalletDetailsActivity;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
-import io.spaco.wallet.push.WalletListener;
 import io.spaco.wallet.push.WalletPush;
-import io.spaco.wallet.utils.LogUtils;
-import io.spaco.wallet.utils.NetUtil;
-import io.spaco.wallet.utils.StatusBarUtils;
+import io.spaco.wallet.push.WalletPushListener;
+import io.spaco.wallet.utils.SharePrefrencesUtil;
 import io.spaco.wallet.utils.ToastUtils;
 
 /**
@@ -46,27 +38,32 @@ import io.spaco.wallet.utils.ToastUtils;
  * Created by kimi on 2018/1/25.
  */
 
-public class MainWalletFragment extends BaseFragment implements MainWalletListener {
+public class WalletFragment extends BaseFragment implements WalletListener {
 
     RecyclerView recyclerView;
-    MainWalletAdapter mainWalletAdapter;
+    WalletAdapter mainWalletAdapter;
     TextView tvBalance, tvHours, tvExchangeCoin;
     List<Wallet> mainWalletBeans = new ArrayList<>();
-    boolean exchangeCoinFirst = true;//标记
-    boolean exchangeCoin = true;//标记，true表示cny，false表示usd
     SwipeRefreshLayout refresh;
+
+    /**
+     * 标记，true表示cny，false表示usd
+     */
+    boolean exchangeCoinZH = SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH);
+    DecimalFormat decimalFormat = new DecimalFormat(".00");
+
     /**
      * 钱包控制层
      */
     WalletViewModel walletViewModel = new WalletViewModel();
 
     /**
-     * 测试数据
+     * 定时任务专用handler
      */
-    List<Wallet> wallets;
+    Handler taskHandler = new Handler();
 
-    public static MainWalletFragment newInstance(Bundle args) {
-        MainWalletFragment instance = new MainWalletFragment();
+    public static WalletFragment newInstance(Bundle args) {
+        WalletFragment instance = new WalletFragment();
         instance.setArguments(args);
         return instance;
     }
@@ -108,11 +105,8 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
             @Override
             public void onClick(View v) {
                 //切换对应的钱包汇率
-                if (exchangeCoin)
-                    initCNYexchangCoin();
-                else
-                    initUSDexchangCoin();
-                exchangeCoin = !exchangeCoin;
+                exchangeCoinZH = !exchangeCoinZH;
+                setExchangeCoinValue();
             }
         });
         tvExchangeCoin = rootView.findViewById(R.id.exchange_coin);
@@ -120,7 +114,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         tvBalance = rootView.findViewById(R.id.tv_balance);
         tvHours = rootView.findViewById(R.id.tv_hours);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        mainWalletAdapter = new MainWalletAdapter(mainWalletBeans);
+        mainWalletAdapter = new WalletAdapter(mainWalletBeans);
         mainWalletAdapter.setMainWalletListener(this);
         recyclerView.setAdapter(mainWalletAdapter);
         //添加观察者
@@ -144,12 +138,19 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         super.onDestroyView();
         //移除观察者
         WalletPush.getInstance().deleteObserver(listener);
+        taskHandler.removeCallbacksAndMessages(null);
     }
 
-    private WalletListener listener = new WalletListener() {
+    private WalletPushListener listener = new WalletPushListener() {
         @Override
         protected void walletUpdate() {
-            initData();
+            taskHandler.removeCallbacksAndMessages(null);
+            taskHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshDatas();
+                }
+            },8000);
         }
 
         @Override
@@ -192,58 +193,22 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
                     @Override
                     public void onComplete() {
                         refresh.setRefreshing(false);
-                        //初始化相应的钱包汇率
-                        String language = Locale.getDefault().getLanguage();
-                        if (exchangeCoinFirst) {
-                            exchangeCoinFirst = false;
-                            if ("zh".equals(language)) {
-                                exchangeCoin = true;
-                                initCNYexchangCoin();
-                            } else {
-                                initUSDexchangCoin();
-                                exchangeCoin = false;
-                            }
-                        }
+                        setExchangeCoinValue();
                     }
                 });
-
     }
 
-
     /**
-     * 初始化钱包汇率CNY
+     * 设置汇率
      */
-    private void initCNYexchangCoin() {
-        walletViewModel.getCNYcoinExchange()
-                .compose(this.<String>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        try {
-                            double price_cny = new JSONArray(s).getJSONObject(0).optDouble("price_cny");
-                            double value = WalletViewModel.totalBalance * price_cny;
-                            DecimalFormat decimalFormat = new DecimalFormat(".00");
-                            tvExchangeCoin.setText("￥" + decimalFormat.format(value));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+    private void setExchangeCoinValue(){
+        if(exchangeCoinZH){
+            double value = WalletViewModel.totalBalance * Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.CNYEXCHAGECOIN));
+            tvExchangeCoin.setText("￥" + decimalFormat.format(value));
+        }else{
+            double value = WalletViewModel.totalBalance * Double.parseDouble(SharePrefrencesUtil.getInstance().getString(Constant.USDEXCHAGECOIN));
+            tvExchangeCoin.setText("$" + decimalFormat.format(value));
+        }
     }
 
     @Override
@@ -265,9 +230,7 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
      * 获取升级信息
      */
     private void loadUpgradeInfo() {
-
         UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
-
         if (upgradeInfo == null) {
             return;
         }
@@ -286,42 +249,6 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
         info.append("发布类型（0:测试 1:正式）: ").append(upgradeInfo.publishType).append("\n");
         info.append("弹窗类型（1:建议 2:强制 3:手工）: ").append(upgradeInfo.upgradeType);
         ToastUtils.show(info.toString());
-    }
-
-    /**
-     * 初始化钱包汇率USD
-     */
-    private void initUSDexchangCoin() {
-        walletViewModel.getUSDcoinExchange()
-                .compose(this.<String>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        try {
-                            double price_usd = new JSONArray(s).getJSONObject(0).optDouble("price_usd");
-                            double value = WalletViewModel.totalBalance * price_usd;
-                            DecimalFormat decimalFormat = new DecimalFormat(".00");
-                            tvExchangeCoin.setText("$" + decimalFormat.format(value));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
     }
 
     @Override
@@ -364,5 +291,4 @@ public class MainWalletFragment extends BaseFragment implements MainWalletListen
             e.printStackTrace();
         }
     }
-
 }

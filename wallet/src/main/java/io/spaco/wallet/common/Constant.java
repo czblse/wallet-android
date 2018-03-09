@@ -19,7 +19,9 @@ public interface Constant {
     String KEY_WALLET_ID = "wallet_id";
     String KEY_WALLET = "wallet";
     String KEY_PAGE = "page";
-
+    String CNYEXCHAGECOIN = "cnyExchangeCoin";
+    String USDEXCHAGECOIN = "usdExchangeCoin";
+    String IS_LANGUAGE_ZH = "is_language_en";
     /**
      * request code
      */

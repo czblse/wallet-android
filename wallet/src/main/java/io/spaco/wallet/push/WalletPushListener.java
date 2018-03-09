@@ -7,7 +7,7 @@ import java.util.Observer;
  * Created by kimi on 2018/2/22.
  */
 
-public abstract class WalletListener implements Observer {
+public abstract class WalletPushListener implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {

@@ -17,12 +17,12 @@ import io.spaco.wallet.datas.Wallet;
  * Created by kimi on 2018/1/29.</br>
  */
 
-public class MainWalletAdapter extends RecyclerView.Adapter {
+public class WalletAdapter extends RecyclerView.Adapter {
 
     /**
      * 回调接口
      */
-    MainWalletListener mainWalletListener;
+    WalletListener mainWalletListener;
 
     public void setWallets(List<Wallet> wallets) {
         this.wallets = wallets;
@@ -30,11 +30,11 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
 
     List<Wallet> wallets;
 
-    public MainWalletAdapter(List<Wallet> wallets){
+    public WalletAdapter(List<Wallet> wallets){
         this.wallets = wallets == null ? new ArrayList<Wallet>() : wallets;
     }
 
-    public void setMainWalletListener(MainWalletListener mainWalletListener){
+    public void setMainWalletListener(WalletListener mainWalletListener){
         this.mainWalletListener = mainWalletListener;
     }
 
@@ -48,15 +48,17 @@ public class MainWalletAdapter extends RecyclerView.Adapter {
             int id = v.getId();
             int position = (int) v.getTag();
             int itemViewType = getItemViewType(position);
-            if(itemViewType == 0){
+            if(itemViewType == 0)
                 mainWalletListener.onItemClick(position,wallets.get(position));
+
+
 //            }else if(itemViewType == 1){
 //                if(id == R.id.tv_new_wallet){
 //                    mainWalletListener.onCreateWallet();
 //                }else if(id == R.id.tv_import_wallet){
 //                    mainWalletListener.onImportWallet();
 //                }
-            }
+//            }
         }
     };
 

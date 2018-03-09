@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import io.spaco.wallet.R;
+import io.spaco.wallet.activities.Main.WalletViewModel;
 import io.spaco.wallet.api.Const;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
@@ -47,6 +48,8 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
 
     @Override
     protected void initData() {
+        //获取汇率，不需要关心结果和生命周期
+        new WalletViewModel().initExchangeCoin();
         //6.0动态权限申请
         if(EasyPermissions.hasPermissions(this, Constant.ALL_PERMISSIONS)){
             initWallet();
