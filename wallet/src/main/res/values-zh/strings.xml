@@ -13,7 +13,7 @@
     <string name="pin_create_wallet_seed">种子</string>
     <string name="pin_create_wallet_seed_verify">确认种子</string>
     <string name="pin_create_wallet_generate_seed">自动生成</string>
-    <string name="pin_explain">这个PIN安全码将用来打开钱包。不要忘记它; 如果你忘记了，你可能会失去你的手机钱包。</string>
+    <string name="pin_explain">设定PIN码用以打开钱包，请不要忘记密码，否则会无法打开钱包</string>
     <string name="pin_verify_explain">再次输入你的PIN安全码</string>
     <string name="pin_input_explain">请输入你的PIN安全码</string>
     <string name="disclaimer">免责声明</string>
@@ -40,7 +40,7 @@
         如果你还没有钱包，那就自动生成一个种子，我们会为你创建一个钱包。如果你已经有了一个钱包，请输入下面的种子并开始导入它。
     </string>
     <string name="disclaimer_info">
-        通过继续，您可以理解与加密令牌和基于区块链的软件相关的风险。Skycoin的移动钱包，以及Skycoin的加密货币。您理解这个产品是按原样提供的，并同意使用该产品的使用和条件
+        点击继续，表明您了解加密货币和区块链软件的相关风险，了解Skycoin以及Skycoin加密货币以及了解产品的原型和使用条例。
     </string>
     <string name="error_agreement">保护你的钱包!</string>
     <string name="hint_agree"> 是的,我理解</string>
