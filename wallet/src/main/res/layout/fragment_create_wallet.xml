@@ -84,7 +84,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:id="@+id/generate_seed"
+            android:background="@drawable/bg_button_generate_seed"
             android:textColor="@android:color/white"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
             android:text="@string/generate_seed"/>
 
         <FrameLayout
