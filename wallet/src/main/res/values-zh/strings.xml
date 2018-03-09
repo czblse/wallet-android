@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wallet</string>
+    <string name="app_name">Skycoin</string>
     <string name="login">登录</string>
     <string name="pin_title">设置PIN安全码</string>
     <string name="pin_verify_title">确认PIN安全码</string>

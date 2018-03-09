@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wallet</string>
+    <string name="app_name">Skycoin</string>
     <string name="login">Login</string>
     <string name="pin_title">Set a PIN#</string>
     <string name="pin_verify_title">Confirm PIN#</string>
