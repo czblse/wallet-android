@@ -136,6 +136,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                             ToastUtils.show(getResources().getString(R.string.input_pinnum_one));
                         }
                     }
+                    clearInput();
                 }
             } else {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -145,10 +146,20 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                 fragmentTransaction.commit();
             }
         } else {
+            clearInput();
             int time = SpacoWalletUtils.getOutPinTime();
             ToastUtils.show(getResources().getString(R.string.input_pintime) + time + getResources().getString(R.string.input_pinminut));
         }
-       // inputFragment.clearInput();
+
+
+    }
+
+    private void clearInput(){
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                inputFragment.clearInput();
+            }
+        }, 300);
     }
 
     @Override

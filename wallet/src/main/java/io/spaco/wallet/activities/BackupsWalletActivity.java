@@ -1,5 +1,6 @@
 package io.spaco.wallet.activities;
 
+import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -25,6 +26,8 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
         return R.layout.activity_backups_wallet;
     }
 
+    private PinInputFragment inputFragment;
+
     @Override
     protected void initViews() {
         Toolbar toolbar = findViewById(R.id.id_toolbar);
@@ -39,9 +42,9 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
             }
         });
         if (savedInstanceState == null) {
-            PinInputFragment pinInputFragment = PinInputFragment.newInstance(null);
+            inputFragment = PinInputFragment.newInstance(null);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, pinInputFragment);
+            fragmentTransaction.replace(R.id.container, inputFragment);
             fragmentTransaction.commit();
         }
     }
@@ -75,12 +78,22 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
                         ToastUtils.show(getResources().getString(R.string.input_pinnum_one));
                     }
                 }
+                clearInput();
             }
 
         } else {
             int time = SpacoWalletUtils.getOutPinTime();
             ToastUtils.show(getResources().getString(R.string.input_pintime) + time + getResources().getString(R.string.input_pinminut));
+            clearInput();
         }
+    }
+
+    private void clearInput() {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                inputFragment.clearInput();
+            }
+        }, 300);
     }
 
     @Override

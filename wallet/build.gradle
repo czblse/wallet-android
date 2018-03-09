@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            keyAlias 'sky'
+            keyAlias 'key0'
             keyPassword '123654'
             storeFile file('/Users/luch/IntelliJIDEAProjects/wallet-android/spo.network')
             storePassword '123654'

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -75,13 +76,12 @@ public class KeyboardProgress extends View {
     }
 
     /**
-     * 清楚刷新
+     * 清除刷新
      */
     public void clearUpdate() {
-        for (int i = 0;i<progress;i++){
-            progress--;
-            invalidate();
-        }
+        progress = 0;
+        invalidate();
+
     }
 
     /**

@@ -64,6 +64,7 @@ public class PinInputFragment extends BaseFragment {
     }
 
     public void clearInput() {
+        pinCode = new StringBuilder();
         keyboardProgress.clearUpdate();
     }
 
