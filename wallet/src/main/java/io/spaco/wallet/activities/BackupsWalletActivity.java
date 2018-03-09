@@ -9,6 +9,7 @@ import io.spaco.wallet.R;
 import io.spaco.wallet.activities.BackupsWallet.BackupsWalletFragment;
 import io.spaco.wallet.activities.PIN.PinInputFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
+import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
@@ -37,10 +38,10 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
                 finish();
             }
         });
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             PinInputFragment pinInputFragment = PinInputFragment.newInstance(null);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container,pinInputFragment);
+            fragmentTransaction.replace(R.id.container, pinInputFragment);
             fragmentTransaction.commit();
         }
     }
@@ -50,16 +51,35 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
 
     }
 
+    //pin输入次数
+    private int pinNum;
+
     @Override
     public void onPinSetSuccess(String pin) {
-        if (TextUtils.equals(pin, SpacoWalletUtils.getPin())) {
-            getSupportActionBar().show();
-            BackupsWalletFragment backupsWalletFragment = BackupsWalletFragment.newInstance(getIntent().getExtras());
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container,backupsWalletFragment);
-            fragmentTransaction.commit();
-        }else{
-            ToastUtils.show(getString(R.string.pin_error));
+        if (SpacoWalletUtils.returnPinHint()) {
+            if (TextUtils.equals(pin, SpacoWalletUtils.getPin())) {
+                getSupportActionBar().show();
+                BackupsWalletFragment backupsWalletFragment = BackupsWalletFragment.newInstance(getIntent().getExtras());
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, backupsWalletFragment);
+                fragmentTransaction.commit();
+            } else {
+                pinNum++;
+                if (pinNum == 3) {
+                    ToastUtils.show(getResources().getString(R.string.input_pinnum_error));
+                    SpacoWalletUtils.setPinTime();
+                } else {
+                    if ((3 - pinNum) == 2) {
+                        ToastUtils.show(getResources().getString(R.string.input_pinnum_two));
+                    } else if ((3 - pinNum) == 1) {
+                        ToastUtils.show(getResources().getString(R.string.input_pinnum_one));
+                    }
+                }
+            }
+
+        } else {
+            int time = SpacoWalletUtils.getOutPinTime();
+            ToastUtils.show(getResources().getString(R.string.input_pintime) + time + getResources().getString(R.string.input_pinminut));
         }
     }
 

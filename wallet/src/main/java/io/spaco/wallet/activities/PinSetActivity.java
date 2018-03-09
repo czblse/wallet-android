@@ -115,7 +115,6 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     @Override
     protected void onResume() {
         super.onResume();
-        pinNum = 0;
     }
 
     @Override
