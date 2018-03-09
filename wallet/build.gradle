@@ -4,9 +4,9 @@ android {
     signingConfigs {
         release {
             keyAlias 'sky'
-            keyPassword 'iowallet'
-            storeFile file('/Users/luch/IntelliJIDEAProjects/wallet-android/skyss.jks')
-            storePassword 'iowallet'
+            keyPassword '123654'
+            storeFile file('/Users/luch/IntelliJIDEAProjects/wallet-android/spo.network')
+            storePassword '123654'
         }
     }
     compileSdkVersion build_versions.compileSdkVersion
