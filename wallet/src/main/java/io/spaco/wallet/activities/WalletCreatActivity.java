@@ -20,6 +20,7 @@ import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
+import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
 
 /**
@@ -51,9 +52,9 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.create_wallet){
+                if (checkedId == R.id.create_wallet) {
                     switchFragment(walletCreateFragment);
-                }else if(checkedId == R.id.import_wallet){
+                } else if (checkedId == R.id.import_wallet) {
                     switchFragment(walletImportFragment);
                 }
             }
@@ -63,11 +64,11 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
         walletImportFragment = WalletImportFragment.newInstance(null);
 
         //选中指定界面
-        int page = getIntent().getIntExtra(Constant.KEY_PAGE,0);
-        if(page == 0)
-            ((RadioButton)radioGroup.findViewById(R.id.create_wallet)).setChecked(true);
+        int page = getIntent().getIntExtra(Constant.KEY_PAGE, 0);
+        if (page == 0)
+            ((RadioButton) radioGroup.findViewById(R.id.create_wallet)).setChecked(true);
         else
-            ((RadioButton)radioGroup.findViewById(R.id.import_wallet)).setChecked(true);
+            ((RadioButton) radioGroup.findViewById(R.id.import_wallet)).setChecked(true);
 
     }
 
@@ -78,21 +79,22 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
 
     /**
      * 切换碎片视图
+     *
      * @param fragment
      */
-    private void switchFragment(Fragment fragment){
+    private void switchFragment(Fragment fragment) {
         String tag = fragment.getClass().getSimpleName();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment instance = getSupportFragmentManager().findFragmentByTag(tag);
-        if(instance == null){
-            fragmentTransaction.add(R.id.container,fragment,tag);
+        if (instance == null) {
+            fragmentTransaction.add(R.id.container, fragment, tag);
         }
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        if(fragments != null){
-            for(Fragment item : fragments){
-                if(item.equals(fragment)){
+        if (fragments != null) {
+            for (Fragment item : fragments) {
+                if (item.equals(fragment)) {
                     fragmentTransaction.show(item);
-                }else{
+                } else {
                     fragmentTransaction.hide(item);
                 }
             }
@@ -106,6 +108,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
+            creatFiveWallet(walletId);
             //发送通知
             WalletPush.getInstance().walletUpdate();
             Intent intent = new Intent(this, MainActivity.class);
@@ -114,13 +117,23 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")){
+            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")) {
                 Toast.makeText(this, getResources().getString(R.string.wallet_name_existed), Toast.LENGTH_SHORT).show();
                 return false;
             }
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return false;
+    }
+
+    private void creatFiveWallet(String id) {
+        try {
+            for (int i = 0; i < 4; i++) {
+                Mobile.newAddress(id, 1, SpacoWalletUtils.getPin16());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -137,7 +150,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")){
+            if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")) {
                 Toast.makeText(this, getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
                 return false;
             }
