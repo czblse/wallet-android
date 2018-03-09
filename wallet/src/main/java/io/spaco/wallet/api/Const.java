@@ -16,5 +16,9 @@ public class Const {
    public static final String DESKey = "95880288";
 
 
+    /**
+     * Pin超时分钟
+     */
+    public static final int PINTIME = 5;
 
 }

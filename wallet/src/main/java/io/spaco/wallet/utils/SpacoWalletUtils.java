@@ -6,6 +6,8 @@ package io.spaco.wallet.utils;
 
 import android.text.TextUtils;
 
+import java.util.Date;
+
 import io.spaco.wallet.api.Const;
 import io.spaco.wallet.datas.WalletManager;
 
@@ -24,6 +26,11 @@ public class SpacoWalletUtils {
      */
     public static final String Wallet_KEY = "Wallet_KEY";
 
+    /**
+     * pin输入超限开始时间
+     */
+    public static final String PIN_OUT = "PIN_TIME";
+
     public static boolean isPinSet() {
         return !TextUtils.isEmpty(getPin());
     }
@@ -41,11 +48,83 @@ public class SpacoWalletUtils {
         SharePrefrencesUtil.getInstance().putBoolean(GGREE, state);
     }
 
+    /**
+     * pin错误次数限制提示
+     * 比较两次时间差5分钟
+     *
+     * @return 布尔值
+     */
+    public static boolean returnPinHint() {
+        int Nm, Om;
+        Om = getPinTime();
+        Nm = DateUtils.getNowMinute();
+        if (Om == 0) {
+            return true;
+        }
+        if (Nm > Om) {
+            if ((Nm - Om) >= Const.PINTIME) {
+                setPinTime(true);
+                return true;
+            } else {
+                return false;
+            }
+        } else if (Nm < Om) {
+            if (((60 - Om) + Nm) >= Const.PINTIME) {
+                setPinTime(true);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * pin错误次数限制提示
+     * 比较两次时间差5分钟
+     *
+     * @return 分钟
+     */
+    public static int getOutPinTime() {
+        int Nm, Om;
+        Om = getPinTime();
+        Nm = DateUtils.getNowMinute();
+        if (Nm > Om) {
+            return Const.PINTIME - (Nm - Om);
+        } else if (Nm < Om) {
+            return Const.PINTIME -((60 - Om) + Nm);
+        } else {
+            return Const.PINTIME;
+        }
+
+    }
+
+    private static int getPinTime() {
+        try {
+            Integer value = SharePrefrencesUtil.getInstance().getInt(PIN_OUT);
+            return value;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public static void setPinTime() {
+        int minutes = DateUtils.getNowMinute();
+        SharePrefrencesUtil.getInstance().putInt(PIN_OUT, minutes);
+    }
+
+    public static void setPinTime(boolean isOut) {
+        int minutes = DateUtils.getNowMinute();
+        SharePrefrencesUtil.getInstance().putInt(PIN_OUT, isOut ? 0 : minutes);
+    }
+
 
     public static String getPin() {
         try {
             String value = SharePrefrencesUtil.getInstance().getString(PIN_KEY);
-            String pincode = DES.decryptDES(value,Const.DESKey);
+            String pincode = DES.decryptDES(value, Const.DESKey);
             LogUtils.d("decrypt = " + pincode);
             return pincode;
         } catch (Exception e) {
@@ -67,9 +146,10 @@ public class SpacoWalletUtils {
 
     /**
      * 因为密码是16位的，所以取pin的hash的前16位作为加密的数据
+     *
      * @return
      */
-    public static String getPin16(){
+    public static String getPin16() {
         String pinTemp = String.valueOf(getPin().hashCode());
         return getPin() + pinTemp;
     }

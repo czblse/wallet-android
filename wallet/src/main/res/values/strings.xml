@@ -23,6 +23,11 @@
     <string name="start_import_wallet">Import</string>
     <string name="toast_pin_error">The PIN security code of the two inputs is inconsistent.</string>
     <string name="input_pin_error">PIN entered incorrectly, please try again</string>
+    <string name="input_pinnum_error">Please try again after 5 minutes.</string>
+    <string name="input_pinnum_one">PIN input error, there is only one chance left.</string>
+    <string name="input_pinnum_two">PIN input error, there are 2 chances left.</string>
+    <string name="input_pintime">Please try again in </string>
+    <string name="input_pinminut"> minutes.</string>
     <string name="creates">Create</string>
     <string name="imports">Import</string>
     <string name="input_id">Please enter your wallet ID</string>

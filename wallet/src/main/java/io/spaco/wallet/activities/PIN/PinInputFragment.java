@@ -63,6 +63,10 @@ public class PinInputFragment extends BaseFragment {
         }
     }
 
+    public void clearInput() {
+        keyboardProgress.clearUpdate();
+    }
+
     /**
      * 数字键盘结果回调
      */

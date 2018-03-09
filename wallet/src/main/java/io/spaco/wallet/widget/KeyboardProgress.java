@@ -75,6 +75,16 @@ public class KeyboardProgress extends View {
     }
 
     /**
+     * 清楚刷新
+     */
+    public void clearUpdate() {
+        for (int i = 0;i<progress;i++){
+            progress--;
+            invalidate();
+        }
+    }
+
+    /**
      * 删除刷新
      */
     public void deleteUpdate() {

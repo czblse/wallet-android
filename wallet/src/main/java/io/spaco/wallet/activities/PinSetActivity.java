@@ -33,6 +33,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
     private DisclaimerDialog mDialog;
     Handler handler = new Handler();
 
+    private PinInputFragment inputFragment;
+
 
     @Override
     protected int attachLayoutRes() {
@@ -45,7 +47,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             if (SpacoWalletUtils.isPinSet()) {
-                fragmentTransaction.add(R.id.container, PinInputFragment.newInstance(null),
+                inputFragment = PinInputFragment.newInstance(null);
+                fragmentTransaction.add(R.id.container, inputFragment,
                         PinInputFragment.class.getSimpleName());
             } else {
                 fragmentTransaction.add(R.id.container, PinSetFragment.newInstance(null),
@@ -106,22 +109,47 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
 
     }
 
+    //pin输入次数
+    private int pinNum;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pinNum = 0;
+    }
+
     @Override
     public void onPinSetSuccess(String pin) {
         pinCode = pin;
-        if (SpacoWalletUtils.isPinSet()) {
-            if (TextUtils.equals(pinCode, SpacoWalletUtils.getPin())) {
-                launchToWalletActivity();
+        if (SpacoWalletUtils.returnPinHint()) {
+            if (SpacoWalletUtils.isPinSet()) {
+                if (TextUtils.equals(pinCode, SpacoWalletUtils.getPin())) {
+                    launchToWalletActivity();
+                } else {
+                    pinNum++;
+                    if (pinNum == 3) {
+                        ToastUtils.show(getResources().getString(R.string.input_pinnum_error));
+                        SpacoWalletUtils.setPinTime();
+                    } else {
+                        if ((3 - pinNum) == 2) {
+                            ToastUtils.show(getResources().getString(R.string.input_pinnum_two));
+                        } else if ((3 - pinNum) == 1) {
+                            ToastUtils.show(getResources().getString(R.string.input_pinnum_one));
+                        }
+                    }
+                }
             } else {
-                ToastUtils.show(getResources().getString(R.string.input_pin_error));
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
+                        VerifyPinSetFragment.class.getSimpleName());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         } else {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
-                    VerifyPinSetFragment.class.getSimpleName());
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            int time = SpacoWalletUtils.getOutPinTime();
+            ToastUtils.show(getResources().getString(R.string.input_pintime) + time + getResources().getString(R.string.input_pinminut));
         }
+       // inputFragment.clearInput();
     }
 
     @Override
