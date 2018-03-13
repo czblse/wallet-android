@@ -142,6 +142,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             String walletId = Mobile.newWallet(walletType, walletName, seed, SpacoWalletUtils.getPin16());
             Wallet wallet = new Wallet(walletType, walletName, walletId);
             wallet.save();
+            creatFiveWallet(walletId);
             //发送通知
             WalletPush.getInstance().walletUpdate();
             Intent intent = new Intent(this, MainActivity.class);
