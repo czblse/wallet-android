@@ -8,7 +8,7 @@
   https://trello.com/b/tdRSoArJ/spacowallet
 
   
-##分支管理
+##  分支管理
 四个永久分支
 
 - master作为单币钱包的线上生产分支
@@ -52,4 +52,4 @@
 
 
 
-- #####demo参考链接 https://github.com/bitcoin-wallet/bitcoin-wallet
+- #####  demo参考链接 https://github.com/bitcoin-wallet/bitcoin-wallet
