@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     signingConfigs {
@@ -97,4 +98,8 @@ dependencies {
     implementation 'pub.devrel:easypermissions:1.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
     compile project(':zxing_lib')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

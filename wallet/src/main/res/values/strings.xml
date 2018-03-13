@@ -34,7 +34,7 @@
     <string name="input_amount">Please enter the transaction amount.</string>
     <string name="input_address">Please enter your wallet address</string>
     <string name="insufficient_balance">Insufficient wallet balance</string>
-
+    <string name="me">me</string>
 
     <string name="wallet_creat_title">Create a wallet</string>
     <string name="generate_seed">generate_seed</string>

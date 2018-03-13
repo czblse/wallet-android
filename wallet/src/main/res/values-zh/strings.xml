@@ -27,6 +27,7 @@
     <string name="creates">创建</string>
     <string name="imports">导入</string>
     <string name="reset_pin">重设</string>
+    <string name="me">我</string>
 
     <string name="input_id">请输入钱包ID</string>
     <string name="input_amount">请输入交易金额</string>

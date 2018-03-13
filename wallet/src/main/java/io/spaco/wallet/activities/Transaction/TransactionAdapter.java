@@ -52,8 +52,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         @Override
         public void onClick(View v) {
-            if(onItemClickListener == null)
+            if(onItemClickListener == null) {
                 return;
+            }
             int position = (int) v.getTag();
             onItemClickListener.onClick(v.getId(),position,transactionInfos.get(position));
         }
@@ -67,20 +68,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(MainTransactionViewHolder holder, int position) {
         TransactionInfo transactionInfo = transactionInfos.get(position);
-        String time = transactionInfo.time;
+        String time = transactionInfo.getTime();
         Date date = new Date(Long.parseLong(time));
         holder.date.setText(simpleDateFormat.format(date));
-        holder.address.setText(transactionInfo.toWallet);
-        holder.transaction.setText("-"+transactionInfo.amount);
-        holder.flag.setText("  Send "+transactionInfo.coinType);
+        holder.address.setText(transactionInfo.getToWallet());
+        holder.transaction.setText("-"+transactionInfo.getAmount());
+        holder.flag.setText("  Send "+transactionInfo.getCoinType());
         holder.itemView.setTag(position);
         holder.address.setTag(position);
         holder.address.setOnClickListener(onClickListener);
         holder.itemView.setOnClickListener(onClickListener);
-        double value = Double.valueOf(transactionInfo.amount) * exchangeCoin;
-        if (SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH))
+        double value = Double.valueOf(transactionInfo.getAmount()) * exchangeCoin;
+        if (SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH)) {
             holder.balance.setText("- ￥" + decimalFormat.format(value));
-        else
+        } else
             holder.balance.setText("- $" + decimalFormat.format(value));
     }
 

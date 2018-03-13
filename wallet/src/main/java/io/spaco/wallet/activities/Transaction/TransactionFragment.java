@@ -141,7 +141,7 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
      */
     private void showQRcodeDialog(TransactionInfo bean) {
         ShowQrDialog showQrDialog = new ShowQrDialog(getActivity());
-        showQrDialog.setKey(bean.toWallet);
+        showQrDialog.setKey(bean.getToWallet());
         showQrDialog.show();
     }
 
@@ -151,12 +151,12 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
     private void showTransactionInfoDialog(TransactionInfo bean) {
         SendKeyBean sendKeyBean = new SendKeyBean();
         sendKeyBean.setDate("暂无时间字段");
-        sendKeyBean.setStatus(bean.status.getStatusValues());
-        sendKeyBean.setForm(bean.txn.inputs.get(0));
-        sendKeyBean.setTo(bean.txn.outputs.get(0).dst);
-        sendKeyBean.setNotes(bean.status.block_seq);
-        sendKeyBean.setTime(bean.txn.outputs.get(0).hours);
-        sendKeyBean.setSkyNum(bean.txn.outputs.get(0).coins);
+        sendKeyBean.setStatus(bean.getStatus().getStatusValues());
+        sendKeyBean.setForm(bean.getTxn().getInputs().get(0));
+        sendKeyBean.setTo(bean.getTxn().getOutputs().get(0).getDst());
+        sendKeyBean.setNotes(bean.getStatus().getBlock_seq());
+        sendKeyBean.setTime(bean.getTxn().getOutputs().get(0).getHours());
+        sendKeyBean.setSkyNum(bean.getTxn().getOutputs().get(0).getCoins());
         SendKeyDialog sendKeyDialog = new SendKeyDialog(mActivity);
         sendKeyDialog.setData(sendKeyBean);
         sendKeyDialog.setCancelable(false);
