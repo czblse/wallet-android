@@ -1,18 +1,26 @@
 # wallet-android
 
-- demo参考链接 https://github.com/bitcoin-wallet/bitcoin-wallet
 
--技术资料参考
 
- 项目本地根目录-source
 
-- 天空链设计参考链接
+## 钱包团队协作平台链接
 
-  https://www.figma.com/file/efvGt8mcdRQScuevWAojfF8v/Skycoin-Wallets?node-id=3%3A910
+  https://trello.com/b/tdRSoArJ/spacowallet
 
-  //蓝湖： https://lanhuapp.com/web/#/item/board?pid=f747528f-8b48-41a9-8c83-8579c979f134
+  
+##分支管理
+四个永久分支
 
-  processon：https://www.processon.com/mindmap/5a0bf8f3e4b049e7f4fdcc0a
+- master作为单币钱包的线上生产分支
+
+- dev 作为单币钱包的开发分支
+
+- master-a作为多币种钱包的线上生产分支
+
+- dev-a作为多币种钱包的开发分支
+
+> 可根据测试问题及相关需求新开临时分支，后续合并至相关主线
+  
 
 
 
@@ -42,3 +50,6 @@
 
   Keystory是以太坊提出的规范，助记词是比特币提出的规范，还有普通私钥和观察者，本质上都是属于私钥。
 
+
+
+- #####demo参考链接 https://github.com/bitcoin-wallet/bitcoin-wallet
