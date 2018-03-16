@@ -208,7 +208,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                 Mobile.registerNewCoin("spocoin", "i.spo.network:8620");
                 Mobile.registerNewCoin("skycoin", "i.spo.network:6420");
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
 
             Intent intent = new Intent(this, WalletCreatActivity.class);

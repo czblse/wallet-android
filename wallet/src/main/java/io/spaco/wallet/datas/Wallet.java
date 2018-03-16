@@ -116,7 +116,7 @@ public class Wallet implements Serializable {
             JSONObject jsonObject = new JSONObject(rawString);
             return jsonObject.optDouble("balance");
         } catch (JSONException e) {
-            e.printStackTrace();
+
             return 0d;
         }
     }
@@ -126,7 +126,7 @@ public class Wallet implements Serializable {
             JSONObject jsonObject = new JSONObject(rawString);
             return jsonObject.optDouble("hours");
         } catch (JSONException e) {
-            e.printStackTrace();
+
             return 0d;
         }
     }

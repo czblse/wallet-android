@@ -81,7 +81,7 @@ public class TransactionManager {
             saveTransaction(transaction);
             return transaction;
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return null;
     }

@@ -103,7 +103,7 @@ public class SpacoWalletUtils {
             Integer value = SharePrefrencesUtil.getInstance().getInt(PIN_OUT);
             return value;
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return 0;
     }
@@ -126,7 +126,7 @@ public class SpacoWalletUtils {
             LogUtils.d("decrypt = " + pincode);
             return pincode;
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return null;
     }
@@ -137,7 +137,7 @@ public class SpacoWalletUtils {
             SharePrefrencesUtil.getInstance().putString(PIN_KEY, value);
             LogUtils.d("encryp = " + value);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 

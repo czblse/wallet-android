@@ -134,7 +134,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
                     Mobile.newAddress(wallet.getWalletID(), 1, SpacoWalletUtils.getPin16());
                     initData();
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                     ToastUtils.show(getString(R.string.str_create_address_failed));
                 }
                 break;
@@ -193,7 +193,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+
                         onComplete();
                     }
 
@@ -256,7 +256,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+
                         onComplete();
                     }
 
@@ -280,7 +280,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
             Mobile.newAddress(wallet.getWalletID(), 1, SpacoWalletUtils.getPin16());
             initData();
         } catch (Exception e) {
-            e.printStackTrace();
+
             ToastUtils.show(getString(R.string.str_create_address_failed));
         }
     }

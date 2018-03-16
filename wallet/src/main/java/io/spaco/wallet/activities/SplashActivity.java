@@ -73,7 +73,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
                 Mobile.registerNewCoin("skycoin", "i.spo.network:6420");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         //钱包初始化完成后执行下一步业务操作
         handler.postDelayed(new Runnable() {

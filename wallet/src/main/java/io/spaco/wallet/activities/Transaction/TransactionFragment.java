@@ -114,7 +114,7 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+
                         onComplete();
                     }
 

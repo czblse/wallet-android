@@ -26,7 +26,7 @@ public class AppUtils {
         try {
             return context.getPackageManager().getPackageInfo(context.getPackageName(),0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+
         }
         return "";
     }
@@ -47,7 +47,7 @@ public class AppUtils {
             }
             return processName;
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            throwabl
         } finally {
             try {
                 if (reader != null) {
