@@ -131,7 +131,7 @@ public class NetUtil {
             NetworkInfo info = cm.getActiveNetworkInfo();
             return null != info && info.isConnected();
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return false;
     }
@@ -195,7 +195,7 @@ public class NetUtil {
                 }
             }
         } catch (SocketException e) {
-            e.printStackTrace();
+
         }
         return hostIp;
 

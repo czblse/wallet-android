@@ -109,7 +109,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
             initViews();
             initData();
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -175,7 +175,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         try {
             AppManager.getAppManager().finishActivity(this);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         super.onDestroy();

@@ -25,7 +25,7 @@ public abstract class WalletPushListener implements Observer {
                     break;
             }
         }catch (Exception e){
-            e.printStackTrace();
+
         }
     }
 

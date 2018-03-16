@@ -187,7 +187,7 @@ public class WalletFragment extends BaseFragment implements WalletListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+
                     }
 
                     @Override
@@ -288,7 +288,7 @@ public class WalletFragment extends BaseFragment implements WalletListener {
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.send_cost_in, 0);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 }

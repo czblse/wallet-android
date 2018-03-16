@@ -116,7 +116,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             finish();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+
             if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")) {
                 Toast.makeText(this, getResources().getString(R.string.wallet_name_existed), Toast.LENGTH_SHORT).show();
                 return false;
@@ -132,7 +132,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
                 Mobile.newAddress(id, 1, SpacoWalletUtils.getPin16());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -150,7 +150,7 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
             finish();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+
             if (!TextUtils.isEmpty(e.getMessage()) && e.getMessage().contains("exist")) {
                 Toast.makeText(this, getResources().getString(R.string.wallet_is_existed), Toast.LENGTH_SHORT).show();
                 return false;

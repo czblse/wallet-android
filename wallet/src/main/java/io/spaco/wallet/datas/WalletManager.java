@@ -94,7 +94,7 @@ public class WalletManager {
                 return true;
             }
         }catch (Exception e){
-            e.printStackTrace();
+
         }
 
         return false;
@@ -123,7 +123,7 @@ public class WalletManager {
                 return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return false;
     }
@@ -195,7 +195,7 @@ public class WalletManager {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return result;
     }

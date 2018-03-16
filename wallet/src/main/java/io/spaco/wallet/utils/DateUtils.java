@@ -21,7 +21,7 @@ public class DateUtils {
             Date date = new Date(System.currentTimeMillis());
             return Integer.parseInt(simpleDateFormat.format(date));
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return 0;
     }

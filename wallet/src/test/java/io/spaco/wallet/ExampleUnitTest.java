@@ -29,7 +29,7 @@ public class ExampleUnitTest {
             result = DES.decryptDES(result, password);
             System.out.println("原始数据"  + result);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 }
