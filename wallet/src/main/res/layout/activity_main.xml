@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="io.spaco.wallet.activities.MainActivity">
 
@@ -15,49 +15,51 @@
 
     <View
         android:layout_width="match_parent"
-        android:background="#F0F0F0"
-        android:layout_height="1dp"/>
-   <LinearLayout
-       android:id="@+id/main_bottom_container"
-       android:layout_width="match_parent"
-       android:orientation="horizontal"
-       android:layout_height="55dp">
-      <LinearLayout
-          android:layout_width="0px"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:orientation="horizontal"
-          android:gravity="center"
-          android:id="@+id/new_wallet">
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@drawable/new_wallet"/>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/new_wallet"/>
+        android:layout_height="1dp"
+        android:background="#F0F0F0"/>
 
-      </LinearLayout>
+    <LinearLayout
+        android:id="@+id/main_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+       >
+        <LinearLayout
+            android:id="@+id/new_wallet"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/new_wallet"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wallet"/>
 
-       <LinearLayout
-           android:layout_width="0px"
-           android:layout_height="match_parent"
-           android:layout_weight="1"
-           android:orientation="horizontal"
-           android:gravity="center"
-           android:id="@+id/import_wallet">
-           <ImageView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/import_wallet"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/load_wallet"/>
+        </LinearLayout>
 
-       </LinearLayout>
+        <LinearLayout
+            android:id="@+id/import_wallet"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/import_wallet"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/me"/>
 
-   </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
