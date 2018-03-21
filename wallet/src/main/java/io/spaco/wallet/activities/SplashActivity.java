@@ -1,6 +1,7 @@
 package io.spaco.wallet.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -14,9 +15,12 @@ import io.spaco.wallet.activities.Main.WalletViewModel;
 import io.spaco.wallet.api.Const;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
+import io.spaco.wallet.common.OnItemClickListener;
+import io.spaco.wallet.dialogs.OptionsDialog;
 import io.spaco.wallet.utils.AppUtils;
 import io.spaco.wallet.utils.DES;
 import io.spaco.wallet.utils.SpacoWalletUtils;
+import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;

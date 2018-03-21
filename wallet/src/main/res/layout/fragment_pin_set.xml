@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:paddingTop="@dimen/toolbar_pading_top"
     android:background="@drawable/pin_create_wallet_background"
     android:layout_height="match_parent">
 

@@ -1,7 +1,5 @@
 package io.spaco.wallet.activities.Main;
 
-import android.text.TextUtils;
-
 import org.json.JSONArray;
 
 import java.util.List;

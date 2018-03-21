@@ -5,30 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@id/id_toolbar"
-        android:background="@drawable/pin_create_wallet_background"
-        android:layout_width="match_parent"
-        android:theme="@style/toolbar_style"
-        android:paddingTop="@dimen/toolbar_pading_top"
-        android:layout_height="@dimen/toolbar_height">
-        <TextView
-            android:layout_gravity="center|center_vertical"
-            android:layout_width="wrap_content"
-            android:text="@string/transaction"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/img_refresh"
-            android:paddingRight="5dp"
-            android:layout_gravity="right|center_vertical"
-            android:layout_width="wrap_content"
-            android:src="@drawable/main_refresh"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.Toolbar>
-
+    <include layout="@layout/base_toolbar"></include>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"

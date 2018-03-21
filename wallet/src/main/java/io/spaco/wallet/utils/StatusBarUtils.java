@@ -2,12 +2,6 @@ package io.spaco.wallet.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
-
-import io.spaco.wallet.R;
 
 /**
  * 状态栏适配工具类,注意如果使用自定义toolbar的话，id 请引用@values/ids.xml 中的id_toolbar
@@ -15,53 +9,6 @@ import io.spaco.wallet.R;
  */
 
 public class StatusBarUtils {
-
-    /**
-     * activity 状态栏适配
-     * @param activity
-     */
-    public static void statusBarCompat(AppCompatActivity activity){
-        int actionBarHeight = getActionBarSize(activity);
-        int statusBarHeight = getStatusBarHeight(activity);
-        View toolbar = activity.getWindow().getDecorView().findViewById(R.id.id_toolbar);
-
-        if(toolbar == null || toolbar.getVisibility() != View.VISIBLE){
-            toolbar = activity.getWindow().getDecorView().findViewById(android.support.v7.appcompat.R.id.action_bar);
-        }
-
-        if(toolbar != null && toolbar.getVisibility() == View.VISIBLE){
-            ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
-            layoutParams.height = actionBarHeight + statusBarHeight;
-            toolbar.setPadding(toolbar.getPaddingLeft(),toolbar.getPaddingTop() + statusBarHeight,toolbar.getPaddingRight(),toolbar.getPaddingBottom());
-            toolbar.requestLayout();
-        }else{
-            ViewGroup parent = activity.getWindow().getDecorView().findViewById(android.R.id.content);
-            View contentView = parent.getChildAt(0);
-            contentView.setPadding(contentView.getPaddingLeft(),contentView.getPaddingTop() + statusBarHeight,contentView.getPaddingRight(),contentView.getPaddingBottom());
-            contentView.requestLayout();
-        }
-    }
-
-    /**
-     * activity 状态栏适配,自定义toolbar_id 为固定的
-     * @param fragment
-     */
-    public static void statusBarCompat(Fragment fragment){
-        int actionBarHeight = getActionBarSize(fragment.getContext());
-        int statusBarHeight = getStatusBarHeight(fragment.getContext());
-        View view = fragment.getView();
-        View toolbar = view.findViewById(R.id.id_toolbar);
-        if(toolbar != null && toolbar.getVisibility() == View.VISIBLE){
-            ViewGroup.LayoutParams layoutParams = toolbar.getLayoutParams();
-            layoutParams.height = actionBarHeight + statusBarHeight;
-            toolbar.setPadding(toolbar.getPaddingLeft(),toolbar.getPaddingTop() + statusBarHeight,toolbar.getPaddingRight(),toolbar.getPaddingBottom());
-            toolbar.requestLayout();
-        }else{
-            view.setPadding(view.getPaddingLeft(),view.getPaddingTop() + statusBarHeight,view.getPaddingRight(),view.getPaddingBottom());
-            view.requestLayout();
-        }
-    }
-
 
     /**
      * 获取状态栏高度

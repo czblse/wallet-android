@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import io.spaco.wallet.R;
 import io.spaco.wallet.activities.BackupsWallet.BackupsWalletFragment;
@@ -35,6 +36,7 @@ public class BackupsWalletActivity extends BaseActivity implements PinSetListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().hide();
+        ((TextView)findViewById(R.id.id_toolbar_title)).setText(R.string.backup_wallet);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

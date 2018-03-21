@@ -6,21 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="io.spaco.wallet.activities.BackupsWalletActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@id/id_toolbar"
-        android:theme="@style/toolbar_style"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:paddingTop="@dimen/toolbar_pading_top"
-        android:background="@drawable/pin_create_wallet_background">
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="@string/backup_wallet"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/base_toolbar"></include>
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

@@ -53,7 +53,6 @@ public class PinInputFragment extends BaseFragment {
 
     @Override
     protected void initViews(View rootView) {
-        StatusBarUtils.statusBarCompat(this);
         numberKeyboard = rootView.findViewById(R.id.numberkeyboard);
         keyboardProgress = rootView.findViewById(R.id.keyboardtips);
         numberKeyboard.setOnNumberKeyboardDownListener(onNumberKeyboardDownListener);

@@ -1,14 +1,17 @@
 package io.spaco.wallet.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.View
+import android.widget.AdapterView
 import io.spaco.wallet.R
 import io.spaco.wallet.activities.Main.WalletFragment
 import io.spaco.wallet.activities.Transaction.TransactionFragment
 import io.spaco.wallet.base.BaseActivity
 import io.spaco.wallet.common.Constant
+import io.spaco.wallet.dialogs.OptionsDialog
 
 /**
  * 主界面，一级界面
@@ -24,7 +27,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews() {
-
         mainWalletFragment = WalletFragment.newInstance(null)
         mainTransactionFragment = TransactionFragment.newInstance(null)
         createWallet = findViewById(R.id.new_wallet)
@@ -48,7 +50,7 @@ class MainActivity : BaseActivity() {
         val fragments = supportFragmentManager.fragments
         if (fragments != null) {
             for (item in fragments) {
-                if (item == fragment) {
+                if (item.equals(instance)) {
                     fragmentTransaction.show(item)
                 } else {
                     fragmentTransaction.hide(item)
@@ -63,8 +65,11 @@ class MainActivity : BaseActivity() {
     }
 
     fun onCreateWallet() {
+
         val intent = Intent(this, WalletCreatActivity::class.java)
         startActivity(intent)
+
+
     }
 
     fun onImportWallet() {

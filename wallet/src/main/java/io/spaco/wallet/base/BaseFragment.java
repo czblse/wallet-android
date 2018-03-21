@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -84,7 +85,5 @@ public abstract class BaseFragment extends RxFragment {
      * 初始化数据
      */
     protected abstract void initData();
-
-
 
 }

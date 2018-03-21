@@ -2,6 +2,7 @@ package io.spaco.wallet.activities.Main;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.tencent.bugly.beta.Beta;
@@ -28,6 +30,7 @@ import io.spaco.wallet.activities.WalletDetailsActivity;
 import io.spaco.wallet.base.BaseFragment;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
+import io.spaco.wallet.dialogs.OptionsDialog;
 import io.spaco.wallet.push.WalletPush;
 import io.spaco.wallet.push.WalletPushListener;
 import io.spaco.wallet.utils.SharePrefrencesUtil;
@@ -76,6 +79,9 @@ public class WalletFragment extends BaseFragment implements WalletListener {
     @Override
     protected void initViews(View rootView) {
         Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
+        toolbar.setBackground(new ColorDrawable(Color.TRANSPARENT));
+        toolbar.setTitle("");
+        ((TextView)rootView.findViewById(R.id.id_toolbar_title)).setText(R.string.wallet);
         refresh = rootView.findViewById(R.id.refresh);
         toolbar.inflateMenu(R.menu.wallet_fragment);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {

@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
@@ -34,7 +38,6 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
 
     RecyclerView recyclerView;
     View emptyContainer;
-    ImageView imgRefresh;
     Wallet wallet;
 
     /**
@@ -60,26 +63,15 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
 
     @Override
     protected void initViews(View rootView) {
+        setHasOptionsMenu(true);
         Toolbar toolbar = rootView.findViewById(R.id.id_toolbar);
         toolbar.setTitle("");
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mActivity.finish();
-            }
-        });
+        ((TextView)rootView.findViewById(R.id.id_toolbar_title)).setText(R.string.transaction);
+        ((AppCompatActivity)mActivity).setSupportActionBar(toolbar);
+        ((AppCompatActivity)mActivity).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = rootView.findViewById(R.id.recyclerview);
         emptyContainer = rootView.findViewById(R.id.empty_container);
-        imgRefresh = rootView.findViewById(R.id.img_refresh);
-
-        imgRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initData();
-            }
-        });
         //钱包
         wallet = (Wallet) getArguments().getSerializable(Constant.KEY_WALLET);
 
@@ -161,5 +153,23 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
         sendKeyDialog.setData(sendKeyBean);
         sendKeyDialog.setCancelable(false);
         sendKeyDialog.show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.wallet_transaction,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.refresh){
+            initData();
+            return true;
+        }else if(item.getItemId() == android.R.id.home){
+            mActivity.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

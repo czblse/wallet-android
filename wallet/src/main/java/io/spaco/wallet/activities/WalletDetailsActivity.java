@@ -3,6 +3,7 @@ package io.spaco.wallet.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -67,10 +68,10 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
 
     @Override
     protected void initViews() {
-        StatusBarUtils.statusBarCompat(this);
         recyclerView = findViewById(R.id.recyclerview);
         tvExchangeCoin = findViewById(R.id.exchange_coin);
         Toolbar toolbar = findViewById(R.id.id_toolbar);
+        toolbar.setBackground(new ColorDrawable(Color.TRANSPARENT));
         refresh = findViewById(R.id.refresh);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -86,7 +87,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
         wallet = (Wallet) getIntent().getSerializableExtra(Constant.KEY_WALLET);
         //设置钱包余额
         ((TextView) findViewById(R.id.tv_balance)).setText(wallet.getBalance());
-        ((TextView) findViewById(R.id.tv_title)).setText(wallet.getWalletName());
+        ((TextView)findViewById(R.id.id_toolbar_title)).setText(wallet.getWalletName());
         ((TextView) findViewById(R.id.tv_sky_hours)).setText(wallet.getHours() + " SKY Hours");
         //设置钱包汇率
         if (SharePrefrencesUtil.getInstance().getBoolean(Constant.IS_LANGUAGE_ZH)) {

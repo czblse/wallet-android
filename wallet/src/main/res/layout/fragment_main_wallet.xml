@@ -10,21 +10,7 @@
        android:background="@drawable/pin_create_wallet_background"
        android:layout_height="wrap_content">
 
-       <android.support.v7.widget.Toolbar
-           android:id="@id/id_toolbar"
-           android:theme="@style/toolbar_style"
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/toolbar_height"
-           android:paddingTop="@dimen/toolbar_pading_top">
-           <TextView
-               android:layout_gravity="center|center_vertical"
-               android:layout_width="wrap_content"
-               android:text="@string/wallets"
-               android:textSize="20sp"
-               android:textColor="@android:color/white"
-               android:layout_height="wrap_content" />
-
-       </android.support.v7.widget.Toolbar>
+       <include layout="@layout/base_toolbar"></include>
 
        <LinearLayout
            android:id="@+id/coin_view"

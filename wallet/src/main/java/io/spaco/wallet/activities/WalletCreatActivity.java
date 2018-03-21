@@ -47,7 +47,6 @@ public class WalletCreatActivity extends BaseActivity implements WalletCreateLis
 
     @Override
     protected void initViews() {
-        StatusBarUtils.statusBarCompat(this);
         radioGroup = findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
