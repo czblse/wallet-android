@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="110dp" android:layout_height="102dp"
+        android:layout_marginEnd="8dp" android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon"/>
+    <TextView
+        android:id="@+id/tv_managerwallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+    />
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:layout_marginEnd="8dp" android:layout_marginStart="8dp"
+        android:orientation="vertical" app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout android:id="@+id/lin_jyjl"
+                      android:layout_width="match_parent"
+                      android:layout_height="49dp"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="@string/transrecord"
+                      android:textSize="16sp"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <include layout="@layout/layout_default_line"/>
+        <LinearLayout android:id="@+id/lin_xxtz"
+                      android:layout_width="match_parent"
+                      android:layout_height="49dp"
+                      android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/alart"
+            />
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/layout_default_line"/>
+        <LinearLayout android:id="@+id/lin_xtsz"
+                      android:layout_width="match_parent"
+                      android:layout_height="49dp"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="@string/system_settings"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/layout_default_line"/>
+
+        <LinearLayout android:id="@+id/lin_bzzx"
+                      android:layout_width="match_parent"
+                      android:layout_height="49dp"
+                      android:layout_marginTop="30dp"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="@string/help_center"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/layout_default_line"/>
+        <LinearLayout android:id="@+id/lin_gywm"
+                      android:layout_width="match_parent"
+                      android:layout_height="49dp"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="@string/about_us"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/layout_default_line"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

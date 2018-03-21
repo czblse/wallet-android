@@ -44,7 +44,7 @@
         点击继续，表明您了解加密货币和区块链软件的相关风险，了解Skycoin以及Skycoin加密货币以及了解产品的原型和使用条例。
     </string>
     <string name="error_agreement">保护你的钱包!</string>
-    <string name="hint_agree"> 是的,我理解</string>
+    <string name="hint_agree">是的,我理解</string>
     <string name="wallets">钱包</string>
     <string name="wallet">钱包名称</string>
     <string name="sky_hours">SKY 币时</string>
@@ -70,8 +70,8 @@
     <string name="input_pinnum_error">PIN输入错误次数过多,请5分钟后重试</string>
     <string name="input_pinnum_one">PIN输入错误,还剩1次机会</string>
     <string name="input_pinnum_two">PIN输入错误,还剩2次机会</string>
-    <string name="input_pintime">请 </string>
-    <string name="input_pinminut"> 分钟后重试.</string>
+    <string name="input_pintime">请</string>
+    <string name="input_pinminut">分钟后重试.</string>
     <string name="pls_generate_seed">请生成种子</string>
     <string name="pls_confirm_seed">请确认你的种子</string>
     <string name="pin_error">密码输入错误，请重新输入</string>
@@ -93,4 +93,11 @@
     <string name="delete_wallet_tips">删除钱包之前请记得转移你的数字资产，否则你将无法挽回你的损失,确定继续删除吗?</string>
     <string name="delete_confirm">确定删除</string>
     <string name="delete_wallet_error_msg">删除钱包失败</string>
+    <string name="manager_wallet">管理钱包</string>
+    <string name="transrecord">交易记录</string>
+    <string name="alart">消息通知</string>
+    <string name="system_settings">系统设置</string>
+    <string name="help_center">帮助中心</string>
+    <string name="about_us">关于我们</string>
+
 </resources>
