@@ -41,6 +41,8 @@ public class WalletViewModel {
      */
     public static List<Wallet> wallets;
 
+
+
     /**
      * 查询所有的本地钱包
      *

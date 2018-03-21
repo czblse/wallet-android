@@ -89,5 +89,10 @@
     <string name="delete_wallet_tips">Please remember to transfer your digital assets before deleting your wallet, otherwise you will not be able to recover your loss.</string>
     <string name="delete_confirm">Confirm Delete</string>
     <string name="delete_wallet_error_msg">Delete Wallet Error!</string>
-
+    <string name="manager_wallet">Manage wallet</string>
+    <string name="transrecord">Transaction Record</string>
+    <string name="alart">notification</string>
+    <string name="system_settings">notification</string>
+    <string name="help_center">Help center</string>
+    <string name="about_us">about us</string>
 </resources>

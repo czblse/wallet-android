@@ -1,17 +1,23 @@
 package io.spaco.wallet.activities
 
+<<<<<<< HEAD
 import android.content.Intent
 import android.graphics.Color
 import android.support.design.widget.BottomNavigationView
+=======
+>>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
 import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.AdapterView
 import io.spaco.wallet.R
+import io.spaco.wallet.activities.Main.MeFragment
 import io.spaco.wallet.activities.Main.WalletFragment
-import io.spaco.wallet.activities.Transaction.TransactionFragment
 import io.spaco.wallet.base.BaseActivity
+<<<<<<< HEAD
 import io.spaco.wallet.common.Constant
 import io.spaco.wallet.dialogs.OptionsDialog
+=======
+>>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
 
 /**
  * 主界面，一级界面
@@ -19,20 +25,20 @@ import io.spaco.wallet.dialogs.OptionsDialog
 class MainActivity : BaseActivity() {
 
     internal lateinit var mainWalletFragment: WalletFragment
-    internal lateinit var mainTransactionFragment: TransactionFragment
-    private var createWallet: View? = null
-    private var importWallet: View? = null
+    internal lateinit var meFragment: MeFragment
+    private var lin_wallet: View? = null
+    private var lin_me: View? = null
     override fun attachLayoutRes(): Int {
         return R.layout.activity_main
     }
 
     override fun initViews() {
         mainWalletFragment = WalletFragment.newInstance(null)
-        mainTransactionFragment = TransactionFragment.newInstance(null)
-        createWallet = findViewById(R.id.new_wallet)
-        importWallet = findViewById(R.id.import_wallet)
-        createWallet!!.setOnClickListener { onCreateWallet() }
-        importWallet!!.setOnClickListener { onImportWallet() }
+        meFragment = MeFragment.newInstance(null)
+        lin_wallet = findViewById(R.id.lin_wallet)
+        lin_me = findViewById(R.id.lin_me)
+        lin_wallet!!.setOnClickListener { switchFragment(mainWalletFragment) }
+        lin_me!!.setOnClickListener { switchFragment(meFragment) }
         switchFragment(mainWalletFragment)
     }
 
@@ -64,6 +70,7 @@ class MainActivity : BaseActivity() {
 
     }
 
+<<<<<<< HEAD
     fun onCreateWallet() {
 
         val intent = Intent(this, WalletCreatActivity::class.java)
@@ -77,4 +84,6 @@ class MainActivity : BaseActivity() {
         intent.putExtra(Constant.KEY_PAGE, 1)
         startActivity(intent)
     }
+=======
+>>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
 }
