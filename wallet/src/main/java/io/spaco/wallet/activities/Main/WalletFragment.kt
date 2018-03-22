@@ -211,7 +211,7 @@ class WalletFragment : BaseFragment(), WalletListener {
             val intent = Intent(activity, SendCostActivity::class.java)
             intent.putExtra(Constant.KEY_WALLET, WalletViewModel.wallets.get(0))
             startActivity(intent)
-            activity.overridePendingTransition(R.anim.send_cost_in, 0)
+            activity!!.overridePendingTransition(R.anim.send_cost_in, 0)
         } catch (e: Exception) {
 
         }

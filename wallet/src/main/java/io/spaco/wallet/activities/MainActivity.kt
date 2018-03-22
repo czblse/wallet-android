@@ -1,23 +1,15 @@
 package io.spaco.wallet.activities
 
-<<<<<<< HEAD
 import android.content.Intent
-import android.graphics.Color
-import android.support.design.widget.BottomNavigationView
-=======
->>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
 import android.support.v4.app.Fragment
 import android.view.View
-import android.widget.AdapterView
 import io.spaco.wallet.R
 import io.spaco.wallet.activities.Main.MeFragment
 import io.spaco.wallet.activities.Main.WalletFragment
 import io.spaco.wallet.base.BaseActivity
-<<<<<<< HEAD
 import io.spaco.wallet.common.Constant
-import io.spaco.wallet.dialogs.OptionsDialog
-=======
->>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
+
+
 
 /**
  * 主界面，一级界面
@@ -70,7 +62,6 @@ class MainActivity : BaseActivity() {
 
     }
 
-<<<<<<< HEAD
     fun onCreateWallet() {
 
         val intent = Intent(this, WalletCreatActivity::class.java)
@@ -84,6 +75,4 @@ class MainActivity : BaseActivity() {
         intent.putExtra(Constant.KEY_PAGE, 1)
         startActivity(intent)
     }
-=======
->>>>>>> b64af4001fe7162a410a41769b51b561b8d13084
 }
