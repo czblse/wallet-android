@@ -24,7 +24,6 @@ import io.spaco.wallet.datas.Wallet
 import io.spaco.wallet.push.WalletPush
 import io.spaco.wallet.push.WalletPushListener
 import io.spaco.wallet.utils.SharePrefrencesUtil
-import io.spaco.wallet.utils.ToastUtils
 import java.text.DecimalFormat
 import java.util.*
 
