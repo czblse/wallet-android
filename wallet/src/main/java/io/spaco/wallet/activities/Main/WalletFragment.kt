@@ -41,6 +41,7 @@ class WalletFragment : BaseFragment(), WalletListener {
     internal lateinit var tvExchangeCoin: TextView
     internal var mainWalletBeans: List<Wallet> = ArrayList()
     internal lateinit var refresh: SwipeRefreshLayout
+    var popListener: PopupDismissListener = PopupDismissListener()
 
     /**
      * 标记，true表示cny，false表示usd
@@ -80,18 +81,23 @@ class WalletFragment : BaseFragment(), WalletListener {
     override fun initViews(rootView: View) {
         val toolbar = rootView.findViewById<Toolbar>(R.id.id_toolbar)
         refresh = rootView.findViewById(R.id.refresh)
-        toolbar.inflateMenu(R.menu.wallet_fragment)
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher)
+        toolbar.setNavigationOnClickListener{
+            popListener.initPopupWindow(activity)
+        }
+       /* toolbar.inflateMenu(R.menu.wallet_fragment)
         toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.refresh -> refresh.post {
-                    refresh.isRefreshing = true
-                    refreshDatas()
+                    *//*refresh.isRefreshing = true
+                    refreshDatas()*//*
+                    popListener.initPopupWindow(activity)
                 }
                 R.id.send -> startSendCost()
                 R.id.version -> chcekUp()
             }
             true
-        }
+        }*/
         rootView.findViewById<View>(R.id.coin_view).setOnClickListener {
             //切换对应的钱包汇率
             exchangeCoinZH = !exchangeCoinZH
