@@ -79,6 +79,7 @@
     <string name="str_send_success">发送成功</string>
     <string name="str_send_error">发送失败</string>
     <string name="send">发送</string>
+    <string name="empty_data">空空如也~</string>
     <string name="str_create_address_failed">地址创建失败</string>
     <string name="menu_refresh_wallet">刷新钱包</string>
     <string name="menu_create_address">新建地址</string>

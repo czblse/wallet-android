@@ -28,6 +28,7 @@
     <string name="input_pinnum_two">PIN input error, there are 2 chances left.</string>
     <string name="input_pintime">Please try again in </string>
     <string name="input_pinminut"> minutes.</string>
+    <string name="empty_data">No records~</string>
     <string name="creates">Create</string>
     <string name="imports">Import</string>
     <string name="input_id">Please enter your wallet ID</string>
