@@ -178,7 +178,7 @@ public class WalletFragment extends BaseFragment implements WalletListener {
 
                     @Override
                     public void onNext(List<Wallet> wallets) {
-                        walletViewModel.wallets = wallets;
+                        WalletViewModel.wallets = wallets;
                         tvBalance.setText(String.valueOf(WalletViewModel.totalBalance));
                         tvHours.setText(String.valueOf(WalletViewModel.totalHours + " SKY Hours"));
                         mainWalletAdapter.setWallets(wallets);

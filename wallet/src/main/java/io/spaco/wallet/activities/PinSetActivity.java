@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
+import io.spaco.wallet.utils.AppManager;
 import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.ToastUtils;
 import io.spaco.wallet.widget.DisclaimerDialog;
@@ -139,7 +141,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
                     clearInput();
                 }
             } else {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.container, VerifyPinSetFragment.newInstance(null),
                         VerifyPinSetFragment.class.getSimpleName());
                 fragmentTransaction.addToBackStack(null);
@@ -148,13 +151,14 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         } else {
             clearInput();
             int time = SpacoWalletUtils.getOutPinTime();
-            ToastUtils.show(getResources().getString(R.string.input_pintime) + time + getResources().getString(R.string.input_pinminut));
+            ToastUtils.show(getResources().getString(R.string.input_pintime) + time
+                    + getResources().getString(R.string.input_pinminut));
         }
 
 
     }
 
-    private void clearInput(){
+    private void clearInput() {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 inputFragment.clearInput();
@@ -201,8 +205,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
             try {
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
-                Mobile.registerNewCoin("spocoin", "47.75.36.182:8620");
-                Mobile.registerNewCoin("skycoin", "47.75.36.182:6420");
+                Mobile.registerNewCoin("spocoin", "i.spo.network:8620");
+                Mobile.registerNewCoin("skycoin", "i.spo.network:6420");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -224,5 +228,17 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         home.addCategory(Intent.CATEGORY_HOME);
         startActivity(home);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (SpacoWalletUtils.isPinSet()) {
+                AppManager.getAppManager().AppExit(this);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

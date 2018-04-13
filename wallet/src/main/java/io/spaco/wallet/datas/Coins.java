@@ -28,14 +28,14 @@ public class Coins {
     private static Coins BuildSkyInfo(){
         Coins coins = new Coins();
         coins.name = "skycoin";
-        coins.url = "47.75.36.182:6420";
+        coins.url = "i.spo.network:6420";
         return coins;
     }
 
     private static Coins BuildSpoInfo(){
         Coins coins = new Coins();
         coins.name = "spocoin";
-        coins.url = "47.75.36.182:8620";
+        coins.url = "i.spo.network:8620";
         return coins;
     }
 
