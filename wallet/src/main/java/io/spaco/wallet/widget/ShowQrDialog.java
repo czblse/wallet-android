@@ -15,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import io.reactivex.disposables.Disposable;
 import io.spaco.wallet.R;
 import io.spaco.wallet.utils.ToastUtils;
@@ -134,29 +138,36 @@ public class ShowQrDialog extends Dialog {
 //    }
 
 
-    public void setKey(String key) {
-        mTxQrAdress.setText(key);
-        ZxingUtils.createQRCode(key,500).subscribe(new io.reactivex.Observer<Bitmap>() {
-            @Override
-            public void onSubscribe(Disposable d) {
+    public void setKey(String type, String key) {
+        JSONObject finalShowStringJson = new JSONObject();
+        try {
+            finalShowStringJson.put(type, key);
+            mTxQrAdress.setText(type + "：" + key);
+            ZxingUtils.createQRCode(finalShowStringJson.toString(),500).subscribe(new io.reactivex.Observer<Bitmap>() {
+                @Override
+                public void onSubscribe(Disposable d) {
 
-            }
+                }
 
-            @Override
-            public void onNext(Bitmap bitmap) {
-                mImgQrcode.setImageBitmap(bitmap);
-            }
+                @Override
+                public void onNext(Bitmap bitmap) {
+                    mImgQrcode.setImageBitmap(bitmap);
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                ToastUtils.show("出错了");
-            }
+                @Override
+                public void onError(Throwable e) {
+                    ToastUtils.show("出错了");
+                }
 
-            @Override
-            public void onComplete() {
+                @Override
+                public void onComplete() {
 
-            }
-        });
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

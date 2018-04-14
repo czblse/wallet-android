@@ -141,7 +141,7 @@ public class TransactionFragment extends BaseFragment implements OnItemClickList
      */
     private void showQRcodeDialog(TransactionInfo bean) {
         ShowQrDialog showQrDialog = new ShowQrDialog(getActivity());
-        showQrDialog.setKey(bean.toWallet);
+        showQrDialog.setKey(bean.coinType, bean.toWallet);
         showQrDialog.show();
     }
 

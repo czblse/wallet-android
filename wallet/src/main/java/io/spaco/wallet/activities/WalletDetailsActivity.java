@@ -270,7 +270,7 @@ public class WalletDetailsActivity extends BaseActivity implements WalletDetails
     @Override
     public void onItemClick(int position, Address bean) {
         ShowQrDialog showQrDialog = new ShowQrDialog(this);
-        showQrDialog.setKey(bean.getAddress());
+        showQrDialog.setKey(bean.getType(),bean.getAddress());
         showQrDialog.show();
     }
 

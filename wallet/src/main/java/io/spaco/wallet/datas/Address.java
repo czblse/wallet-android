@@ -12,6 +12,16 @@ public class Address {
     String seckey;
     String addressId;
     String balance;
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    String type;
     public String getAddressId() {
         return addressId;
     }

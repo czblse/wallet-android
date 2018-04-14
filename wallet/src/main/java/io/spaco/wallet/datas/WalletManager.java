@@ -191,6 +191,7 @@ public class WalletManager {
                     address.setAddressId(String.valueOf(i + 1));
                     address.setAddress(String.valueOf(addressArray.get(i)));
                     address.setAddresBalance(String.valueOf(Wallet.getBalanceFromRawData(Mobile.getBalance(walletType, address.getAddress()))));
+                    address.setType(walletType);
                     result.add(address);
                 }
             }
