@@ -30,6 +30,7 @@ import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Transaction;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.push.WalletPush;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 
@@ -40,7 +41,7 @@ public class SendCostActivity extends BaseActivity {
 
     ImageView close, qrcode;
     AppCompatSpinner appCompatSpinner;
-    EditText  toWallet, amount, nodes;
+    EditText  toWallet, amount, nodes,pinCode;
     TextView cancle, send;
 
     TransactionViewModel transactionViewModel = new TransactionViewModel();
@@ -64,6 +65,7 @@ public class SendCostActivity extends BaseActivity {
         toWallet = findViewById(R.id.to_wallet);
         amount = findViewById(R.id.amount);
         nodes = findViewById(R.id.nodes);
+        pinCode = findViewById(R.id.pin_code);
         cancle = findViewById(R.id.cancle);
         send = findViewById(R.id.send);
 
@@ -213,6 +215,14 @@ public class SendCostActivity extends BaseActivity {
         }
         if (TextUtils.isEmpty(amount.getText())) {
             ToastUtils.show(getResources().getString(R.string.input_amount));
+            return false;
+        }
+        if (TextUtils.isEmpty(pinCode.getText())) {
+            ToastUtils.show(getResources().getString(R.string.pin_input_explain));
+            return false;
+        }
+        if (!pinCode.getText().toString().equals(SpacoWalletUtils.getPin())){
+            ToastUtils.show(getResources().getString(R.string.input_pin_error));
             return false;
         }
         if(wallet == null){
