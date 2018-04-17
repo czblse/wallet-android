@@ -2,6 +2,7 @@
     <string name="app_name">Skycoin</string>
     <string name="login">登录</string>
     <string name="pin_title">设置PIN安全码</string>
+    <string name="pin_code">PIN安全码</string>
     <string name="pin_verify_title">确认PIN安全码</string>
     <string name="pin_Input_title">校验PIN安全码</string>
     <string name="pin_tips">
@@ -79,6 +80,7 @@
     <string name="str_send_success">发送成功</string>
     <string name="str_send_error">发送失败</string>
     <string name="send">发送</string>
+    <string name="empty_data">空空如也~</string>
     <string name="str_create_address_failed">地址创建失败</string>
     <string name="menu_refresh_wallet">刷新钱包</string>
     <string name="menu_create_address">新建地址</string>

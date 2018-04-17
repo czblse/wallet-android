@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.zxing.lib.CaptureActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -26,6 +30,7 @@ import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Transaction;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.push.WalletPush;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import io.spaco.wallet.utils.StatusBarUtils;
 import io.spaco.wallet.utils.ToastUtils;
 
@@ -36,13 +41,13 @@ public class SendCostActivity extends BaseActivity {
 
     ImageView close, qrcode;
     AppCompatSpinner appCompatSpinner;
-    EditText  toWallet, amount, nodes;
+    EditText  toWallet, amount, nodes,pinCode;
     TextView cancle, send;
 
     TransactionViewModel transactionViewModel = new TransactionViewModel();
     Wallet wallet;
     Transaction transaction;
-
+    String address = "";
     Handler handler = new Handler();
 
     @Override
@@ -60,6 +65,7 @@ public class SendCostActivity extends BaseActivity {
         toWallet = findViewById(R.id.to_wallet);
         amount = findViewById(R.id.amount);
         nodes = findViewById(R.id.nodes);
+        pinCode = findViewById(R.id.pin_code);
         cancle = findViewById(R.id.cancle);
         send = findViewById(R.id.send);
 
@@ -91,8 +97,40 @@ public class SendCostActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST_QRCODE && resultCode == RESULT_OK) {
             String code = data.getData().toString();
-            toWallet.setText(code);
+            if (TextUtils.isEmpty(getTypeByCode(code))) {
+                toWallet.setText(code);
+                address = code;
+            }else {
+                address = getAddressByCode(code);
+                toWallet.setText(getTypeByCode(code) + ":" + getAddressByCode(code));
+            }
         }
+    }
+
+    private String getAddressByCode(String code){
+        try {
+            JSONObject jsonObject = new JSONObject(code);
+            Iterator<String> iterator= jsonObject.keys();
+            if (iterator.hasNext()) {
+                return jsonObject.getString(iterator.next());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
+
+    private String getTypeByCode(String code){
+        try {
+            JSONObject jsonObject = new JSONObject(code);
+            Iterator<String> iterator= jsonObject.keys();
+            if (iterator.hasNext()) {
+                return iterator.next();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private View.OnClickListener createSend() {
@@ -105,7 +143,7 @@ public class SendCostActivity extends BaseActivity {
                     transaction.setAmount(amount.getText().toString());
                     transaction.setCoinType(Constant.COIN_TYPE_SKY);
                     transaction.setFromWallet(wallet.getWalletID());
-                    transaction.setToWallet(toWallet.getText().toString());
+                    transaction.setToWallet(address);
                     transaction.setNodes(nodes.getText().toString());
                     transactionViewModel.sendTransaction(transaction)
                             .subscribe(new Observer<Transaction>() {
@@ -177,6 +215,14 @@ public class SendCostActivity extends BaseActivity {
         }
         if (TextUtils.isEmpty(amount.getText())) {
             ToastUtils.show(getResources().getString(R.string.input_amount));
+            return false;
+        }
+        if (TextUtils.isEmpty(pinCode.getText())) {
+            ToastUtils.show(getResources().getString(R.string.pin_input_explain));
+            return false;
+        }
+        if (!pinCode.getText().toString().equals(SpacoWalletUtils.getPin())){
+            ToastUtils.show(getResources().getString(R.string.input_pin_error));
             return false;
         }
         if(wallet == null){

@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        release {
-            keyAlias 'key0'
-            keyPassword '123654'
-            storeFile file('F:/HM_Project/git_work/wallet-android/spo.network')
-            storePassword '123654'
-        }
+//        release {
+//            keyAlias 'key0'
+//            keyPassword '123654'
+//            storeFile file('F:/HM_Project/git_work/wallet-android/spo.network')
+//            storePassword '123654'
+//        }
     }
     compileSdkVersion build_versions.compileSdkVersion
     buildToolsVersion build_versions.buildToolsVersion
@@ -41,11 +41,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
     buildToolsVersion '26.0.2'

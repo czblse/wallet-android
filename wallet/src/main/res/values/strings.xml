@@ -2,6 +2,7 @@
     <string name="app_name">Skycoin</string>
     <string name="login">Login</string>
     <string name="pin_title">Set a PIN#</string>
+    <string name="pin_code">Pin security code</string>
     <string name="pin_verify_title">Confirm PIN#</string>
     <string name="pin_Input_title">Verify PIN security code</string>
     <string name="pin_tips">
@@ -28,6 +29,7 @@
     <string name="input_pinnum_two">PIN input error, there are 2 chances left.</string>
     <string name="input_pintime">Please try again in </string>
     <string name="input_pinminut"> minutes.</string>
+    <string name="empty_data">No records~</string>
     <string name="creates">Create</string>
     <string name="imports">Import</string>
     <string name="input_id">Please enter your wallet ID</string>

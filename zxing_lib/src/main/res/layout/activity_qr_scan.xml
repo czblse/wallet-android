@@ -92,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/capture_crop_layout"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/str_scan_tips"
         android:textColor="@android:color/white"

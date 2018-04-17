@@ -31,12 +31,12 @@ import mobile.Mobile;
 
 public class PinSetActivity extends BaseActivity implements PinSetListener {
 
+    Handler handler = new Handler();
     private String pinCode;
     private DisclaimerDialog mDialog;
-    Handler handler = new Handler();
-
     private PinInputFragment inputFragment;
-
+    //pin输入次数
+    private int pinNum;
 
     @Override
     protected int attachLayoutRes() {
@@ -105,14 +105,10 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
         mDialog.show();
     }
 
-
     @Override
     public void onClick(View view) {
 
     }
-
-    //pin输入次数
-    private int pinNum;
 
     @Override
     protected void onResume() {
@@ -126,6 +122,7 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             if (SpacoWalletUtils.isPinSet()) {
                 if (TextUtils.equals(pinCode, SpacoWalletUtils.getPin())) {
                     launchToWalletActivity();
+                    pinNum = 0;
                 } else {
                     pinNum++;
                     if (pinNum == 3) {
