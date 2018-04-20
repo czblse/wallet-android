@@ -23,6 +23,7 @@ import io.spaco.wallet.datas.Address;
 import io.spaco.wallet.datas.Wallet;
 import io.spaco.wallet.datas.WalletManager;
 import io.spaco.wallet.utils.SharePrefrencesUtil;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import mobile.Mobile;
 
 /**
@@ -104,7 +105,7 @@ public class WalletViewModel {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                String seed = Mobile.getSeed(walletId);
+                String seed = Mobile.getSeed(walletId, SpacoWalletUtils.getPin16());
                 emitter.onNext(seed);
                 emitter.onComplete();
             }

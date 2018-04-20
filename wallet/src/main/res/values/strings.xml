@@ -20,8 +20,8 @@
     <string name="continues">Continue</string>
     <string name="reset_pin">reset</string>
 
-    <string name="common_next">next</string>
-    <string name="start_import_wallet">Import</string>
+    <string name="common_next">Create</string>
+    <string name="start_import_wallet">Load</string>
     <string name="toast_pin_error">The PIN security code of the two inputs is inconsistent.</string>
     <string name="input_pin_error">PIN entered incorrectly, please try again</string>
     <string name="input_pinnum_error">Please try again after 5 minutes.</string>
@@ -80,10 +80,10 @@
     <string name="send">Send</string>
     <string name="str_create_address_failed">Create Address Failed</string>
     <string name="menu_refresh_wallet">Refresh Wallet</string>
-    <string name="menu_create_address">Create Address</string>
+    <string name="menu_create_address">New Address</string>
     <string name="menu_transaction_info">Transaction Info</string>
     <string name="menu_backup_wallet">Backup Wallet</string>
-    <string name="menu_send_coin">Send Coin</string>
+    <string name="menu_send_coin">Send SKY</string>
     <string name="menu_version_up">Version update</string>
     <string name="loading_str">\nHard loading...\n</string>
     <string name="str_show_qrcode">QR code</string>

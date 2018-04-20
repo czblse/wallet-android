@@ -17,6 +17,7 @@ import com.zxing.lib.CaptureActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -145,6 +146,7 @@ public class SendCostActivity extends BaseActivity {
                     transaction.setFromWallet(wallet.getWalletID());
                     transaction.setToWallet(address);
                     transaction.setNodes(nodes.getText().toString());
+                    transaction.setPasswd(SpacoWalletUtils.encryptPasswd(pinCode.getText().toString()));
                     transactionViewModel.sendTransaction(transaction)
                             .subscribe(new Observer<Transaction>() {
                                 @Override
@@ -249,8 +251,14 @@ public class SendCostActivity extends BaseActivity {
     protected void initData() {
         //初始化发送钱包
         final List<Wallet> wallets = WalletViewModel.wallets;
+        ArrayList<String> strList ;
         if(wallets != null && wallets.size() > 0){
-            ArrayAdapter<Wallet> walletArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, wallets);
+            strList = new ArrayList<>();
+            for (int i = 0; i <wallets.size() ; i++) {
+                strList.add(wallets.get(i).getWalletName()+" - "+wallets.get(i).getBalance()+"SKY");
+            }
+            ArrayAdapter<String> walletArrayAdapter = new ArrayAdapter<>(this, android.R.layout
+                    .simple_list_item_1, strList);
             appCompatSpinner.setAdapter(walletArrayAdapter);
             appCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

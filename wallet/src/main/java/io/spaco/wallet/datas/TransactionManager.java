@@ -12,6 +12,7 @@ import java.util.Map;
 
 import io.spaco.wallet.base.SpacoAppliacation;
 import io.spaco.wallet.utils.LogUtils;
+import io.spaco.wallet.utils.SpacoWalletUtils;
 import mobile.Mobile;
 
 /**
@@ -73,7 +74,8 @@ public class TransactionManager {
      */
     public Transaction sendTransaction(Transaction transaction){
         try {
-            String state = Mobile.send(transaction.coinType,transaction.fromWallet,transaction.toWallet,transaction.amount);
+            String state = Mobile.send(transaction.coinType,transaction.fromWallet,transaction
+                    .toWallet,transaction.amount, transaction.getPasswd());
             LogUtils.d("send transaction result = " + state);
             //发送成功的话，缓存到本地
             transaction.txid = gson.fromJson(state, Transaction.class).txid;

@@ -13,6 +13,7 @@ public class Transaction {
     public String nodes;
     public String state;
     public String time;
+    public String passwd;
 
     @Override
     public String toString() {
@@ -24,6 +25,8 @@ public class Transaction {
                 ", amount='" + amount + '\'' +
                 ", nodes='" + nodes + '\'' +
                 ", state='" + state + '\'' +
+                ", time='" + time + '\'' +
+                ", passwd='" + passwd + '\'' +
                 '}';
     }
 
@@ -81,5 +84,13 @@ public class Transaction {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 }

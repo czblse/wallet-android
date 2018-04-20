@@ -91,7 +91,7 @@ public class SpacoWalletUtils {
         if (Nm > Om) {
             return Const.PINTIME - (Nm - Om);
         } else if (Nm < Om) {
-            return Const.PINTIME -((60 - Om) + Nm);
+            return Const.PINTIME - ((60 - Om) + Nm);
         } else {
             return Const.PINTIME;
         }
@@ -108,16 +108,15 @@ public class SpacoWalletUtils {
         return 0;
     }
 
-    public static void setPinTime() {
-        int minutes = DateUtils.getNowMinute();
-        SharePrefrencesUtil.getInstance().putInt(PIN_OUT, minutes);
-    }
-
     public static void setPinTime(boolean isOut) {
         int minutes = DateUtils.getNowMinute();
         SharePrefrencesUtil.getInstance().putInt(PIN_OUT, isOut ? 0 : minutes);
     }
 
+    public static void setPinTime() {
+        int minutes = DateUtils.getNowMinute();
+        SharePrefrencesUtil.getInstance().putInt(PIN_OUT, minutes);
+    }
 
     public static String getPin() {
         try {
@@ -144,8 +143,6 @@ public class SpacoWalletUtils {
 
     /**
      * 因为密码是16位的，所以取pin的hash的前16位作为加密的数据
-     *
-     * @return
      */
     public static String getPin16() {
         String pinTemp = String.valueOf(getPin().hashCode());
@@ -154,10 +151,6 @@ public class SpacoWalletUtils {
 
     /**
      * 判断钱包是否已经创建过
-     *
-     * @param coinType
-     * @param walletName
-     * @return
      */
     public static boolean isWalletExist(String coinType, String walletName) {
         return WalletManager.getInstance().isExitWallet(walletName);
@@ -165,9 +158,6 @@ public class SpacoWalletUtils {
 
     /**
      * 保存生成过的钱包
-     *
-     * @param coinType
-     * @param walletName
      */
     public static void saveNewWallet(String coinType, String walletName) {
     }
@@ -185,4 +175,11 @@ public class SpacoWalletUtils {
     public static void setEncryptWallet(String data) {
         SharePrefrencesUtil.getInstance().putString(Wallet_KEY, data);
     }
+
+
+    public static String encryptPasswd(String passwd) {
+        String pinTemp = String.valueOf(passwd.hashCode());
+        return passwd + pinTemp;
+    }
+
 }
