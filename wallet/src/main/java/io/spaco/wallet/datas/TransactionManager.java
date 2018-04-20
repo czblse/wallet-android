@@ -13,6 +13,7 @@ import java.util.Map;
 import io.spaco.wallet.base.SpacoAppliacation;
 import io.spaco.wallet.utils.LogUtils;
 import io.spaco.wallet.utils.SpacoWalletUtils;
+import io.spaco.wallet.utils.ToastUtils;
 import mobile.Mobile;
 
 /**

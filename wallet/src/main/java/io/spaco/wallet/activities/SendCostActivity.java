@@ -164,7 +164,7 @@ public class SendCostActivity extends BaseActivity {
 
                                 @Override
                                 public void onError(Throwable e) {
-
+                                    ToastUtils.show(getString(R.string.str_send_error));
                                 }
 
                                 @Override
@@ -232,7 +232,7 @@ public class SendCostActivity extends BaseActivity {
         }
         if (Double.parseDouble(wallet.getBalance().trim()) < Double.parseDouble(amount.getText().toString().trim())) {
             ToastUtils.show(getResources().getString(R.string.insufficient_balance));
-            return false;
+            return true;
         }
         return true;
     }

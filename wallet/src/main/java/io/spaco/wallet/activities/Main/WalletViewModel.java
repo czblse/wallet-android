@@ -67,10 +67,10 @@ public class WalletViewModel {
                             double walletBalance = Wallet.getBalanceFromRawData(walletBalanceJson);
                             double hours = Wallet.getHoursFromRawData(walletBalanceJson);
                             totalBalance += walletBalance;
-                            totalHours += walletBalance * hours;
+                            totalHours +=   hours;
                             wallet.setBalance(String.valueOf(walletBalance));
                             wallet.setHours(String.valueOf(hours));
-                            wallet.setCoinHour(String.valueOf(walletBalance * hours));
+                            wallet.setCoinHour(String.valueOf( hours));
                         }
                         return wallets;
                     }
