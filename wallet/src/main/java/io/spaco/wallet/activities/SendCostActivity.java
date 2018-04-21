@@ -42,7 +42,7 @@ public class SendCostActivity extends BaseActivity {
 
     ImageView close, qrcode;
     AppCompatSpinner appCompatSpinner;
-    EditText  toWallet, amount, nodes,pinCode;
+    EditText toWallet, amount, nodes, pinCode;
     TextView cancle, send;
 
     TransactionViewModel transactionViewModel = new TransactionViewModel();
@@ -79,7 +79,7 @@ public class SendCostActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,R.anim.send_cost_out);
+        overridePendingTransition(0, R.anim.send_cost_out);
     }
 
     private View.OnClickListener createQrcode() {
@@ -101,17 +101,17 @@ public class SendCostActivity extends BaseActivity {
             if (TextUtils.isEmpty(getTypeByCode(code))) {
                 toWallet.setText(code);
                 address = code;
-            }else {
+            } else {
                 address = getAddressByCode(code);
                 toWallet.setText(getTypeByCode(code) + ":" + getAddressByCode(code));
             }
         }
     }
 
-    private String getAddressByCode(String code){
+    private String getAddressByCode(String code) {
         try {
             JSONObject jsonObject = new JSONObject(code);
-            Iterator<String> iterator= jsonObject.keys();
+            Iterator<String> iterator = jsonObject.keys();
             if (iterator.hasNext()) {
                 return jsonObject.getString(iterator.next());
             }
@@ -121,10 +121,10 @@ public class SendCostActivity extends BaseActivity {
         return code;
     }
 
-    private String getTypeByCode(String code){
+    private String getTypeByCode(String code) {
         try {
             JSONObject jsonObject = new JSONObject(code);
-            Iterator<String> iterator= jsonObject.keys();
+            Iterator<String> iterator = jsonObject.keys();
             if (iterator.hasNext()) {
                 return iterator.next();
             }
@@ -144,7 +144,7 @@ public class SendCostActivity extends BaseActivity {
                     transaction.setAmount(amount.getText().toString());
                     transaction.setCoinType(Constant.COIN_TYPE_SKY);
                     transaction.setFromWallet(wallet.getWalletID());
-                    transaction.setToWallet(address);
+                    transaction.setToWallet(TextUtils.isEmpty(address) ? toWallet.getText().toString() : address);
                     transaction.setNodes(nodes.getText().toString());
                     transaction.setPasswd(SpacoWalletUtils.encryptPasswd(pinCode.getText().toString()));
                     transactionViewModel.sendTransaction(transaction)
@@ -157,7 +157,7 @@ public class SendCostActivity extends BaseActivity {
                                 public void onNext(Transaction transaction) {
                                     if (transaction == null) {
                                         ToastUtils.show(getString(R.string.str_send_error));
-                                    }else{
+                                    } else {
                                         sendSuccess();
                                     }
                                 }
@@ -178,7 +178,7 @@ public class SendCostActivity extends BaseActivity {
         };
     }
 
-    private void sendSuccess(){
+    private void sendSuccess() {
         /**
          * 发送成功后，先暂停2秒回到首页，然后8s后自动刷新钱包余额
          */
@@ -190,18 +190,19 @@ public class SendCostActivity extends BaseActivity {
                 WalletPush.getInstance().walletUpdate();
                 finish();
             }
-        },2000);
+        }, 2000);
     }
 
     /**
      * 拦截返回按键
+     *
      * @param keyCode
      * @param event
      * @return
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK)
+        if (keyCode == KeyEvent.KEYCODE_BACK)
             return true;
         return super.onKeyDown(keyCode, event);
     }
@@ -223,11 +224,11 @@ public class SendCostActivity extends BaseActivity {
             ToastUtils.show(getResources().getString(R.string.pin_input_explain));
             return false;
         }
-        if (!pinCode.getText().toString().equals(SpacoWalletUtils.getPin())){
+        if (!pinCode.getText().toString().equals(SpacoWalletUtils.getPin())) {
             ToastUtils.show(getResources().getString(R.string.input_pin_error));
             return false;
         }
-        if(wallet == null){
+        if (wallet == null) {
             return false;
         }
         if (Double.parseDouble(wallet.getBalance().trim()) < Double.parseDouble(amount.getText().toString().trim())) {
@@ -251,11 +252,11 @@ public class SendCostActivity extends BaseActivity {
     protected void initData() {
         //初始化发送钱包
         final List<Wallet> wallets = WalletViewModel.wallets;
-        ArrayList<String> strList ;
-        if(wallets != null && wallets.size() > 0){
+        ArrayList<String> strList;
+        if (wallets != null && wallets.size() > 0) {
             strList = new ArrayList<>();
-            for (int i = 0; i <wallets.size() ; i++) {
-                strList.add(wallets.get(i).getWalletName()+" - "+wallets.get(i).getBalance()+"SKY");
+            for (int i = 0; i < wallets.size(); i++) {
+                strList.add(wallets.get(i).getWalletName() + " - " + wallets.get(i).getBalance() + "SKY");
             }
             ArrayAdapter<String> walletArrayAdapter = new ArrayAdapter<>(this, android.R.layout
                     .simple_list_item_1, strList);

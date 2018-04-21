@@ -14,6 +14,7 @@ import io.spaco.wallet.activities.PIN.PinInputFragment;
 import io.spaco.wallet.activities.PIN.PinSetFragment;
 import io.spaco.wallet.activities.PIN.PinSetListener;
 import io.spaco.wallet.activities.PIN.VerifyPinSetFragment;
+import io.spaco.wallet.api.Const;
 import io.spaco.wallet.base.BaseActivity;
 import io.spaco.wallet.common.Constant;
 import io.spaco.wallet.datas.Wallet;
@@ -202,8 +203,8 @@ public class PinSetActivity extends BaseActivity implements PinSetListener {
             String walletDir = getApplicationContext().getFilesDir().toString() + "/spo";
             try {
                 Mobile.init(walletDir, SpacoWalletUtils.getPin16());
-                Mobile.registerNewCoin("spocoin", "i.spo.network:8620");
-                Mobile.registerNewCoin("skycoin", "i.spo.network:6420");
+                Mobile.registerNewCoin("spocoin", Const.SPOIP);
+                Mobile.registerNewCoin("skycoin", Const.SKYIP);
             } catch (Exception e) {
                 e.printStackTrace();
             }

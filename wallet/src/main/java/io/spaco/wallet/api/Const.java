@@ -21,4 +21,9 @@ public class Const {
      */
     public static final int PINTIME = 5;
 
+    public static final  String SPOIP = "i.spo.network:8620";
+    public static final  String SKYIP = "i.spo.network:6420";
+    /*public static final  String SPOIP = "47.91.204.53:8620";
+    public static final  String SKYIP = "47.91.204.53:6420";*/
+
 }
